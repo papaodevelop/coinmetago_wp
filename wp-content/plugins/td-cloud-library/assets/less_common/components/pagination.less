@@ -1,0 +1,44 @@
+// --------
+// -- PAGINATION
+// --------
+.tdb-s-pagination {
+  display: flex;
+  margin: 22px 0 0;
+}
+
+.tdb-s-pagination-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2em;
+  min-height: 2.2em;
+  margin: 0;
+  padding: 0 8px;
+  font-size: 1em;
+  line-height: 1;
+  font-weight: 600;
+  border-radius: 3px;
+  transition: background-color .2s ease-in-out, color .2s ease-in-out;
+
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  &:not(.tdb-s-pagination-dots):not(.tdb-s-pagination-active) {
+    cursor: pointer;
+  }
+
+  &:hover:not(.tdb-s-pagination-dots):not(.tdb-s-pagination-active) {
+    background-color: #EBEBEB;
+  }
+
+  &:not(.tdb-s-pagination-active) {
+    background-color: #f1f1f1;
+    color: #1d2327;
+  }
+
+  &.tdb-s-pagination-active {
+    background-color: #0489FC;
+    color: #fff;
+  }
+}

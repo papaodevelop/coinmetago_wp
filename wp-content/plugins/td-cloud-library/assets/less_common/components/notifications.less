@@ -1,0 +1,114 @@
+// --------
+// -- NOTIFICATIONS
+// --------
+// General
+.tdb-s-notif {
+  position: relative;
+  padding: 25px;
+  border-radius: 3px;
+
+  &,
+  *:not(.tdb-s-btn) {
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
+  b {
+    font-weight: 600;
+  }
+}
+
+
+// Notification description
+.tdb-s-notif-descr {
+  &:not(:last-child) {
+    margin-bottom: 6px;
+  }
+}
+
+
+// Notification list
+.tdb-s-notif-list {
+  list-style-type: none;
+  margin: 0;
+
+  &:not(:last-child) {
+    margin: 0 0 10px;
+  }
+
+  li {
+    margin-left: 0 !important;
+
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+// Info notification
+.tdb-s-notif-info,
+.tdb-s-notif-notice {
+  background-color: rgba(89, 98, 107, .08);
+  color: #59626B;
+}
+
+
+// Success notification
+.tdb-s-notif-success {
+  background-color: rgba(38, 98, 28, .1);
+  color: #26621c;
+}
+
+
+// Warning notification
+.tdb-s-notif-warning {
+  background-color: rgba(215, 133, 0, 0.12);
+  color: #d78500;
+}
+
+
+// Error notification
+.tdb-s-notif-error {
+  background-color: rgba(255, 56, 56, .12);
+  color: #ff3838;
+}
+
+
+// Extra small size
+.tdb-s-notif-xsm {
+  padding: 10px 15px;
+
+  &,
+  *:not(.tdb-s-btn) {
+    font-size: .929em;
+    line-height: 1.4;
+  }
+}
+
+
+// Small size
+.tdb-s-notif-sm {
+  padding: 18px;
+
+  &,
+  *:not(.tdb-s-btn) {
+    font-size: .929em;
+    line-height: 1.4;
+  }
+}
+
+
+// Extra small size
+.tdb-s-notif-xxsm {
+  padding: 5px 10px 6px;
+
+  &,
+  *:not(.tdb-s-btn) {
+    font-size: .857em;
+    line-height: 1.3;
+  }
+}

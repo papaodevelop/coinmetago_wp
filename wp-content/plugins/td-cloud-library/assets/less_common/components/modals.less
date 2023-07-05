@@ -1,0 +1,159 @@
+// --------
+// -- MODALS
+// --------
+// Modal wrap & modal bg
+.tdb-s-modal-wrap,
+.tdb-s-modal-bg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity .2s ease-in;
+}
+
+
+// Modal wrap
+.tdb-s-modal-wrap {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  pointer-events: none;
+  z-index: 10000;
+}
+.admin-bar .tdb-s-modal-wrap {
+  @media (min-width: 783px) {
+    padding-top: 62px;
+  }
+  @media (max-width: 782px) {
+    padding-top: 76px;
+  }
+}
+
+
+// Modal bg
+.tdb-s-modal-bg {
+  position: absolute;
+  background-color: rgba(107, 114, 128, 0.75);
+}
+
+
+// Modal
+.tdb-s-modal {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  min-width: 400px;
+  max-width: 650px;
+  max-height: 100%;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 14px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12);
+  border-radius: 3px;
+  opacity: 0;
+  transform: scale(.95);
+  transition: opacity .2s ease-in, transform .2s ease-in;
+  z-index: 1;
+
+  /* responsive portrait phone */
+  @media (max-width: @responsive_p_phone_max) {
+    min-width: 0;
+  }
+}
+
+
+// Modal header & footer
+.tdb-s-modal-header,
+.tdb-s-modal-footer {
+  display: flex;
+  align-items: center;
+}
+
+
+// Modal header
+.tdb-s-modal-header {
+  padding: 19px 25px 16px;
+  border-bottom: 1px solid #EBEBEB;
+
+  // Modal header close button
+  .tdb-s-modal-close {
+    margin-left: auto;
+    fill: #878d93;
+    cursor: pointer;
+    transition: transform .2s ease-in-out, fill .2s ease-in-out;
+
+    &:hover {
+      fill: #000;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+// Modal header title
+body h3.tdb-s-modal-title {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: 1.286em;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #1D2327;
+}
+
+
+// Modal body
+.tdb-s-modal-body {
+  padding: 30px 25px;
+  overflow: auto;
+
+  .tdb-s-notif {
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+  }
+}
+
+// Modal text
+.tdb-s-modal-txt {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #59626B;
+}
+
+
+// Modal footer
+.tdb-s-modal-footer {
+  justify-content: flex-end;
+  padding: 18px 25px;
+  border-top: 1px solid #EBEBEB;
+
+  &:empty {
+    display: none;
+  }
+
+  .tdb-s-btn {
+    &:not(:last-of-type) {
+      margin-right: 16px;
+    }
+  }
+}
+
+
+// Modal open state
+.tdb-s-modal-open {
+    pointer-events: auto;
+
+    &,
+    .tdb-s-modal-bg {
+        opacity: 1;
+        transition: opacity .2s ease-out;
+    }
+
+    .tdb-s-modal {
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity .2s ease-out, transform .2s ease-out;
+    }
+}

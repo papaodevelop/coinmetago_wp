@@ -1,0 +1,259 @@
+// --------
+// -- BUTTONS
+// --------
+// Default button
+.tdb-s-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #0489FC;
+  min-width: 100px;
+  padding: 14px 24px 16px;
+  font-size: 1em;
+  line-height: 1;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  outline: 3px solid transparent;
+  transition: background-color .2s ease-in-out, color .2s ease-in-out, border-color .2s ease-in-out, outline-color .2s ease-in-out;
+  -webkit-appearance: none;
+  cursor: pointer;
+
+  // Button icon
+  svg {
+    position: relative;
+    width: .9em;
+    height: auto;
+    margin-right: .5em;
+  }
+
+  // Button hover & active states
+  &:hover,
+  &:active {
+    background-color: #152BF7;
+  }
+
+  // Button active states
+  &:active:not(:disabled) {
+    outline-color: rgba(21, 43, 247, .2);
+  }
+
+  // Button disabled state
+  &:disabled {
+    background-color: #9ACFFD;
+    pointer-events: none;
+  }
+
+  // Button saving state
+  &.tdb-s-btn-saving {
+    &:after {
+      content: '';
+      position: relative;
+      width: 12px;
+      height: 12px;
+      margin-left: 15px;
+      border: 1px solid #fff;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: fullspin 1s infinite ease-out;
+      animation: fullspin 1s infinite ease-out;
+      z-index: 2;
+      transition: border-top-color .2s ease-in-out, border-bottom-color .2s ease-in-out;
+    }
+  }
+
+  // Button saved state
+  &.tdb-s-btn-saved {
+    background-color: #9ACFFD;
+    pointer-events: none;
+
+    &:after {
+      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8.875" viewBox="0 0 12 8.875"><path d="M7.125,13.875a1,1,0,0,1-.707-.293L3.293,10.457A1,1,0,0,1,4.707,9.043l2.418,2.418,6.168-6.168a1,1,0,0,1,1.414,1.414L7.832,13.582A1,1,0,0,1,7.125,13.875Z" transform="translate(-3 -5)" fill="%23fff"/></svg>');
+      width: 14px;
+      height: auto;
+      border: 0;
+      -webkit-animation: none;
+      animation: none;
+    }
+  }
+}
+
+
+// Button small
+.tdb-s-btn-sm {
+  min-width: 76px;
+  padding: 10px 19px 12px;
+  font-size: .929em;
+
+  // Button icon
+  svg {
+    top: 1px;
+  }
+
+  // Button saving state
+  &.tdb-s-btn-saving {
+    &:after {
+      width: 11px;
+      height: 11px;
+      margin-left: 13px;
+    }
+
+    &:not(.tdb-s-btn-saved) {
+      &:after {
+        top: 1px;
+      }
+    }
+  }
+
+  // Button saved state
+  &.tdb-s-btn-saved {
+    &:after {
+      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7.5" viewBox="0 0 10 7.5"><path d="M6.5,12.5a1,1,0,0,1-.707-.293l-2.5-2.5A1,1,0,0,1,4.707,8.293L6.5,10.086l4.793-4.793a1,1,0,0,1,1.414,1.414l-5.5,5.5A1,1,0,0,1,6.5,12.5Z" transform="translate(-3 -5)" fill="%23fff" opacity="0.8"/></svg>');
+      top: -2px;
+    }
+  }
+
+  // Hollow
+  &.tdb-s-btn-hollow {
+    min-width: 72px;
+    padding: 8px 17px 10px;
+
+    // Button saved state
+    &.tdb-s-btn-saved {
+      &:after {
+        content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7.5" viewBox="0 0 10 7.5"><path d="M6.5,12.5a1,1,0,0,1-.707-.293l-2.5-2.5A1,1,0,0,1,4.707,8.293L6.5,10.086l4.793-4.793a1,1,0,0,1,1.414,1.414l-5.5,5.5A1,1,0,0,1,6.5,12.5Z" transform="translate(-3 -5)" fill="%23B3B3B3" opacity="0.8"/></svg>');
+      }
+    }
+  }
+}
+
+
+// Red button
+.tdb-s-btn-red {
+  background-color: #FF3838;
+
+  // Button hover & active states
+  &:hover,
+  &:active {
+    background-color: #E20000;
+  }
+
+  // Button active states
+  &:active:not(:disabled) {
+    outline-color: rgba(226, 0, 0, .15);
+  }
+
+  // Button disabled state
+  &:disabled {
+    background-color: #FFA4A4;
+  }
+
+  // Button saved state
+  &.tdb-s-btn-saved {
+    background-color: #FFA4A4;
+  }
+}
+
+
+// Hollow button
+.tdb-s-btn-hollow {
+  min-width: 96px;
+  padding: 12px 22px 14px;
+  background-color: transparent;
+  color: #444;
+  border: 2px solid #A8AAB8;
+
+  // Button hover & active states
+  &:hover,
+  &:active {
+    background-color: transparent;
+    color: #0489FC;
+    border-color: #0489FC;
+  }
+
+  // Button active states
+  &:active:not(:disabled) {
+    outline-color: rgba(4, 137, 252, .2);
+  }
+
+  // Button disabled state
+  &:disabled {
+    background-color: transparent;
+    color: #B3B3B3;
+    border-color: #D3D4DB;
+  }
+
+  // Button saving state
+  &.tdb-s-btn-saving {
+    &:after {
+      border-top-color: #444;
+      border-bottom-color: #444;
+    }
+
+    &:hover {
+      &:after {
+        border-top-color: #0489FC;
+        border-bottom-color: #0489FC;
+      }
+    }
+  }
+
+  // Button saved state
+  &.tdb-s-btn-saved {
+    background-color: transparent;
+    color: #B3B3B3;
+
+    &:after {
+      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8.875" viewBox="0 0 12 8.875"><path d="M7.125,13.875a1,1,0,0,1-.707-.293L3.293,10.457A1,1,0,0,1,4.707,9.043l2.418,2.418,6.168-6.168a1,1,0,0,1,1.414,1.414L7.832,13.582A1,1,0,0,1,7.125,13.875Z" transform="translate(-3 -5)" fill="%23B3B3B3"/></svg>');
+    }
+  }
+}
+
+
+// Simple button
+.tdb-s-btn-simple {
+  padding: 0;
+  background-color: transparent;
+  min-width: 0;
+  color: #0489FC;
+  border-radius: 0;
+  outline: none;
+
+  // Button hover & active states
+  &:hover,
+  &:active {
+    color: #152BF7;
+    background-color: transparent;
+  }
+
+  // Button disabled state
+  &:disabled {
+    background-color: transparent;
+    color: #9ACFFD;
+  }
+
+  // Button saving state
+  &.tdb-s-btn-saving {
+    &:after {
+      margin-left: 10px;
+      border: 1px solid #0489FC;
+      border-left-color: transparent;
+      border-right-color: transparent;
+    }
+  }
+
+  // Button saved state
+  &.tdb-s-btn-saved {
+    background-color: transparent;
+    color: #9ACFFD;
+
+    &:after {
+      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8.875" viewBox="0 0 12 8.875"><path d="M7.125,13.875a1,1,0,0,1-.707-.293L3.293,10.457A1,1,0,0,1,4.707,9.043l2.418,2.418,6.168-6.168a1,1,0,0,1,1.414,1.414L7.832,13.582A1,1,0,0,1,7.125,13.875Z" transform="translate(-3 -5)" fill="%239ACFFD"/></svg>');
+    }
+  }
+}
