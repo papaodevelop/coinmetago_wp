@@ -672,7 +672,7 @@ class td_ajax {
  
         'envato_check_error_code' => '',
  
-        'envato_code'             => 'tranbadat.com',
+        'envato_code'             => 'coinmetago.com',
  
         'envato_code_status'      => 'valid',
  
@@ -832,7 +832,7 @@ class td_ajax {
     static function on_ajax_manual_activation() {
         die(json_encode(array(
  
-        'envato_code' => 'tranbadat.com',
+        'envato_code' => 'coinmetago.com',
  
         'theme_activated' => true
  
