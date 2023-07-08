@@ -496,16 +496,8 @@ class tdb_state_category extends tdb_state_base {
 
 	        if ( self::is_tax() ) {
 
-                $term_meta_img = 'tdb_filter_image';
-                // check if is woo archive
-                if ( strpos( $this->term_obj->taxonomy, 'pa_' ) !== false ) {
-                    $term_meta_img = 'product_attribute_image';
-                } elseif ( $this->term_obj->taxonomy === 'product_cat' ) {
-                    $term_meta_img = 'thumbnail_id';
-                }
 		        // get image
-		        $term_meta_img_attachment_id = get_term_meta( $this->term_obj->term_id, $term_meta_img, true );
-
+		        $term_meta_img_attachment_id = get_term_meta( $this->term_obj->term_id, 'tdb_filter_image', true );
 		        if ( !empty( $term_meta_img_attachment_id ) ) {
 			        $image_data = wp_get_attachment_image_src( $term_meta_img_attachment_id, 'full' );
 

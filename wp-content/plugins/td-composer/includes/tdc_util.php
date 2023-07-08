@@ -870,13 +870,13 @@ class tdc_util {
                 // Display the previous page link if the current page
                 // is greater than the current page
                 if( $current_page > 1 ) {
-                    $buffy .= '<a href="' . self::get_custom_pagination_page_link( ($current_page - 1), $url_param ) . '" class="' . $classes['item'] . '" data-page="' . ($current_page - 1) . '"><i class="td-icon-left"></i></a>';
+                    $buffy .= '<a href="' . self::get_custom_pagination_page_link( ($current_page - 1), $url_param ) . '" class="' . $classes['item'] . '"><i class="td-icon-left"></i></a>';
                 }
 
                 // If the current page number exceeds the maximum number of pages
                 // allowed to be displayed, then show the first page and dots placeholder
                 if( $start_page >= 2 && $pages_to_show < $num_pages ) {
-                    $buffy .= '<a href="' . self::get_custom_pagination_page_link( 1, $url_param ) . '" class="' . $classes['item'] . '" data-page="1">1</a>';
+                    $buffy .= '<a href="' . self::get_custom_pagination_page_link( 1, $url_param ) . '" class="' . $classes['item'] . '">1</a>';
 
                     if( $start_page > 2 ) {
                         $buffy .= '<span class="' . $classes['item'] . ' ' . $classes['dots'] . '">...</span>';
@@ -888,7 +888,7 @@ class tdc_util {
                     if( $page == $current_page ) {
                         $buffy .= '<div class="' . $classes['item'] . ' ' . $classes['active'] . '">' . $page . '</div>';
                     } else {
-                        $buffy .= '<a href="' . self::get_custom_pagination_page_link( $page, $url_param ) . '" class="' . $classes['item'] . '" data-page="' . $page . '">' . $page . '</a>';
+                        $buffy .= '<a href="' . self::get_custom_pagination_page_link( $page, $url_param ) . '" class="' . $classes['item'] . '">' . $page . '</a>';
                     }
                 }
 
@@ -898,13 +898,13 @@ class tdc_util {
                         $buffy .= '<div class="' . $classes['item'] . ' ' . $classes['dots'] . '">...</div>';
                     }
 
-                    $buffy .= '<a href="' . self::get_custom_pagination_page_link( $num_pages, $url_param ) . '" class="' . $classes['item'] . '" data-page="' . $num_pages . '">' . $num_pages .'</a>';
+                    $buffy .= '<a href="' . self::get_custom_pagination_page_link( $num_pages, $url_param ) . '" class="' . $classes['item'] . '">' . $num_pages .'</a>';
                 }
 
                 // Display the next page link if the current page is not
                 // equal to the last page
                 if( $current_page < $num_pages ) {
-                    $buffy .= '<a href="' . self::get_custom_pagination_page_link( ($current_page + 1), $url_param ) . '" class="' . $classes['item'] . '" data-page="' . ($current_page + 1) . '"><i class="td-icon-right"></i></a>';
+                    $buffy .= '<a href="' . self::get_custom_pagination_page_link( ($current_page + 1), $url_param ) . '" class="' . $classes['item'] . '"><i class="td-icon-right"></i></a>';
                 }
             $buffy .= '</div>';
         }

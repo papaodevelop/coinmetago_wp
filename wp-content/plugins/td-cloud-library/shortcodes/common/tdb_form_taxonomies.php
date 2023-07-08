@@ -37,7 +37,7 @@ class tdb_form_taxonomies extends td_block {
                     font-family: -apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif;
                     font-size: 14px;
                 }
-                .tdb_form_taxonomies a:not(.tdb-s-btn) {
+                .tdb_form_taxonomies a:not(.tds-s-btn) {
                     color: #0489FC;
                 }
                 .tdb_form_taxonomies .tdb-s-content:after {
@@ -59,38 +59,20 @@ class tdb_form_taxonomies extends td_block {
                 .tdb_form_taxonomies .tdb-ft-limit-warning li {
                     margin-bottom: 6px;
                 }
-                .tdb_form_taxonomies .tdb-s-form-group {
-                    display: flex;
-                }
-                .tdb_form_taxonomies .tdb-s-form-label {
+                .tdb_form_taxonomies [data-display=\"checkbox\"] .tdb-s-form-label {
                     display: flex;
                     align-items: center;
-                    flex-wrap: wrap;
-                }
-                .tdb_form_taxonomies [data-display=\"checkbox\"] .tdb-s-form-label {
+                    justify-content: space-between;
                     margin-bottom: 12px;
                 }
-                .tdb_form_taxonomies .tdb-s-form-label-inner {
-                    order: 1;
-                }
-                .tdb_form_taxonomies .tdb-ft-create-term {
-                    order: 2;
-                    justify-content: flex-start;
-                    margin-left: auto;
-                }
                 .tdb_form_taxonomies .tdb-ft-checkbox-search {
-                    order: 3;
                     width: 24%;
                     height: 23px;
                     min-height: 23px;
-                    margin-left: auto;
                     padding: 0 8px 2px;
                     font-size: .857em;
                     border-color: #e4e5e9;
                     border-radius: 3px;
-                }
-                .tdb_form_taxonomies .tdb-ft-create-term + .tdb-ft-checkbox-search {
-                    margin-left: 13px;
                 }
                 .tdb_form_taxonomies .tdb-ft-checkboxes {
                     max-height: 150px;
@@ -121,9 +103,6 @@ class tdb_form_taxonomies extends td_block {
                     padding-left: 0;
                     padding-right: 0;
                  }
-                 .tdb_form_taxonomies .tdb-s-form-checkboxes-wrap .tdb-s-form-check:last-child {
-                    margin-bottom: 7px;
-                 }
                 .tdb_form_taxonomies .tdb-s-form-check,
                 .tdb_form_taxonomies .tdb-s-form-check input,
                 .tdb_form_taxonomies .tdb-s-fc-check,
@@ -139,46 +118,6 @@ class tdb_form_taxonomies extends td_block {
                 .tdb_form_taxonomies .tdb-s-fc-label {
                     pointer-events: auto;
                 }
-                .tdb-ft-create-term-modal .tdb-s-modal {
-                    min-width: 600px;
-                    max-width: 600px;
-                }
-                .tdb-ft-create-term-modal .tdb-s-form-content .tdb-s-notif {
-                    margin-top: 21px;
-                }
-                .tdb-ft-create-term-modal .tdb-s-fc-inner .tdb-s-notif {
-                    margin-left: 8px;
-                    margin-right: 8px;
-                }
-                .tdb-ft-create-term-modal .tdb-s-fc-inner {
-                    margin: 0 -8px;
-                }
-                .tdb-ft-create-term-modal .tdb-s-form-group,
-                .tdb-ft-create-term-modal .tdb-s-fg-error-msg {
-                    padding: 0 8px;
-                }
-                .tdb-ft-create-term-modal .tdb-s-form-group:not(:last-child) {
-                    margin-bottom: 17px;
-                }
-                .tdb-ft-create-term-modal .tdb-s-form-group-name {
-                    flex: 1;
-                }
-                .tdb-ft-create-term-modal .tdb-s-form-group-parent {
-                    width: 50%;
-                }
-                .tdb-ft-create-term-modal .tdb-s-form-group-descr {
-                    margin-bottom: 0 !important;
-                }
-                .tdb-ft-create-term-modal .tdb-s-content {
-                    min-height: 0;
-                }
-                .tdb-ft-create-term-modal .tdb-s-content-loading:after {
-                    margin-top: -10px;
-                    margin-left: -10px;
-                    width: 17px;
-                    height: 17px;
-                    border-width: 2px;
-                }
                 
                 /* @style_general_tdb_form_taxonomies_composer */
                 .tdb_form_taxonomies .tdb-block-inner {
@@ -186,69 +125,11 @@ class tdb_form_taxonomies extends td_block {
                 }
                 
                 
-                
-                /* @all_input_display_row */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: column;
-                    align-items: stretch;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: 100%;
-                    margin: 0 0 8px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 2px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-ft-checkbox-search {
-                    width: 24%;
-                    margin: 0 0 0 auto;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-ft-create-term {
-                    order: 2;
-                    width: auto;
-                    margin: 0 0 0 auto;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-ft-create-term + .tdb-ft-checkbox-search {
-                    margin: 0 0 0 13px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-ft-checkboxes,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap {
-                    width: 100%;
-                }
-                
-                /* @all_input_display_columns */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: row;
-                    align-items: flex-start;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: @all_label_width;
-                    margin: 0 24px 0 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-ft-checkbox-search {
-                    width: 100%;
-                    margin: 8px 0 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-ft-create-term {
-                    order: 4;
-                    width: 100%;
-                    margin: 8px 0 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-ft-checkboxes,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap {
-                    flex: 1;
-                }
-                
-                
                 /* @all_input_border */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input,
                 body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap .select2-selection,
                 body .tdb-s-select2-$unique_block_class.select2-dropdown,
-                body .tdb-s-select2-$unique_block_class .select2-search__field,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input {
+                body .tdb-s-select2-$unique_block_class .select2-search__field {
                     border: @all_input_border @all_input_border_style @all_input_border_color;
                 }
                 body .$unique_block_class .tdb-s-form .tdb-s-form-check .tdb-s-fc-check {
@@ -258,8 +139,7 @@ class tdb_form_taxonomies extends td_block {
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input:not(.tdb-ft-checkbox-search),
                 body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap .select2-selection,
                 body .tdb-s-select2-$unique_block_class.select2-dropdown,
-                body .tdb-s-select2-$unique_block_class .select2-search__field,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input {
+                body .tdb-s-select2-$unique_block_class .select2-search__field {
                     border-radius: @input_radius;
                 }
                 
@@ -282,87 +162,47 @@ class tdb_form_taxonomies extends td_block {
                     max-height: @check_height;
                 }
                 
-                /* @modal_width */
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal {
-                    min-width: @modal_width;
-                    max-width: @modal_width;
-                }
-                /* @modal_radius */
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal {
-                    border-radius: @modal_radius;
-                }
-                
-                /* @btn_radius */
-                body .$unique_block_class .tdb-s-btn,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-btn {
-                    border-radius: @btn_radius;
-                }
-                
                 /* @notif_radius */
-                body .$unique_block_class .tdb-s-notif,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-notif {
+                body .$unique_block_class .tdb-s-notif {
                     border-radius: @notif_radius;
                 }
                 
                 
                 /* @accent_color */
-                body .$unique_block_class a:not(.tdb-s-btn),
-                body .$unique_block_class .tdb-s-btn-hollow,
-                body .$unique_block_class .tdb-s-btn-simple,
-                body .tdb-ft-create-term-modal-$unique_block_class a:not(.tdb-s-btn),
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-btn-hollow,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-btn-simple {
+                body .$unique_block_class a:not(.tdb-s-btn) {
                     color: @accent_color;
                 }
-                body .$unique_block_class .tdb-s-btn:not(.tdb-s-btn-hollow):not(.tdb-s-btn-simple),
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-btn:not(.tdb-s-btn-hollow):not(.tdb-s-btn-simple),
                 body .$unique_block_class .tdb-s-form .tdb-s-form-check .tdb-s-fc-check:after {
                     background-color: @accent_color;
                 }
-                body .$unique_block_class .tdb-s-btn-hollow,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-btn-hollow {
-                    border-color: @accent_color;
-                }
                 body .$unique_block_class .tdb-s-form .tdb-s-form-group:not(.tdb-s-fg-error) .tdb-s-form-input:focus:not([readonly]),
                 body .$unique_block_class .tdb-s-form .tdb-s-form-check input:checked + .tdb-s-fc-check,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap .select2-container--open .select2-selection,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form-group:not(.tdb-s-fg-error) .tdb-s-form-input:focus:not([readonly]) {
+                body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap .select2-container--open .select2-selection {
                     border-color: @accent_color !important;
                 }
                 /* @input_outline_accent_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-group:not(.tdb-s-fg-error) .tdb-s-form-input:focus:not([readonly]),
                 body .$unique_block_class .tdb-s-form .tdb-s-form-check input:checked + .tdb-s-fc-check,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap .select2-container--open .select2-selection,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form-group:not(.tdb-s-fg-error) .tdb-s-form-input:focus:not([readonly]) {
+                body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap .select2-container--open .select2-selection {
                     outline-color: @input_outline_accent_color;
                 }
                 
                 /* @label_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-label,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-check .tdb-s-fc-title,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-label {
+                body .$unique_block_class .tdb-s-form .tdb-s-form-check .tdb-s-fc-title {
                     color: @label_color;
-                }
-                /* @descr_color */
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    color: @descr_color;
                 }
                 /* @input_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input,
                 body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap .select2-selection,
                 body .tdb-s-select2-$unique_block_class .select2-search__field,
-                body .tdb-s-select2-$unique_block_class .select2-results__options,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input {
+                body .tdb-s-select2-$unique_block_class .select2-results__options {
                     color: @input_color;
                 }
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill,
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:hover,
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:focus,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:active,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofil,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:hover,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:focus,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:active {
+                body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:active {
                     -webkit-text-fill-color: @input_color;
                 }
                 body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap .tdb-s-form-select-icon {
@@ -373,18 +213,13 @@ class tdb_form_taxonomies extends td_block {
                 body .$unique_block_class .tdb-s-form .tdb-s-form-check .tdb-s-fc-check,
                 body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap .select2-selection,
                 body .tdb-s-select2-$unique_block_class.select2-dropdown,
-                body .tdb-s-select2-$unique_block_class .select2-search__field,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input {
+                body .tdb-s-select2-$unique_block_class .select2-search__field {
                     background-color: @input_bg;
                 }
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill,
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:hover,
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:focus,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:active,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofil,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:hover,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:focus,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:active {
+                body .$unique_block_class .tdb-s-form .tdb-s-form-input:-webkit-autofill:active {
                     -webkit-box-shadow: 0 0 0 1000px @input_bg inset !important;
                 }
                 /* @input_select2_outline_color */
@@ -401,84 +236,19 @@ class tdb_form_taxonomies extends td_block {
                     background-color: @option_bg_h;
                 }
                 
-                /* @modal_bg */
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal {
-                    background-color: @modal_bg;
-                }
-                /* @modal_overlay_solid */
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal-bg {
-                    background-color: @modal_overlay_solid;
-                }
-                /* @modal_overlay_gradient */
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal-bg {
-                    @modal_overlay_gradient
-                }
-                /* @modal_title */
-                body .tdb-ft-create-term-modal-$unique_block_class h3.tdb-s-modal-title {
-                    color: @modal_title;
-                }
-                /* @modal_close */
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal-header .tdb-s-modal-close {
-                    fill: @modal_close;
-                }
-                /* @modal_sep */
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal-header {
-                    border-bottom-color: @modal_sep;
-                }
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal-footer {
-                    border-top-color: @modal_sep;
-                }
-                /* @modal_shadow */
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal {
-                    box-shadow: @modal_shadow;
-                }
-                
-                /* @btn_color */
-                body .$unique_block_class .tdb-s-btn,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-btn {
-                    color: @btn_color;
-                }
-                /* @btn_color_h */
-                body .$unique_block_class .tdb-s-btn:hover,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-btn:hover {
-                    color: @btn_color_h;
-                }
-                /* @btn_bg_h */
-                body .$unique_block_class .tdb-s-btn:not(.tdb-s-btn-hollow):not(.tdb-s-btn-simple):hover,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-btn:not(.tdb-s-btn-hollow):not(.tdb-s-btn-simple):hover {
-                    background-color: @btn_bg_h;
-                }
-                body .$unique_block_class .tdb-s-btn-hollow:hover,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-btn-hollow:hover {
-                    border-color: @btn_bg_h;
-                }
-                
                 /* @notif_warning_color */
-                body .$unique_block_class .tdb-s-notif-warning,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-notif-warning {
+                body .$unique_block_class .tdb-s-notif-warning {
                     color: @notif_warning_color;
                 }
                 /* @notif_warning_bg */
-                body .$unique_block_class .tdb-s-notif-warning,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-notif-warning {
+                body .$unique_block_class .tdb-s-notif-warning {
                     background-color: @notif_warning_bg;
-                }
-                /* @notif_error_color */
-                body .$unique_block_class .tdb-s-notif-error,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-notif-error {
-                    color: @notif_error_color;
-                }
-                /* @notif_error_bg */
-                body .$unique_block_class .tdb-s-notif-error,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-notif-error {
-                    background-color: @notif_error_bg;
                 }
                 
                 
                 /* @f_text */
                 body .$unique_block_class,
-                body .tdb-s-select2-$unique_block_class.select2-dropdown,
-                body .tdb-ft-create-term-modal-$unique_block_class .tdb-s-modal {
+                 body .tdb-s-select2-$unique_block_class.select2-dropdown {
                     @f_text
                 }
                 
@@ -503,25 +273,6 @@ class tdb_form_taxonomies extends td_block {
 
 
         /*-- LAYOUT -- */
-        // inputs display
-        $all_input_display = $res_ctx->get_shortcode_att('all_input_display');
-        if( $all_input_display == '' || $all_input_display == 'row' ) {
-            $res_ctx->load_settings_raw( 'all_input_display_row', 1 );
-        } else {
-            $res_ctx->load_settings_raw( 'all_input_display_columns', 1 );
-        }
-
-        // labels width
-        $all_label_width = $res_ctx->get_shortcode_att('all_label_width');
-        $res_ctx->load_settings_raw( 'all_label_width', $all_label_width );
-        if( $all_label_width != '' ) {
-            if( is_numeric( $all_label_width ) ) {
-                $res_ctx->load_settings_raw( 'all_label_width', $all_label_width . 'px' );
-            }
-        } else {
-            $res_ctx->load_settings_raw( 'all_label_width', '30%' );
-        }
-
         // inputs border size
         $all_input_border = $res_ctx->get_shortcode_att('all_input_border');
         $res_ctx->load_settings_raw( 'all_input_border', $all_input_border );
@@ -600,29 +351,6 @@ class tdb_form_taxonomies extends td_block {
         }
 
 
-        // modal width
-        $modal_width = $res_ctx->get_shortcode_att('modal_width');
-        $res_ctx->load_settings_raw( 'modal_width', $modal_width );
-        if( $modal_width != '' && is_numeric( $modal_width ) ) {
-            $res_ctx->load_settings_raw( 'modal_width', $modal_width . 'px' );
-        }
-
-        // modal border radius
-        $modal_radius = $res_ctx->get_shortcode_att('modal_radius');
-        $res_ctx->load_settings_raw( 'modal_radius', $modal_radius );
-        if( $modal_radius != '' && is_numeric( $modal_radius ) ) {
-            $res_ctx->load_settings_raw( 'modal_radius', $modal_radius . 'px' );
-        }
-
-
-        // buttons border radius
-        $btn_radius = $res_ctx->get_shortcode_att('btn_radius');
-        $res_ctx->load_settings_raw( 'btn_radius', $btn_radius );
-        if( $btn_radius != '' && is_numeric( $btn_radius ) ) {
-            $res_ctx->load_settings_raw( 'btn_radius', $btn_radius . 'px' );
-        }
-
-
         // notifications border radius
         $notif_radius = $res_ctx->get_shortcode_att('notif_radius');
         $res_ctx->load_settings_raw( 'notif_radius', $notif_radius );
@@ -640,7 +368,6 @@ class tdb_form_taxonomies extends td_block {
         }
 
         $res_ctx->load_settings_raw( 'label_color', $res_ctx->get_shortcode_att('label_color') );
-        $res_ctx->load_settings_raw( 'descr_color', $res_ctx->get_shortcode_att('descr_color') );
         $res_ctx->load_settings_raw( 'input_color', $res_ctx->get_shortcode_att('input_color') );
         $res_ctx->load_settings_raw( 'input_bg', $res_ctx->get_shortcode_att('input_bg') );
         $all_input_border_color = $res_ctx->get_shortcode_att('all_input_border_color');
@@ -653,27 +380,10 @@ class tdb_form_taxonomies extends td_block {
         $res_ctx->load_settings_raw( 'option_color_h', $res_ctx->get_shortcode_att('option_color_h') );
         $res_ctx->load_settings_raw( 'option_bg_h', $res_ctx->get_shortcode_att('option_bg_h') );
 
-        $res_ctx->load_settings_raw( 'modal_bg', $res_ctx->get_shortcode_att('modal_bg') );
-        $res_ctx->load_color_settings( 'modal_overlay', 'modal_overlay_solid', 'modal_overlay_gradient', '', '' );
-        $res_ctx->load_settings_raw( 'modal_title', $res_ctx->get_shortcode_att('modal_title') );
-        $res_ctx->load_settings_raw( 'modal_close', $res_ctx->get_shortcode_att('modal_close') );
-        $res_ctx->load_settings_raw( 'modal_sep', $res_ctx->get_shortcode_att('modal_sep') );
-        $res_ctx->load_shadow_settings( 4, 0, 2, 0, 'rgba(0, 0, 0, .12)', 'modal_shadow' );
-
-        $res_ctx->load_settings_raw( 'btn_color', $res_ctx->get_shortcode_att('btn_color') );
-        $res_ctx->load_settings_raw( 'btn_color_h', $res_ctx->get_shortcode_att('btn_color_h') );
-        $res_ctx->load_settings_raw( 'btn_bg_h', $res_ctx->get_shortcode_att('btn_bg_h') );
-
         $notif_warning_color = $res_ctx->get_shortcode_att('notif_warning_color');
         $res_ctx->load_settings_raw( 'notif_warning_color', $notif_warning_color );
         if( !empty( $notif_warning_color ) ) {
             $res_ctx->load_settings_raw('notif_warning_bg', td_util::hex2rgba($notif_warning_color, 0.08));
-        }
-
-        $notif_error_color = $res_ctx->get_shortcode_att('notif_error_color');
-        $res_ctx->load_settings_raw( 'notif_error_color', $notif_error_color );
-        if( !empty( $notif_error_color ) ) {
-            $res_ctx->load_settings_raw('notif_error_bg', td_util::hex2rgba($notif_error_color, 0.12));
         }
 
 
@@ -722,7 +432,7 @@ class tdb_form_taxonomies extends td_block {
         if (isset($_GET['post_id']) && !( td_util::tdc_is_live_editor_iframe() || td_util::tdc_is_live_editor_ajax() )) {
             $post = get_post($_GET['post_id']);
 
-            if( $post && ( $post->post_author == $current_user_id || $is_current_user_admin ) ) {
+            if( $post && $post->post_author == $current_user_id ) {
                 $this->curr_post_id = $_GET['post_id'];
             }
         }
@@ -739,19 +449,12 @@ class tdb_form_taxonomies extends td_block {
 
 
         $show_all_terms = $this->get_att('show_all_terms') != '';
-        $disable_search = $this->get_att('disable_search') != '';
-        $enable_term_create = $this->get_att('term_create') != '';
-
-        $order_by = $this->get_att('orderby') != '' ? $this->get_att('orderby') : 'name';
-        $order = $this->get_att('order') != '' ? $this->get_att('order') : 'ASC';
 
 
         // parent terms
         $term_args = array(
             'taxonomy' => $this->term_type,
-            'hide_empty' => 0,
-            'orderby' => $order_by,
-            'order' => $order
+            'hide_empty' => 0
         );
 
         if( !$show_all_terms ) {
@@ -776,7 +479,7 @@ class tdb_form_taxonomies extends td_block {
             if( $parent_limit_def != '' ) {
                 $parent_limit = $parent_limit_def;
 
-                if( defined( 'TD_SUBSCRIPTION' ) && method_exists( 'tds_util', 'is_user_subscribed_to_plan' ) && $parent_limit > -1 ) {
+                if( defined( 'TD_SUBSCRIPTION' ) && $parent_limit > -1 ) {
                     for ($i = 0; $i < 5; $i++) {
                         $plan_ids = explode(',', $this->get_att('parent_limit_plans_' . $i . '_id'));
                         $plan_limit = $this->get_att('parent_limit_plans_' . $i . '_limit') != '' ? $this->get_att('parent_limit_plans_' . $i . '_limit') : -1;
@@ -804,7 +507,7 @@ class tdb_form_taxonomies extends td_block {
             if( $child_limit_def != '' ) {
                 $child_limit = $child_limit_def;
 
-                if( defined( 'TD_SUBSCRIPTION' ) && method_exists( 'tds_util', 'is_user_subscribed_to_plan' ) && $child_limit > -1 ) {
+                if( defined( 'TD_SUBSCRIPTION' ) && $child_limit > -1 ) {
                     for ($i = 0; $i < 5; $i++) {
                         $plan_ids = explode(',', $this->get_att('child_limit_plans_' . $i . '_id'));
                         $plan_limit = $this->get_att('child_limit_plans_' . $i . '_limit') != '' ? $this->get_att('child_limit_plans_' . $i . '_limit') : -1;
@@ -832,7 +535,7 @@ class tdb_form_taxonomies extends td_block {
             if( $sub_child_limit_def != '' ) {
                 $sub_child_limit = $sub_child_limit_def;
 
-                if( defined( 'TD_SUBSCRIPTION' ) && method_exists( 'tds_util', 'is_user_subscribed_to_plan' ) && $sub_child_limit > -1 ) {
+                if( defined( 'TD_SUBSCRIPTION' ) && $sub_child_limit > -1 ) {
                     for ($i = 0; $i < 5; $i++) {
                         $plan_ids = explode(',', $this->get_att('sub_child_limit_plans_' . $i . '_id'));
                         $plan_limit = $this->get_att('sub_child_limit_plans_' . $i . '_limit') != '' ? $this->get_att('sub_child_limit_plans_' . $i . '_limit') : -1;
@@ -866,16 +569,6 @@ class tdb_form_taxonomies extends td_block {
                 $term_labels = get_taxonomy_labels(get_taxonomy($this->term_type));
                 $term_plural_name = $term_labels->name;
                 $term_singular_name = $term_labels->singular_name;
-                $term_is_hierarchical = is_taxonomy_hierarchical($this->term_type);
-
-                // label text
-                $label_txt = $this->get_att('label_txt');
-                if( $label_txt == '' ) {
-                    $label_txt = $term_plural_name;
-                }
-
-                // Label description
-                $label_descr_txt = rawurldecode( base64_decode( strip_tags( $this->get_att('descr_txt') ) ) );
 
                 $buffy .= '<div class="tdb-block-inner td-fix-index tdb-s-form tdb-s-content">';
                     $buffy .= '<div class="tdb-s-form-content">';
@@ -896,25 +589,15 @@ class tdb_form_taxonomies extends td_block {
                                 $buffy .= '</div>';
                             }
 
-                            $buffy .= '<div class="tdb-s-form-group ' . ( $show_all_terms ? 'tdb-ft-all-terms' : '' ) . '" data-term-hierarchy="parent" data-display="' . $parent_display . '">';
+                            $buffy .= '<div class="tdb-s-form-group ' . ( $show_all_terms ? 'tdb-ft-all-terms' : '' ) . ' tdb-s-content" data-term-hierarchy="parent" data-display="' . $parent_display . '">';
                                 $buffy .= '<label class="tdb-s-form-label" for="tdb-t-parent-' . $this->block_uid . '">';
-                                    $buffy .= '<span class="tdb-s-form-label-inner">';
-                                        $buffy .= $label_txt;
+                                    $buffy .= $term_plural_name;
 
-                                        if( $required ) {
-                                            $buffy .= '<span class="tdb-s-form-label-required"> *</span>';
-                                        }
-
-                                        if( $label_descr_txt != '' ) {
-                                            $buffy .= '<span class="tdb-s-form-label-descr">' . $label_descr_txt . '</span>';
-                                        }
-                                    $buffy .= '</span>';
-
-                                    if( $enable_term_create ) {
-                                        $buffy .= '<a class="tdb-s-btn tdb-s-btn-simple tdb-ft-create-term" href="#">Add new</a>';
+                                    if( $required ) {
+                                        $buffy .= '<span class="tdb-s-form-label-required"> *</span>';
                                     }
 
-                                    if( ( $parent_display == 'checkbox' || $parent_display == 'radio' ) && !$disable_search ) {
+                                    if( $parent_display == 'checkbox' ) {
                                         $buffy .= '<input class="tdb-s-form-input tdb-ft-checkbox-search" type="text" placeholder="Search by keyword..." ' . ( $this->disable_for_guests ? 'disabled' : '' ) . '>';
                                     }
 
@@ -932,7 +615,7 @@ class tdb_form_taxonomies extends td_block {
 
                                     $buffy .= '<div class="tdb-s-form-select-wrap">';
                                         $buffy .= '<select class="tdb-s-form-input" name="tdb-posts-form-taxonomies' . $this->block_uid . '[]" data-old-term-id="' . $selected_parent_term_id . '" ' . ( $this->disable_for_guests ? 'disabled' : '' ) . '>';
-                                            $buffy .= '<option value="">-- Select ' . ( !$show_all_terms ? 'parent ' : '' ) . lcfirst($term_singular_name) . ' --</option>';
+                                            $buffy .= '<option value="">-- Select parent ' . lcfirst($term_singular_name) . ' --</option>';
                                             $buffy .= $this->display_terms_dropdown($parent_terms_final, 0, $selected_parent_term_id);
                                         $buffy .= '</select>';
 
@@ -953,21 +636,6 @@ class tdb_form_taxonomies extends td_block {
                                             $buffy .= $this->display_terms_checkbox($parent_terms_final, 0, $parent_limit, $selected_parent_terms_ids);
                                         $buffy .= '</div>';
                                     $buffy .= '</div>';
-                                } else if( $parent_display == 'radio' ) {
-                                    $checked_parent_term_id = '';
-                                    foreach ( $parent_terms as $parent_term ) {
-                                        $parent_term_object_ids = get_objects_in_term($parent_term->term_id, $this->term_type);
-
-                                        if( in_array( $this->curr_post_id, $parent_term_object_ids ) ) {
-                                            $checked_parent_term_id = $parent_term->term_id;
-                                        }
-                                    }
-
-                                    $buffy .= '<div class="tdb-ft-checkboxes" data-old-term-id="' . $checked_parent_term_id . '">';
-                                        $buffy .= '<div class="tdb-s-form-checkboxes-wrap">';
-                                            $buffy .= $this->display_terms_radio($parent_terms_final, 0, $checked_parent_term_id);
-                                        $buffy .= '</div>';
-                                    $buffy .= '</div>';
                                 }
 
                             $buffy .= '</div>';
@@ -985,13 +653,11 @@ class tdb_form_taxonomies extends td_block {
                                         $child_terms_final = $this->build_terms_array($child_terms, $parent_term->term_id);
 
                                         if( !empty( $child_terms_final ) ) {
-                                            $buffy .= '<div class="tdb-s-form-group" data-term-hierarchy="child" data-parent-id="' . $parent_term->term_id . '" data-display="' . $child_display . '">';
+                                            $buffy .= '<div class="tdb-s-form-group tdb-s-content" data-term-hierarchy="child" data-parent-id="' . $parent_term->term_id . '" data-display="' . $child_display . '">';
                                                 $buffy .= '<label class="tdb-s-form-label" for="tdb-t-parent-' . $this->block_uid . '">';
-                                                    $buffy .= '<span class="tdb-s-form-label-inner">';
-                                                        $buffy .= ucfirst($parent_term->name) . ' child ' . lcfirst($term_plural_name);
-                                                    $buffy .= '</span>';
+                                                    $buffy .= ucfirst($parent_term->name) . ' child ' . lcfirst($term_plural_name);
 
-                                                    if( $child_display == 'checkbox' && !$disable_search ) {
+                                                    if( $child_display == 'checkbox' ) {
                                                         $buffy .= '<input class="tdb-s-form-input tdb-ft-checkbox-search" type="text" placeholder="Search by keyword..." ' . ( $this->disable_for_guests ? 'disabled' : '' ) . '>';
                                                     }
                                                 $buffy .= '</label>';
@@ -1024,25 +690,8 @@ class tdb_form_taxonomies extends td_block {
                                                         }
                                                     }
 
-                                                    $buffy .= '<div class="tdb-ft-checkboxes">';
-                                                        $buffy .= '<div class="tdb-s-form-checkboxes-wrap">';
-                                                            $buffy .= $this->display_terms_checkbox($child_terms_final, 0, $child_limit, $selected_child_term_ids);
-                                                        $buffy .= '</div>';
-                                                    $buffy .= '</div>';
-                                                } else if( $child_display == 'radio' ) {
-                                                    $checked_child_term_id = '';
-                                                    foreach ( $child_terms as $child_term ) {
-                                                        $child_term_object_ids = get_objects_in_term($child_term->term_id, $this->term_type);
-
-                                                        if( in_array( $this->curr_post_id, $child_term_object_ids ) ) {
-                                                            $checked_child_term_id = $child_term->term_id;
-                                                        }
-                                                    }
-
-                                                    $buffy .= '<div class="tdb-ft-checkboxes" data-old-term-id="' . $checked_child_term_id . '">';
-                                                        $buffy .= '<div class="tdb-s-form-checkboxes-wrap">';
-                                                            $buffy .= $this->display_terms_radio($child_terms_final, 0, $checked_child_term_id);
-                                                        $buffy .= '</div>';
+                                                    $buffy .= '<div class="tdb-s-form-checkboxes-wrap">';
+                                                        $buffy .= $this->display_terms_checkbox($child_terms_final, 0, $child_limit, $selected_child_term_ids);
                                                     $buffy .= '</div>';
                                                 }
                                             $buffy .= '</div>';
@@ -1059,13 +708,11 @@ class tdb_form_taxonomies extends td_block {
                                                     $sub_child_terms_final = $this->build_terms_array($sub_child_terms, $child_term->term_id);
 
                                                     if( !empty( $sub_child_terms_final ) ) {
-                                                        $buffy .= '<div class="tdb-s-form-group" data-term-hierarchy="sub-child" data-parent-id="' . $child_term->term_id . '" data-display="' . $sub_child_display . '">';
+                                                        $buffy .= '<div class="tdb-s-form-group tdb-s-content" data-term-hierarchy="sub-child" data-parent-id="' . $child_term->term_id . '" data-display="' . $sub_child_display . '">';
                                                             $buffy .= '<label class="tdb-s-form-label" for="tdb-t-parent-' . $this->block_uid . '">';
-                                                                $buffy .= '<span class="tdb-s-form-label-inner">';
-                                                                    $buffy .= ucfirst($child_term->name) . ' sub-child ' . lcfirst($term_plural_name);
-                                                                $buffy .= '</span>';
+                                                                $buffy .= ucfirst($child_term->name) . ' sub-child ' . lcfirst($term_plural_name);
 
-                                                                if( $sub_child_display == 'checkbox' && !$disable_search ) {
+                                                                if( $sub_child_display == 'checkbox' ) {
                                                                     $buffy .= '<input class="tdb-s-form-input tdb-ft-checkbox-search" type="text" placeholder="Search by keyword..." ' . ( $this->disable_for_guests ? 'disabled' : '' ) . '>';
                                                                 }
                                                             $buffy .= '</label>';
@@ -1098,25 +745,8 @@ class tdb_form_taxonomies extends td_block {
                                                                 }
                                                             }
 
-                                                            $buffy .= '<div class="tdb-ft-checkboxes">';
-                                                                $buffy .= '<div class="tdb-s-form-checkboxes-wrap">';
-                                                                    $buffy .= $this->display_terms_checkbox($sub_child_terms, 0, $sub_child_limit, $selected_sub_child_terms_ids);
-                                                                $buffy .= '</div>';
-                                                            $buffy .= '</div>';
-                                                        } else if( $sub_child_display == 'radio' ) {
-                                                            $checked_sub_child_term_id = '';
-                                                            foreach ( $sub_child_terms as $sub_child_term ) {
-                                                                $sub_child_term_object_ids = get_objects_in_term($sub_child_term->term_id, $this->term_type);
-
-                                                                if( in_array( $this->curr_post_id, $sub_child_term_object_ids ) ) {
-                                                                    $checked_sub_child_term_id = $sub_child_term->term_id;
-                                                                }
-                                                            }
-
-                                                            $buffy .= '<div class="tdb-ft-checkboxes" data-old-term-id="' . $checked_sub_child_term_id . '">';
-                                                                $buffy .= '<div class="tdb-s-form-checkboxes-wrap">';
-                                                                    $buffy .= $this->display_terms_radio($sub_child_terms_final, 0, $checked_sub_child_term_id);
-                                                                $buffy .= '</div>';
+                                                            $buffy .= '<div class="tdb-s-form-checkboxes-wrap">';
+                                                                $buffy .= $this->display_terms_checkbox($sub_child_terms, 0, $sub_child_limit, $selected_sub_child_terms_ids);
                                                             $buffy .= '</div>';
                                                         }
                                                         $buffy .= '</div>';
@@ -1146,20 +776,10 @@ class tdb_form_taxonomies extends td_block {
                             tdbFormTaxonomiesItem.uid = uid;
                             // block object
                             tdbFormTaxonomiesItem.blockObj = $blockObj;
-                            // required
-                            tdbFormTaxonomiesItem.required = '<?php echo $required ?>';
                             // show all terms
                             tdbFormTaxonomiesItem.showAllTerms = '<?php echo $show_all_terms ?>';
-                            // disable terms search
-                            tdbFormTaxonomiesItem.disableSearch = '<?php echo $disable_search ?>';
-                            // enable create term
-                            tdbFormTaxonomiesItem.enableTermCreate = '<?php echo $enable_term_create ?>';
-                            // terms order
-                            tdbFormTaxonomiesItem.orderBy = '<?php echo $order_by ?>';
-                            tdbFormTaxonomiesItem.order = '<?php echo $order ?>';
-                            // term info
+                            // term type
                             tdbFormTaxonomiesItem.termType = '<?php echo $this->term_type ?>';
-                            tdbFormTaxonomiesItem.termIsHerarchical = '<?php echo $term_is_hierarchical ?>';
                             // term plural name
                             tdbFormTaxonomiesItem.termName = '<?php echo $term_plural_name ?>';
                             // terms display
@@ -1269,43 +889,6 @@ class tdb_form_taxonomies extends td_block {
 
             if( !empty( $term_data['children'] ) ) {
                 $buffy .= $this->display_terms_checkbox($term_data['children'], $terms_level, $terms_limit, $selected_terms);
-            }
-        }
-
-        return $buffy;
-
-    }
-
-    function display_terms_radio($terms, $terms_level, $checked_term_id, $group_id = '') {
-
-        $buffy = '';
-
-        $terms_name_prefix = str_repeat('-', $terms_level);
-        if( $terms_name_prefix != '' ) {
-            $terms_name_prefix .= ' ';
-        }
-        $terms_level++;
-
-        if( $group_id == '' ) {
-            $group_id = substr( base_convert( strval(floor(1 + rand() * 0x10000 )), 10, 16 ), 0, 4 );
-        }
-
-        foreach ( $terms as $term_id => $term_data ) {
-            $checked = '';
-            if( $term_id == $checked_term_id ) {
-                $checked = 'checked';
-            }
-
-            $buffy .= '<div class="tdb-s-form-check">';
-                $buffy .= '<label class="tdb-s-fc-label">';
-                    $buffy .= '<input type="radio" name="tdb-posts-form-taxonomies-' . $this->block_uid . '-' . $group_id . '[]" value="' . $term_id . '" ' . $checked . '>';
-                    $buffy .= '<span class="tdb-s-fc-check"></span>';
-                    $buffy .= '<span class="tdb-s-fc-title">' . $terms_name_prefix . $term_data['name'] . '</span>';
-                $buffy .= '</label>';
-            $buffy .= '</div>';
-
-            if( !empty( $term_data['children'] ) ) {
-                $buffy .= $this->display_terms_radio($term_data['children'], $terms_level, $checked_term_id, $group_id);
             }
         }
 

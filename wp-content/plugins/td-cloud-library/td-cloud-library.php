@@ -4,9 +4,22 @@ Plugin Name: tagDiv Cloud Library
 Plugin URI: http://tagdiv.com
 Description: Access a huge collection of pre-made templates you can import on your website and customize on the frontend using the tagDiv Composer plugin.
 Author: tagDiv
-Version: 2.4 | built on 09.01.2023 8:48
+Version: 2.3 | built on 05.10.2022 13:12
 Author URI: http://tagdiv.com
 */
+
+//td_cloud location (local or live) - it's set to live automatically on deploy
+define('TDB_CLOUD_LOCATION', 'live');
+
+//hash
+define('TD_CLOUD_LIBRARY', '87b3292f51aec51c00e6ce7db9b73ed1');
+
+// the deploy mode: dev or deploy  - it's set to deploy automatically on deploy
+define('TDB_DEPLOY_MODE', 'deploy');
+
+
+define('TDB_TEMPLATE_BUILDER_DIR', dirname( __FILE__ ));
+define('TDB_URL', plugins_url('td-cloud-library'));
 
 // compatibility checks
 require_once('tdb_version_check.php');
@@ -14,25 +27,13 @@ require_once('tdb_version_check.php');
 // check active theme and automatically disable the plugin if the active theme doesn't support it
 if ( tdb_version_check::is_active_theme_compatible() === false ) {
 
-    add_action( 'admin_init', function () {
-        deactivate_plugins( plugin_basename( __FILE__ ) );
-    });
+	add_action( 'admin_init', function () {
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+	});
 
-    return;
+	return;
 
 }
-
-//td_cloud location (local or live) - it's set to live automatically on deploy
-define('TDB_CLOUD_LOCATION', 'live');
-
-//hash
-define('TD_CLOUD_LIBRARY', 'f41b1d596d81a0ab113b1f85139ed2c2');
-
-// the deploy mode: dev or deploy  - it's set to deploy automatically on deploy
-define('TDB_DEPLOY_MODE', 'deploy');
-
-define('TDB_TEMPLATE_BUILDER_DIR', dirname( __FILE__ ));
-define('TDB_URL', plugins_url('td-cloud-library'));
 
 // check PHP version
 if ( tdb_version_check::is_php_compatible() === false ) {

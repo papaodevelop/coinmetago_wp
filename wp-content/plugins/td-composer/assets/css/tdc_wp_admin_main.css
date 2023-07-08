@@ -767,7 +767,7 @@ textarea {
   font-size: 9px;
 }
 .tdc-tab-content-wrap .tdc-hidden {
-  display: none !important;
+  display: none;
 }
 .tdc-tab-content-wrap .tdc-disabled {
   pointer-events: none;

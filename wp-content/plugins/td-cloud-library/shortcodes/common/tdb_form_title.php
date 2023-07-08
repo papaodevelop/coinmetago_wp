@@ -17,46 +17,12 @@ class tdb_form_title extends td_block {
                     font-family: -apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif;
                     font-size: 14px;
                 }
-                .tdb_form_title .tdb-s-form-group {
-                    display: flex;
-                }
                 
                 /* @style_general_tdb_form_title_composer */
                 .tdb_form_title .tdb-form-inner {
                     pointer-events: none;
                 }
                 
-                
-                
-                /* @all_input_display_row */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: column;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: 100%;
-                    margin: 0 0 8px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 2px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-input {
-                    width: 100%;
-                }
-                
-                /* @all_input_display_columns */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: row;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: @all_label_width;
-                    margin: 0 24px 0 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-input {
-                    flex: 1;
-                }
                 
                 
                 /* @all_input_border */
@@ -81,10 +47,6 @@ class tdb_form_title extends td_block {
                 /* @label_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-label {
                     color: @label_color;
-                }
-                /* @descr_color */
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    color: @descr_color;
                 }
                 /* @input_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input {
@@ -134,25 +96,6 @@ class tdb_form_title extends td_block {
 
 
         /*-- LAYOUT -- */
-        // inputs display
-        $all_input_display = $res_ctx->get_shortcode_att('all_input_display');
-        if( $all_input_display == '' || $all_input_display == 'row' ) {
-            $res_ctx->load_settings_raw( 'all_input_display_row', 1 );
-        } else {
-            $res_ctx->load_settings_raw( 'all_input_display_columns', 1 );
-        }
-
-        // labels width
-        $all_label_width = $res_ctx->get_shortcode_att('all_label_width');
-        $res_ctx->load_settings_raw( 'all_label_width', $all_label_width );
-        if( $all_label_width != '' ) {
-            if( is_numeric( $all_label_width ) ) {
-                $res_ctx->load_settings_raw( 'all_label_width', $all_label_width . 'px' );
-            }
-        } else {
-            $res_ctx->load_settings_raw( 'all_label_width', '30%' );
-        }
-
         // inputs border size
         $all_input_border = $res_ctx->get_shortcode_att('all_input_border');
         $res_ctx->load_settings_raw( 'all_input_border', $all_input_border );
@@ -189,7 +132,6 @@ class tdb_form_title extends td_block {
         }
 
         $res_ctx->load_settings_raw( 'label_color', $res_ctx->get_shortcode_att('label_color') );
-        $res_ctx->load_settings_raw( 'descr_color', $res_ctx->get_shortcode_att('descr_color') );
         $res_ctx->load_settings_raw( 'input_color', $res_ctx->get_shortcode_att('input_color') );
         $res_ctx->load_settings_raw( 'input_bg', $res_ctx->get_shortcode_att('input_bg') );
         $all_input_border_color = $res_ctx->get_shortcode_att('all_input_border_color');
@@ -222,14 +164,13 @@ class tdb_form_title extends td_block {
         // currently logged in user
         $current_user = wp_get_current_user();
         $current_user_id = $current_user->ID;
-        $is_current_user_admin = in_array('administrator', $current_user->roles);
 
         // current post id
         $curr_post_id = '';
         if ( isset($_GET['post_id']) && !( td_util::tdc_is_live_editor_iframe() || td_util::tdc_is_live_editor_ajax() ) ) {
             $post = get_post($_GET['post_id']);
 
-            if( $post && ( $post->post_author == $current_user_id || $is_current_user_admin ) ) {
+            if( $post && $post->post_author == $current_user_id ) {
                 $curr_post_id = $_GET['post_id'];
             }
         }
@@ -253,9 +194,6 @@ class tdb_form_title extends td_block {
             $label_txt = 'Title';
         }
 
-        // label description
-        $label_descr_txt = rawurldecode( base64_decode( strip_tags( $this->get_att('descr_txt') ) ) );
-
 
         $buffy = ''; //output buffer
 
@@ -275,10 +213,6 @@ class tdb_form_title extends td_block {
                             $buffy .= '<label class="tdb-s-form-label" for="tdb-posts-form-title-' . $this->block_uid . '">';
                                 $buffy .= $label_txt;
                                 $buffy .= '<span class="tdb-s-form-label-required"> *</span>';
-
-                                if( $label_descr_txt != '' ) {
-                                    $buffy .= '<span class="tdb-s-form-label-descr">' . $label_descr_txt . '</span>';
-                                }
                             $buffy .= '</label>';
 
                             $buffy .= '<input type="text" class="tdb-s-form-input" id="tdb-posts-form-title-' . $this->block_uid . '" name="tdb-posts-form-title-' . $this->block_uid . '" value="' . $field_value . '" ' . $input_disabled . '>';

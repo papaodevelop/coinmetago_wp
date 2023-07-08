@@ -216,9 +216,6 @@ class td_social_sharing {
             .td-social-kakao .td-icon-kakao {
                 font-size: 18px;
             }
-            .td-social-kakao .td-icon-kakao:before {
-                color: #3C1B1D;
-            }
             .td-social-reddit .td-social-but-icon {
                 padding-right: 12px;
             }
@@ -381,7 +378,7 @@ class td_social_sharing {
             }
             .td-ps-bg .td-social-kakao .td-social-but-icon,
             .td-ps-bg .td-social-kakao .td-social-but-text {
-                background-color: #f9e000;
+                background-color: #dd604a;
             }
             .td-ps-bg .td-social-gettr .td-social-but-icon,
             .td-ps-bg .td-social-gettr .td-social-but-text {
@@ -492,7 +489,7 @@ class td_social_sharing {
             }
             .td-ps-border-colored .td-social-kakao .td-social-but-icon,
             .td-ps-border-colored .td-social-kakao .td-social-but-text {
-                border-color: #f9e000;
+                border-color: #dd604a;
             }
             .td-ps-border-colored .td-social-gettr .td-social-but-icon,
             .td-ps-border-colored .td-social-gettr .td-social-but-text {
@@ -560,7 +557,7 @@ class td_social_sharing {
                 background-color: #f42827;
             }
             .td-ps-icon-bg .td-social-kakao .td-social-but-icon {
-                background-color: #f9e000;
+                background-color: #dd604a;
             }
             .td-ps-icon-bg .td-social-gettr .td-social-but-icon {
                 background-color: #fc223b;
@@ -647,7 +644,7 @@ class td_social_sharing {
                 border-left-color: #f42827;
             }
             .td-ps-icon-arrow .td-social-kakao .td-social-but-icon:after {
-                border-left-color: #f9e000;
+                border-left-color: #dd604a;
             }
             .td-ps-icon-arrow .td-social-gettr .td-social-but-icon:after {
                 border-left-color: #fc223b;
@@ -710,7 +707,7 @@ class td_social_sharing {
                 color: #f42827;
             }
             .td-ps-icon-color .td-social-kakao .td-social-but-icon {
-                color: #f9e000;
+                color: #dd604a;
             }
             .td-ps-icon-color .td-social-gettr .td-social-but-icon {
                 color: #fc223b;
@@ -772,7 +769,7 @@ class td_social_sharing {
                 color: #f42827;
             }
             .td-ps-text-color .td-social-kakao .td-social-but-text {
-                color: #f9e000;
+                color: #dd604a;
             }
             .td-ps-text-color .td-social-gettr .td-social-but-text {
                 color: #fc223b;

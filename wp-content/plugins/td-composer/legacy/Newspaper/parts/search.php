@@ -4,7 +4,7 @@
 		<form method="get" class="td-search-form" action="<?php echo esc_url(home_url( '/' )); ?>">
 			<!-- close button -->
 			<div class="td-search-close">
-				<span><i class="td-icon-close-mobile"></i></span>
+				<a href="#"><i class="td-icon-close-mobile"></i></a>
 			</div>
 			<div role="search" class="td-search-input">
 				<span><?php _etd('Search', TD_THEME_NAME)?></span>

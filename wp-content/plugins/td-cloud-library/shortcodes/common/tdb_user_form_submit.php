@@ -21,10 +21,6 @@ class tdb_user_form_submit extends td_block {
                     font-family: -apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif;
                     font-size: 14px;
                 }
-                .tdb_user_form_submit .tdb-block-inner {
-                    display: flex;
-                    flex-direction: column;
-                }
                 .tdb_user_form_submit .tdb-s-content {
                     min-height: auto;
                 }
@@ -59,8 +55,8 @@ class tdb_user_form_submit extends td_block {
                 body .$unique_block_class {
                     display: block;
                 }
-                body .$unique_block_class .tdb-s-btn {
-                    width: auto;
+                body .$unique_block_class .tdb-block-inner {
+                    align-items: flex-start;
                 }
                 /* @display_inline */
                 body .$unique_block_class {
@@ -72,16 +68,18 @@ class tdb_user_form_submit extends td_block {
                 }
                 body .$unique_block_class .tdb-block-inner {
                     align-items: stretch;
+                    display: flex;
+                    flex-direction: column;
                 }
                 body .$unique_block_class .tdb-s-btn {
-                    width: 100%;
+                  display: flex;
+                  width: 100%;
                 }
                 /* @btn_radius */
                 body .$unique_block_class .tdb-s-btn {
                     border-radius: @btn_radius;
                 }
                 /* @horiz_align */
-                body .$unique_block_class .tdb-s-form-footer,
                 body .$unique_block_class .tdb-s-btn {
                     justify-content: @horiz_align;
                 }

@@ -15,8 +15,6 @@ require_once('td_options.php');
 
 require_once('td_util.php');
 
-require_once('td_email.php');
-
 
 // load the wp_booster_api
 require_once('td_api.php');
@@ -143,10 +141,6 @@ add_action('wp_ajax_td_resend_subscription_activation_link',        array('td_aj
 add_action('wp_ajax_nopriv_td_mod_remember_pass', array('td_ajax', 'on_ajax_remember_pass'));
 add_action('wp_ajax_td_mod_remember_pass',        array('td_ajax', 'on_ajax_remember_pass'));
 
-// ajax: login reset pass
-add_action('wp_ajax_nopriv_td_mod_subscription_reset_pass', array('td_ajax', 'on_ajax_subscription_reset_pass'));
-add_action('wp_ajax_td_mod_subscription_reset_pass',        array('td_ajax', 'on_ajax_subscription_reset_pass'));
-
 // ajax: update views - via ajax only when enable in panel
 add_action('wp_ajax_nopriv_td_ajax_update_views', array('td_ajax', 'on_ajax_update_views'));
 add_action('wp_ajax_td_ajax_update_views',        array('td_ajax', 'on_ajax_update_views'));
@@ -217,17 +211,11 @@ require_once( 'td_fb_ig_business.php' ); // facebook/instagram business accounts
 add_action('wp_ajax_nopriv_td_ajax_video_cache_videos', array('td_ajax', 'on_ajax_video_cache_videos'));
 add_action('wp_ajax_td_ajax_video_cache_videos',        array('td_ajax', 'on_ajax_video_cache_videos'));
 
+
 // ajax: comments captcha retrieve details
-add_action('wp_ajax_nopriv_td_ajax_submit_captcha', array('td_ajax', 'on_ajax_submit_captcha'));
-add_action('wp_ajax_td_ajax_submit_captcha',        array('td_ajax', 'on_ajax_submit_captcha'));
+add_action('wp_ajax_nopriv_td_ajax_comment_submit_captcha', array('td_ajax', 'on_ajax_comment_submit_captcha'));
+add_action('wp_ajax_td_ajax_comment_submit_captcha',        array('td_ajax', 'on_ajax_comment_submit_captcha'));
 
-// ajax: facebook login retrieve details
-add_action('wp_ajax_nopriv_td_ajax_fb_login_get_credentials', array('td_ajax', 'on_ajax_fb_login_get_credentials'));
-add_action('wp_ajax_td_ajax_fb_login_get_credentials',        array('td_ajax', 'on_ajax_fb_login_get_credentials'));
-
-// ajax: facebook login retrieve details
-add_action('wp_ajax_nopriv_td_ajax_fb_login_user', array('td_ajax', 'on_ajax_fb_login_user'));
-add_action('wp_ajax_td_ajax_fb_login_user',        array('td_ajax', 'on_ajax_fb_login_user'));
 
 
 /**
@@ -392,27 +380,6 @@ if (td_global::$is_woocommerce_installed === true ) {
 		add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
 		add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 
-		add_action( 'admin_enqueue_scripts', function () {
-
-			wp_deregister_script( 'wc-blocks-middleware' );
-			wp_deregister_script( 'wc-blocks-data-store' );
-			wp_deregister_script( 'wc-blocks-vendors' );
-			wp_deregister_script( 'wc-blocks-registry' );
-			wp_deregister_script( 'wc-blocks' );
-			wp_deregister_script( 'wc-blocks-shared-context' );
-			wp_deregister_script( 'wc-blocks-shared-hocs' );
-
-		} , 11 );
-
-	}
-}
-
-// dequeue yoast seo js from live editor
-if( is_plugin_active( 'wordpress-seo/wp-seo.php' ) || is_plugin_active( 'wordpress-seo-premium/wp-seo-premium.php' ) ) {
-	if ( tdc_state::is_live_editor_iframe() || tdc_state::is_live_editor_ajax() ) {
-		add_action( 'admin_enqueue_scripts', function () {
-			wp_dequeue_script( 'yoast-seo-post-edit' );
-		} , 11 );
 	}
 }
 
@@ -3205,9 +3172,7 @@ function td_template_include_filter( $wordpress_template_path ) {
 
         if ( ! empty( $td_primary_category ) ) {
 
-            $post_category_option = 'tdb_post_category_template' . $lang;
-
-            $post_category_template = td_util::get_category_option( $td_primary_category, $post_category_option );
+            $post_category_template = td_util::get_category_option( $td_primary_category, 'tdb_post_category_template' );
 
             // make sure the template exists, maybe it was deleted or something
             if ( td_global::is_tdb_template( $post_category_template, true ) ) {

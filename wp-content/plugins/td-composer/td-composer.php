@@ -4,7 +4,7 @@
 	Plugin URI: http://tagdiv.com
 	Description: tagDiv Composer - Create everything on your website right on the frontend with this drag and drop builder. Perfect for articles, pages, headers, and footers. No coding skills required.
 	Author: tagDiv
-	Version: 3.8 | built on 09.01.2023 8:48
+	Version: 3.6 | built on 19.10.2022 13:12
 	Author URI: http://tagdiv.com
 */
 
@@ -17,7 +17,7 @@ if ( is_plugin_active( 'td-multi-purpose/td-multi-purpose.php' ) ) {
 
 
 //hash
-define('TD_COMPOSER',       '969f3bb4333afe45565e713582b6de14');
+define('TD_COMPOSER',       'e815948e5c9ec5801de67b92a1d5a59fx');
 define('TDC_VERSION',       '__td_aurora_deploy_version__');
 define('TDC_URL',           plugins_url('td-composer'));
 define('TDC_PATH',          dirname(__FILE__));
@@ -163,13 +163,9 @@ function tdc_plugin_init() {
 	require_once "css-live/css-live.php";
 
 	// register 'css-analyze' extension
-   if ( 'Newspaper' === TD_THEME_NAME ) {
-	    $css_analyze_dir_path = TDC_PATH . '/css-analyze/css-analyze.php';
-	    if ( file_exists( $css_analyze_dir_path ) ) {
-		    require_once "css-analyze/css-analyze.php";
-	    }
+    if ( 'Newspaper' === TD_THEME_NAME ) {
+        require_once "css-analyze/css-analyze.php";
     }
-	
 	if ( 'demo' === TD_DEPLOY_MODE ) {
 		add_filter( 'nonce_life', function () { return 31 * 24 * HOUR_IN_SECONDS; } );
 	}

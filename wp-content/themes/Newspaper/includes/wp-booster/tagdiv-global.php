@@ -12,15 +12,15 @@ class tagdiv_global {
 	 * @var array
 	 */
 	private static $td_plugins = array(
-		'TD_COMPOSER'       => array( 'version' => '969f3bb4333afe45565e713582b6de14',         'class' => 'tdc_version_check' ),
-		'TD_CLOUD_LIBRARY'  => array( 'version' => 'f41b1d596d81a0ab113b1f85139ed2c2',    'class' => 'tdb_version_check' ),
+		'TD_COMPOSER'       => array( 'version' => 'e815948e5c9ec5801de67b92a1d5a59fx',         'class' => 'tdc_version_check' ),
+		'TD_CLOUD_LIBRARY'  => array( 'version' => '87b3292f51aec51c00e6ce7db9b73ed1',    'class' => 'tdb_version_check' ),
 		'TD_SOCIAL_COUNTER' => array( 'version' => 'f70b7664cb5224295a91f7d2e89fc57e',   'class' => 'td_social_counter_plugin' ),
-		'TD_NEWSLETTER'     => array( 'version' => 'b5d024fc3d2d7d1186882b920dc0e8be',       'class' => 'td_newsletter_version_check' ),
+		'TD_NEWSLETTER'     => array( 'version' => 'a3f39aadc2441dfee5f4cbdb817eeaca',       'class' => 'td_newsletter_version_check' ),
 		'TD_SUBSCRIPTION'   => array( 'version' => '___td-subscription___',     'class' => 'tds_version_check' ),
-		'TD_MOBILE_PLUGIN'  => array( 'version' => '95d7899533f233a2b9e1ea8f9e712022',    'class' => 'td_mobile_theme' ),
+		'TD_MOBILE_PLUGIN'  => array( 'version' => '1fb779f30bda2ecbaaacbc59e4f40249',    'class' => 'td_mobile_theme' ),
 		'AMP'               => array( 'version' => '___amp___',                 'class' => 'AMP_Autoloader' ),
-		'TD_STANDARD_PACK'  => array( 'version' => '7b24cfa58e9ab053c98d141038fd6ac7',    'class' => 'tdsp_version_check' ),
-		'TD_WOO'            => array( 'version' => 'e847112a183ace2df79d0bbfd9d78b77',              'class' => 'td_woo_version_check' )
+		'TD_STANDARD_PACK'  => array( 'version' => '48767bfdc5698c9103b4ef9b700012fd',    'class' => 'tdsp_version_check' ),
+		'TD_WOO'            => array( 'version' => '869e2636dd880dbe286a0d9627f91f9a',              'class' => 'td_woo_version_check' )
 	);
 
 

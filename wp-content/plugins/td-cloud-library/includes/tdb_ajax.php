@@ -268,10 +268,6 @@ add_action( 'rest_api_init', function(){
                 $reply['error'] = 'wp_insert_post returned 0. Not ok!';
                 die( json_encode( $reply ) );
             }
-
-            //wp_insert_post() currently doesn't create a revision for a newly created post
-            wp_save_post_revision($template_id);
-
             if ( $duplicate_template && 'header' === $template_type ) {
                 add_post_meta(
                     $template_id, 'tdc_header_template_id', $template_id
@@ -438,7 +434,7 @@ add_action( 'rest_api_init', function(){
 	        $api_response = wp_remote_post($api_url . '/' . $cloud_end_point, array (
 		        'method' => 'POST',
 		        'body' => $cloud_post,
-		        'timeout' => 14
+		        'timeout' => 12
 	        ));
 
 //            $file = fopen("d:\log.txt", "w");
@@ -2443,19 +2439,7 @@ function tdb_get_woo_product_templates(){
 
     if (!empty($wp_query_templates->posts)) {
 
-        $lang = '';
-        if (class_exists('SitePress', false)) {
-            global $sitepress;
-            $sitepress_settings = $sitepress->get_settings();
-            if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                if (1 === $translation_mode) {
-                    $lang = $sitepress->get_current_language();
-                }
-            }
-        }
-
-        $option_id = 'tdb_woo_product_template' . $lang;
+        $option_id = 'tdb_woo_product_template';
         $td_default_site_template = td_util::get_option( $option_id );
 
         $global_template_id = '';
@@ -2680,18 +2664,6 @@ function tdb_get_woo_archive_templates(){
         // current term id
 	    $woo_term_id = $_POST['woo_archive_id'];
 
-        $lang = '';
-        if (class_exists('SitePress', false)) {
-            global $sitepress;
-            $sitepress_settings = $sitepress->get_settings();
-            if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                if (1 === $translation_mode) {
-                    $lang = $sitepress->get_current_language();
-                }
-            }
-        }
-
 	    // determine woo archive template type
 	    // woo_archive(for prod categories)/woo_archive_tag(for prod tags)/woo_archive_attribute(for prod attributes)
 	    $term = get_term( $woo_term_id );
@@ -2699,14 +2671,14 @@ function tdb_get_woo_archive_templates(){
 		    $term_taxonomy = $term->taxonomy;
 		    switch ( $term_taxonomy ) {
 			    case 'product_tag':
-				    $tdb_tpl_option_key = 'tdb_woo_archive_tag_template' . $lang;
+				    $tdb_tpl_option_key = 'tdb_woo_archive_tag_template';
 				    break;
 			    case taxonomy_is_product_attribute( $term_taxonomy ):
-				    $tdb_tpl_option_key = 'tdb_woo_archive_attribute_template' . $lang;
+				    $tdb_tpl_option_key = 'tdb_woo_archive_attribute_template';
 				    break;
 			    case 'product_cat':
 			    default:
-				    $tdb_tpl_option_key = 'tdb_woo_archive_template' . $lang;
+				    $tdb_tpl_option_key = 'tdb_woo_archive_template';
 				    break;
 		    }
 	    } else {
@@ -2715,7 +2687,7 @@ function tdb_get_woo_archive_templates(){
 	    }
 
 	    // check for global prod attribute taxonomy template
-	    if ( $tdb_tpl_option_key === 'tdb_woo_archive_attribute_template' . $lang ) {
+	    if ( $tdb_tpl_option_key === 'tdb_woo_archive_attribute_template' ) {
 
 		    // check for global tdb template used for prod attributes taxonomy
 		    $tdb_pa_tax_woo_archive_attribute_template = td_options::get( 'tdb_woo_attribute_' . $term_taxonomy . '_tax_template' );
@@ -2891,9 +2863,9 @@ function tdb_ct_assign_woo_archive_tpl_global() {
     }
 
 	if ( strpos( $woo_tax, 'pa_' ) !== false ) {
-		$tdb_tpl_option_key = 'tdb_woo_attribute_' . $woo_tax . '_tax_template' . $lang;
+		$tdb_tpl_option_key = 'tdb_woo_attribute_' . $woo_tax . '_tax_template';
 	} else {
-		$tdb_tpl_option_key = 'tdb_' . $woo_tax . '_template' . $lang;
+		$tdb_tpl_option_key = 'tdb_' . $woo_tax . '_template';
 	}
 
 	td_util::update_option( $tdb_tpl_option_key, 'tdb_template_' . $template_id );
@@ -2929,18 +2901,6 @@ function tdb_assign_woo_archive_template_to_tax () {
         die( json_encode( $reply ) );
     }
 
-    $lang = '';
-    if ( class_exists('SitePress', false) ) {
-        global $sitepress;
-        $sitepress_settings = $sitepress->get_settings();
-        if ( isset( $sitepress_settings['custom_posts_sync_option'][ 'tdb_templates'] ) ) {
-            $translation_mode = (int) $sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-            if ( 1 === $translation_mode ) {
-                $lang = $sitepress->get_current_language();
-            }
-        }
-    }
-
 	// determine woo archive template type
 	// woo_archive(for prod categories)/woo_archive_tag(for prod tags)/woo_archive_attribute(for prod attributes)
 	$term = get_term( $woo_term_id );
@@ -2948,14 +2908,14 @@ function tdb_assign_woo_archive_template_to_tax () {
 		$term_taxonomy = $term->taxonomy;
 		switch ( $term_taxonomy ) {
 			case 'product_tag':
-				$tdb_tpl_option_key = 'tdb_woo_archive_tag_template' . $lang;
+				$tdb_tpl_option_key = 'tdb_woo_archive_tag_template';
 				break;
 			case taxonomy_is_product_attribute( $term_taxonomy ):
-				$tdb_tpl_option_key = 'tdb_woo_archive_attribute_template' . $lang;
+				$tdb_tpl_option_key = 'tdb_woo_archive_attribute_template';
 				break;
 			case 'product_cat':
 			default:
-				$tdb_tpl_option_key = 'tdb_woo_archive_template' . $lang;
+				$tdb_tpl_option_key = 'tdb_woo_archive_template';
 				break;
 		}
 	} else {
@@ -3056,19 +3016,7 @@ function tdb_get_woo_search_archive_templates(){
 
     if (!empty($wp_query_templates->posts)) {
 
-        $lang = '';
-        if ( class_exists('SitePress', false) ) {
-            global $sitepress;
-            $sitepress_settings = $sitepress->get_settings();
-            if ( isset( $sitepress_settings['custom_posts_sync_option'][ 'tdb_templates'] ) ) {
-                $translation_mode = (int) $sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                if ( 1 === $translation_mode ) {
-                    $lang = $sitepress->get_current_language();
-                }
-            }
-        }
-
-        $option_id = 'tdb_woo_search_archive_template' . $lang;
+        $option_id = 'tdb_woo_search_archive_template';
         $td_default_site_template = td_util::get_option( $option_id );
 
         $global_template_id = '';
@@ -3232,19 +3180,7 @@ function tdb_get_woo_shop_base_templates(){
 
     if (!empty($wp_query_templates->posts)) {
 
-        $lang = '';
-        if (class_exists('SitePress', false)) {
-            global $sitepress;
-            $sitepress_settings = $sitepress->get_settings();
-            if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                if (1 === $translation_mode) {
-                    $lang = $sitepress->get_current_language();
-                }
-            }
-        }
-
-        $option_id = 'tdb_woo_shop_base_template' . $lang;
+        $option_id = 'tdb_woo_shop_base_template';
         $td_default_site_template = td_util::get_option( $option_id );
 
         $global_template_id = '';
@@ -4435,9 +4371,6 @@ function tdb_create_mobile_template() {
         die( json_encode( $reply ) );
     }
 
-    //wp_insert_post() currently doesn't create a revision for a newly created post
-    wp_save_post_revision($post_id);
-
     if ( 0 !== $post_id ) {
 
         // reply data
@@ -5388,13 +5321,9 @@ function on_ajax_tdb_ct_get_all() {
 		        }
 	        }
 
-            $td_preview_param = '?td_preview_template_id=' . $template->ID;
-            if ( $template_type === 'attachment' || $template_type === 'woo_search_archive') {
-                $td_preview_param = '&td_preview_template_id=' . $template->ID;
-            }
             // tpl view link
 	        $card_tpl_view_link = !empty( $tdb_templates[$template_type_data_key]['tpl_card_data_assets']['card_tpl_data_view_link'] ) ? $tdb_templates[$template_type_data_key]['tpl_card_data_assets']['card_tpl_data_view_link'] : '';
-            $tpl_data['view_link'] = $card_tpl_view_link ? $card_tpl_view_link . $td_preview_param : get_permalink( $template->ID );
+	        $tpl_data['view_link'] = $card_tpl_view_link ?: get_permalink( $template->ID );
 
             // tpl edit link
 	        $tpl_data['edit_link'] = get_edit_post_link( $template->ID, 'raw' );
@@ -6031,7 +5960,6 @@ function get_tpl_card_data_assets( $tpl_type, $wp_cpt_name = '' ) {
                 array(
 	                'taxonomy' => 'product_cat',
                     'number' => 1,
-                    'hide_empty' => false,
                 )
             );
             if ( $product_categories ) {
@@ -6165,6 +6093,7 @@ function get_tpl_card_data_assets( $tpl_type, $wp_cpt_name = '' ) {
                         'post_type' => $wp_cpt_name
                     )
                 );
+
 
                 if ($posts) {
                     $card_data_id = $posts[0]->ID;
@@ -7214,115 +7143,26 @@ function tdb_get_cpt_mobile_templates (){
 /*
  * Form taxonomies > ajax callbacks
  */
-// Get child terms
-add_action('wp_ajax_nopriv_tdb_ft_get_terms', 'on_ajax_tdb_ft_get_terms');
-add_action('wp_ajax_tdb_ft_get_terms', 'on_ajax_tdb_ft_get_terms');
-function on_ajax_tdb_ft_get_terms() {
+
+add_action('wp_ajax_nopriv_tdb_get_child_terms', 'on_ajax_tdb_get_child_terms');
+add_action('wp_ajax_tdb_get_child_terms', 'on_ajax_tdb_get_child_terms');
+function on_ajax_tdb_get_child_terms() {
 
     $reply = array();
 
-    $parent_term_id = $_POST['parentTermID'];
+    $term_id = $_POST['termID'];
     $term_type = $_POST['termType'];
-    $max_depth = isset($_POST['depth']) ? $_POST['depth'] : 3;
-    $order_by = isset($_POST['orderBy']) ? $_POST['orderBy'] : 'name';
-    $order = isset($_POST['order']) ? $_POST['order'] : 'ASC';
 
+    if( $term_id != '' ) {
+        $terms = get_terms(array(
+            'taxonomy' => $term_type,
+            'parent' => $term_id,
+            'hide_empty' => 0
+        ));
 
-    $terms_args = array(
-        'taxonomy' => $term_type,
-        'hide_empty' => 0,
-        'orderby' => $order_by,
-        'order' => $order
-    );
-
-    if( $parent_term_id != -1 ) {
-        $terms_args['parent'] = $parent_term_id;
-    }
-
-    $terms = get_terms($terms_args);
-
-
-    if( !empty( $terms ) && !is_wp_error($terms) ) {
-        $reply = ft_build_terms_array($terms, ($parent_term_id != -1 ? $parent_term_id : 0), $max_depth);
-    }
-
-
-    die( json_encode( $reply ) );
-
-}
-
-function ft_build_terms_array($terms, $parent_id, $max_depth, $curr_depth = 0) {
-
-    $terms_array = array();
-
-    if( $curr_depth < $max_depth ) {
-        $curr_depth++;
-
-        foreach ( $terms as $term ) {
-            if( $term->parent == $parent_id ) {
-                $terms_array[$term->name] = array(
-                    'id' => $term->term_id,
-                    'children' => ft_build_terms_array($terms, $term->term_id, $max_depth, $curr_depth),
-                );
-            }
+        if( !empty( $terms ) && !is_wp_error($terms) ) {
+            $reply = $terms;
         }
-    }
-
-    return $terms_array;
-
-}
-
-
-// Create new term
-add_action('wp_ajax_nopriv_tdb_create_term', 'on_ajax_tdb_create_term');
-add_action('wp_ajax_tdb_create_term', 'on_ajax_tdb_create_term');
-function on_ajax_tdb_create_term() {
-
-    $reply = array(
-        'term' => '',
-        'errors' => array()
-    );
-
-    $term_name = $_POST['termName'];
-    $term_type = $_POST['termType'];
-    $term_descr = $_POST['termDescr'];
-    $parent_term_id = $_POST['parentTermID'];
-
-
-    $inserted_term = wp_insert_term(
-        $term_name,
-        $term_type,
-        array(
-            'description' => $term_descr,
-            'parent' => $parent_term_id
-        )
-    );
-
-
-    if( is_wp_error( $inserted_term ) ) {
-        $errors = $inserted_term->errors;
-
-        foreach ( $errors as $error_code => $error_message ) {
-            switch ( $error_code ) {
-                case 'term_exists':
-                    $reply['errors'][] = 'A term with the name provided already exists with this parent.';
-                    break;
-
-                case 'invalid_taxonomy':
-                    $reply['errors'][] = 'Invalid taxonomy.';
-                    break;
-
-                case 'empty_term_name':
-                    $reply['errors'][] = 'A name is required for this term.';
-                    break;
-
-                default:
-                    $reply['errors'][] = 'An unexpected error has occured. Please try again.';
-                    break;
-            }
-        }
-    } else {
-        $reply['term'] = $inserted_term;
     }
 
 
@@ -7503,7 +7343,6 @@ function tdb_posts_form_on_submit() {
     $post_id_form = $_POST['postID'];
     $author_id = $_POST['authorID'];
     $post_type = $_POST['postType'];
-    $post_format = $_POST['postFormat'];
     $post_status = $_POST['postStatus'];
     $link_to_post_id = $_POST['linkToPostID'];
     $form_elements = json_decode(str_replace('\\', "", $_POST['formElements']), true);
@@ -7548,12 +7387,6 @@ function tdb_posts_form_on_submit() {
         } else {
             // Get the number of posts that this user has
             $reply['user_posts_count'] = count_user_posts($author_id, $post_type);
-
-
-            // Set the post format
-            if( post_type_supports($post_type, 'post-formats') ) {
-                set_post_format($post_id, $post_format);
-            }
 
 
             // Handle the content fields
@@ -7726,20 +7559,6 @@ function tdb_posts_form_on_submit() {
 
                     if ($field_name == 'featured_image') {
                         set_post_thumbnail($post_id, $attachment_id);
-                    } else if ($field_name == 'featured_video') {
-                        if( post_type_supports($post_type, 'post-formats') ) {
-                            $tmp_meta['td_video'] = $file_return['url'];
-                            update_post_meta($post_id, 'td_post_video', $tmp_meta);
-
-                            wp_update_post(get_post($post_id));
-                        }
-                    } else if( $field_name == 'featured_audio' ) {
-                        if( post_type_supports($post_type, 'post-formats') ) {
-                            $tmp_meta['td_audio'] = $file_return['url'];
-                            update_post_meta($post_id, 'td_post_audio', $tmp_meta);
-
-                            wp_update_post(get_post($post_id));
-                        }
                     } else {
                         if( class_exists( 'ACF' ) ) {
                             $acf_field = acf_get_raw_field($field_name);
@@ -7831,32 +7650,14 @@ function tdb_posts_form_on_submit() {
             // Link the post
             if( isset( $link_to_post_id ) ) {
                 if( $link_to_post_id != '' ) {
-                    $old_link_to_post_id = get_post_meta($post_id, 'tdc-parent-post-id', true);
-
-                    if( !empty($old_link_to_post_id) && ( ( $old_link_to_post_id != $link_to_post_id ) || $link_to_post_id == 0 ) ) {
-                        $linked_posts_ids_old = get_post_meta($old_link_to_post_id, 'tdc-post-linked-posts', true);
-                        if( empty( $linked_posts_ids_old ) ) {
-                            $linked_posts_ids_old = array();
-                        }
-
-                        $linked_posts_ids_old[$post_type] = array_diff($linked_posts_ids_old[$post_type], array($post_id));
-                        update_post_meta( $old_link_to_post_id, 'tdc-post-linked-posts', $linked_posts_ids_old );
-
-                        if( $link_to_post_id == 0 ) {
-                            update_post_meta( $post_id, 'tdc-parent-post-id', '' );
-                        }
+                    $linked_posts_ids = get_post_meta($link_to_post_id, 'tdc-post-linked-posts', true);
+                    if( empty( $linked_posts_ids ) ) {
+                        $linked_posts_ids = array();
                     }
+                    $linked_posts_ids[$post_type][] = $post_id;
+                    update_post_meta( $link_to_post_id, 'tdc-post-linked-posts', $linked_posts_ids );
 
-                    if( $link_to_post_id != 0 ) {
-                        $linked_posts_ids = get_post_meta($link_to_post_id, 'tdc-post-linked-posts', true);
-                        if( empty( $linked_posts_ids ) ) {
-                            $linked_posts_ids = array();
-                        }
-                        $linked_posts_ids[$post_type][] = $post_id;
-
-                        update_post_meta( $link_to_post_id, 'tdc-post-linked-posts', $linked_posts_ids );
-                        update_post_meta( $post_id, 'tdc-parent-post-id', $link_to_post_id );
-                    }
+                    add_post_meta( $post_id, 'tdc-parent-post-id', $link_to_post_id );
                 }
             }
 
@@ -8411,93 +8212,25 @@ function tdb_review_reply_on_delete() {
 /*
  * Posts List > ajax callbacks
  */
-// get posts list
-add_action( 'wp_ajax_nopriv_tdb_get_posts_list_posts', 'on_ajax_tdb_get_posts_list_posts' );
-add_action( 'wp_ajax_tdb_get_posts_list_posts', 'on_ajax_tdb_get_posts_list_posts' );
-function on_ajax_tdb_get_posts_list_posts() {
+add_action( 'wp_ajax_tdb_update_post_status', 'tdb_update_post_status' );
+add_action( 'wp_ajax_nopriv_tdb_update_post_status', 'tdb_update_post_status' );
+function tdb_update_post_status() {
 
-    $reply = array('html' => '', 'errors' => '');
-
-
-    $reply['html'] = tdb_posts_list_utils::render_list($_POST['options'], $_POST['activeFilters']);
+    $reply = array('success' => '', 'errors' => '');
 
 
-    die( json_encode( $reply ) );
-
-}
-
-
-// update post status
-add_action( 'wp_ajax_tdb_posts_list_update_post_status', 'on_ajax_tdb_posts_list_update_post_status' );
-add_action( 'wp_ajax_nopriv_tdb_posts_list_update_post_status', 'on_ajax_tdb_posts_list_update_post_status' );
-function on_ajax_tdb_posts_list_update_post_status() {
-
-    $reply = array('success' => '', 'error' => '');
     $post_id = $_POST['postID'];
     $new_post_status = $_POST['newStatus'];
 
-
-    /* -- Verify if the user trying to update the post status is actually -- */
-    /* -- the owner of the post or is admin -- */
-    $current_user = wp_get_current_user();
-	$is_current_user_admin = in_array('administrator', $current_user->roles);
-    $post = get_post($post_id);
-
-    if( !$is_current_user_admin && $post->post_author != $current_user->ID ) {
-        $reply['error'] = __td( 'You do not hold the required privileges to execute this request.' );
-
-        die( json_encode( $reply ) );
-    }
-
-
-    /* -- Update the post's status -- */
     $updated_post = wp_update_post(array(
         'ID' => $post_id,
         'post_status' => $new_post_status,
     ));
 
     if( !is_wp_error($updated_post) ) {
-        $post = get_post($updated_post);
-
-        $reply['success'] = str_replace( '%POST_TITLE%', $post->post_title, __td( 'The status for %POST_TITLE% has been changed.', TD_THEME_NAME ) );
+        $reply['success'] = __td( 'The status for the selected post has been changed to "Published".', TD_THEME_NAME );
     } else {
-        $reply['error'] = __td( 'An unexpected error has occurred. Please try again.', TD_THEME_NAME );
-    }
-
-
-    die( json_encode( $reply ) );
-
-}
-
-// delete a post
-add_action( 'wp_ajax_nopriv_tdb_posts_list_delete_post', 'on_ajax_tdb_posts_list_delete_post' );
-add_action( 'wp_ajax_tdb_posts_list_delete_post', 'on_ajax_tdb_posts_list_delete_post' );
-function on_ajax_tdb_posts_list_delete_post() {
-
-    $reply = array('success' => '', 'error' => '');
-    $post_id = $_POST['postID'];
-
-
-    /* -- Verify if the user trying to delete the post is actually -- */
-    /* -- the owner of the post or is admin -- */
-    $current_user = wp_get_current_user();
-	$is_current_user_admin = in_array('administrator', $current_user->roles);
-    $post = get_post($post_id);
-
-    if( !$is_current_user_admin && $post->post_author != $current_user->ID ) {
-        $reply['error'] = __td( 'You do not hold the required privileges to execute this request.' );
-
-        die( json_encode( $reply ) );
-    }
-
-
-    /* -- Move the post to trash -- */
-    $trashed_post = wp_trash_post($post_id);
-
-    if( $trashed_post != false && $trashed_post != null ) {
-        $reply['success'] = str_replace( '%POST_TITLE%', $trashed_post->post_title, __td( '%POST_TITLE% has been moved to trash.', TD_THEME_NAME ) );
-    } else {
-        $reply['error'] = __td( 'An unexpected error has occurred. Please try again.', TD_THEME_NAME );
+        $reply['errors'][] = __td( 'An unexpected error has occurred. Please try again.', TD_THEME_NAME );
     }
 
 

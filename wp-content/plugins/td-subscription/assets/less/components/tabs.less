@@ -1,0 +1,111 @@
+// --------
+// -- TABBED CONTENT
+// --------
+// Tabs navigation
+.tds-s-tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #D0D4FE;
+  }
+}
+
+// Tabs content sep
+.tds-s-sep {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #e8f0ff;
+  }
+}
+
+// Tabs navigation item
+.tds-s-tn-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-bottom: 18px;
+  font-size: .929em;
+  line-height: 1;
+  font-weight: 600;
+  color: #1D2327;
+  transition: color .2s ease-in-out;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 34px;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: transparent;
+    transition: background-color .2s ease-in-out;
+  }
+
+  &:after {
+    content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="9.273" height="7" viewBox="0 0 9.273 7"><path d="M6.273,12a1,1,0,0,1-.707-.293L3.293,9.434A1,1,0,0,1,4.707,8.02L6.273,9.586l4.293-4.293A1,1,0,0,1,11.98,6.707l-5,5A1,1,0,0,1,6.273,12Z" transform="translate(-3 -5)" fill="%23152bf7"/></svg>');
+    transform: translateY(1px);
+    margin-left: 8px;
+    padding: 4px 3px;
+    background-color: #E5F3FF;
+    line-height: 0;
+    border-radius: 2px;
+    display: none;
+  }
+
+  // Tabs navigation item hover state
+  &:hover {
+    &:before {
+      background-color: #D0D4FE;
+    }
+  }
+
+  // Tabs navigation item text
+  .tds-s-tn-item-txt {
+    line-height: 15px;
+  }
+
+  // Tabs navigation item active state
+  &.tds-s-tn-item-active {
+    color: #152BF7;
+
+    &:before {
+      background-color: #152BF7;
+    }
+  }
+
+  // Tabs navigation item enabled state
+  &.tds-s-tn-item-enabled {
+    &:after {
+      display: block;
+    }
+  }
+}
+
+
+// Tabs content
+// Tabs content item
+.tds-s-tc-item {
+  padding-top: 28px;
+}

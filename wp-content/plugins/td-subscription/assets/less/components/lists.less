@@ -1,0 +1,95 @@
+// --------
+// -- LISTS
+// --------
+// List title
+.tds-s-list-title {
+  font-size: 1em;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #1D2327;
+  margin-bottom: 12px;
+
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
+
+}
+
+
+// List
+.tds-s-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  list-style-type: none;
+}
+
+.tds-s-list-cols {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+// List item
+.tds-s-list-item {
+  display: flex;
+  margin-left: 0 !important;
+  margin-bottom: 0;
+  font-size: 1em;
+  line-height: 1.3;
+
+  // List separator
+  &.tds-s-list-sep {
+    margin: 5px 0 15px;
+    border-bottom: 1px solid #E8E8E8;
+  }
+
+  // List text separator
+  .tds-s-list-text-sep {
+    margin: 0 5px;
+  }
+
+  .tds-s-list-text {
+    a.disabled {
+      //color: #c3c4c7;
+      cursor: not-allowed;
+      opacity: 0.5;
+      text-decoration: none;
+    }
+
+    .tds-s-price-full {
+      display: inline-block;
+      margin-right: 3px;
+      text-decoration: line-through;
+      color: #9da0a1;
+      font-size: 13px;
+    }
+
+  }
+
+}
+
+
+// List item label
+.tds-s-list-label {
+  margin-right: 6px;
+  color: #555D66;
+}
+
+
+// List item text
+.tds-s-list-text {
+  font-weight: 600;
+  color: #1D2327;
+}
+
+
+// Sizes
+.tds-s-list-sm {
+  gap: 6px;
+
+  .tds-s-list-item {
+    font-size: .929em;
+  }
+}

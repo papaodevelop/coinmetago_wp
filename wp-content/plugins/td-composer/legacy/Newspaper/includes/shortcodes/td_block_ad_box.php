@@ -350,19 +350,21 @@ class td_block_ad_box extends td_block {
         $spot_hide_for_admins_bool = false;
         $spot_hide_for_subscribed_bool = false;
 
-        if( defined( 'TD_SUBSCRIPTION' ) && method_exists( 'tds_util', 'is_user_subscribed_to_plan' ) && $spot_hide_plan_id != '' ) {
-            $spot_hide_plan_id = explode(',', $spot_hide_plan_id);
+        if( $is_current_user_admin ) {
+            if( $spot_hide != '' ) {
+                $spot_hide_for_admins_bool = true;
+            }
+        } else {
+            if( defined( 'TD_SUBSCRIPTION' ) && $spot_hide_plan_id != '' ) {
+                $spot_hide_plan_id = explode(',', $spot_hide_plan_id);
 
-            foreach ( $spot_hide_plan_id as $plan_id ) {
-                if( tds_util::is_user_subscribed_to_plan( $current_user_id, $plan_id ) ) {
-                    $spot_hide_for_subscribed_bool = true;
-                    break;
+                foreach ( $spot_hide_plan_id as $plan_id ) {
+                    if( tds_util::is_user_subscribed_to_plan( $current_user_id, $plan_id ) ) {
+                        $spot_hide_for_subscribed_bool = true;
+                        break;
+                    }
                 }
             }
-        }
-        
-        if( !$spot_hide_for_subscribed_bool && $is_current_user_admin && $spot_hide != '' ) {
-            $spot_hide_for_admins_bool = true;
         }
 
         // rec title

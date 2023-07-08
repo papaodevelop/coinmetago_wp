@@ -834,11 +834,6 @@
 .td-plugin-meta .td-plugin-button:hover:before {
   opacity: 0.6;
 }
-.td-demo-plugins-install .theme-name {
-  white-space: normal;
-  line-height: 1;
-  padding-bottom: 3px;
-}
 /*  ----------------------------------------------------------------------------
     buttons
 */

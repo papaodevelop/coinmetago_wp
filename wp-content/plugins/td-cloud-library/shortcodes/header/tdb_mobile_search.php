@@ -51,15 +51,7 @@ class tdb_mobile_search extends td_block {
                 #tdc-live-iframe .tdb_mobile_search a {
                   pointer-events: none;
                 }
-                .td-search-opened {
-                  overflow: hidden;
-                }
-                .td-search-opened #td-outer-wrap {
-                  position: static;
-                }
-                .td-search-opened .td-search-wrap-mob {
-                  position: fixed;
-                }
+
                 
                 /* @inline */
                 .$unique_block_class {
@@ -343,7 +335,7 @@ class tdb_mobile_search extends td_block {
 
             $buffy .= '<div class="tdb-block-inner td-fix-index">';
 
-                $buffy .= '<span class="tdb-header-search-button-mob dropdown-toggle" data-toggle="dropdown">' . $icon_html . '</span>';
+                $buffy .= '<a class="tdb-header-search-button-mob dropdown-toggle" href="#" role="button" aria-label="Search" data-toggle="dropdown">' . $icon_html . '</a>';
 
             $buffy .= '</div>';
 

@@ -218,7 +218,7 @@ class tdm_block_pricing extends td_block {
 
         $featured = $this->get_shortcode_att( 'featured' );
         $style = $this->get_shortcode_att( 'tds_pricing' );
-        $content_align_horizontal = $this->get_shortcode_att( 'content_align_horizontal' );
+	    $content_align_horizontal = $this->get_shortcode_att( 'content_align_horizontal' );
 
         $additional_classes = array();
 

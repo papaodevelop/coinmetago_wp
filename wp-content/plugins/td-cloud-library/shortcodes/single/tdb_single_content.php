@@ -144,7 +144,16 @@ class tdb_single_content extends td_block {
                   display: table;
                   width: 100%;
                 }
-
+                @media print {
+                  .single .td-header-template-wrap,
+                  .single .td-footer-template-wrap,
+                  .single .td_block_wrap:not(.tdb_breadcrumbs):not(.tdb_single_categories):not(.tdb-single-title):not(.tdb_single_author):not(.tdb_single_date ):not(.tdb_single_comments_count ):not(.tdb_single_post_views):not(.tdb_single_featured_image):not(.tdb_single_content) {
+                    display: none;
+                  }
+                  .single.td-animation-stack-type0 .post img {
+                    opacity: 1 !important;
+                  }
+                }
                 .tdb_single_content .tdb-block-inner.td-fix-index {
                     word-break: break-word;
                 }

@@ -48,8 +48,7 @@
 }
 
 .tdb-s-table-col-label {
-  min-width: 35%;
-  max-width: 35%;
+  width: 35%;
   margin-right: 10px;
   padding-right: 10px;
   color: #555D66;
@@ -78,61 +77,6 @@
   // Table columns
   .tdb-s-table-col {
     padding-bottom: 15px;
-  }
-}
-
-
-// Table columns header
-.tdb-s-table-col-order {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.tdb-s-table-col-order-icons {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: 1px;
-  margin-left: 10px;
-
-  svg {
-    fill: #555D66;
-    line-height: 0;
-    opacity: .3;
-
-    &:nth-child(1) {
-      margin-bottom: 2px;
-    }
-  }
-}
-
-[data-order="ASC"] {
-  .tdb-s-table-col-order-icons {
-    svg {
-      &:nth-child(1) {
-        opacity: 1;
-      }
-
-      &:nth-child(2) {
-        opacity: .3;
-      }
-    }
-  }
-}
-
-[data-order="DESC"] {
-  .tdb-s-table-col-order-icons {
-    svg {
-      &:nth-child(1) {
-        opacity: .3;
-      }
-
-      &:nth-child(2) {
-        opacity: 1;
-      }
-    }
   }
 }
 

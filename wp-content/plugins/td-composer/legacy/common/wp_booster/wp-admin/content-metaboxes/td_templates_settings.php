@@ -113,14 +113,6 @@ function td_register_post_metaboxes() {
         }
     }
 
-    //remove acf post type from array
-    if ( class_exists('ACF') ){
-        $acf_cpt = array_search('acf-field-group', $td_custom_post_types);
-        if ($acf_cpt !== false) {
-            unset($td_custom_post_types[$acf_cpt]);
-        }
-    }
-
     // if we have any CPT left, associate them with the metaboxes
     if ( !empty( $td_custom_post_types ) && current_user_can('publish_posts' ) ) {
         new WPAlchemy_MetaBox(array(

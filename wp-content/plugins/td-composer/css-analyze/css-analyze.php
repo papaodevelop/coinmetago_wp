@@ -365,36 +365,36 @@ if ( is_user_logged_in() ) {
 /**
  * WP-admin - add js in header on all the admin pages (wp-admin and the iframe Wrapper. Does not run in the iframe)
  */
-if ( is_user_logged_in() && current_user_can('publish_pages') ) {
-	add_action( 'wp_head', 'td_analyze_css_on_wp_head' );
-}
+add_action( 'wp_head', 'td_analyze_css_on_wp_head' );
 add_action( 'admin_head', 'td_analyze_css_on_wp_head' );
 function td_analyze_css_on_wp_head() {
+
     global $post;
 
     // the settings that we load in wp-admin and wrapper. We need json to be sure we don't get surprises with the encoding/escaping
-    $td_analyze_css_global = array(
+    $td_analyze_css_blobal = array(
+        'adminUrl' => admin_url(),
         'wpRestNonce' => wp_create_nonce('wp_rest'),
         'wpRestUrl' => rest_url(),
         'permalinkStructure' => get_option('permalink_structure')
     );
 
-    if ( !is_null($post) ) {
+    if (!is_null($post)) {
 
-        if ( is_page() || 'tdb_templates' === get_post_type() ) {
+        if ( is_page() || 'tdb_templates' === get_post_type()) {
 
-	        $td_analyze_css_global['postId'] = $post->ID;
+            $td_analyze_css_blobal['postId'] = $post->ID;
 
         } else {
 
-            if ( is_single() || is_category() ) {
+            if (is_single() || is_category()) {
 
                 $template_id = td_util::get_template_id($post);
 
-                if ( empty($template_id) ) {
-	                $td_analyze_css_global['postId'] = $post->ID;
+                if (empty($template_id)) {
+                    $td_analyze_css_blobal['postId'] = $post->ID;
                 } else {
-	                $td_analyze_css_global['postId'] = $template_id;
+                    $td_analyze_css_blobal['postId'] = $template_id;;
                 }
             }
         }
@@ -403,7 +403,7 @@ function td_analyze_css_on_wp_head() {
     ob_start();
     ?>
     <script>
-        window.tdaGlobal = <?php echo json_encode( $td_analyze_css_global ); ?>;
+        window.tdaGlobal = <?php echo json_encode( $td_analyze_css_blobal );?>;
     </script>
     <?php
     $buffer = ob_get_clean();
@@ -431,7 +431,7 @@ function td_analyze_css_load_plugin_js() {
     if ( defined( 'TDC_DEPLOY_MODE' ) && TDC_DEPLOY_MODE == 'deploy' ) {
         wp_enqueue_script('js_files_for_plugin_analyze_css', TDC_URL . '/assets/js/js_files_for_plugin_analyze_css.min.js', array('jquery', 'underscore', 'backbone'), TD_COMPOSER, true);
     } else {
-        tdc_util::enqueue_js_files_array( tdc_config::$js_files_for_plugin_analyze_css, array('jquery', 'underscore', 'backbone') );
+        tdc_util::enqueue_js_files_array(tdc_config::$js_files_for_plugin_analyze_css, array('jquery', 'underscore', 'backbone'));
     }
 }
 
@@ -578,8 +578,8 @@ add_filter( 'get_post_metadata', function( $value, $object_id, $meta_key, $singl
     return $value;
 }, 11, 4);
 
-if ( !empty( $_GET['tda_action'] ) ) {
-    wp_set_current_user(0);
+if (!empty($_GET['tda_action']) ) {
+    wp_set_current_user( 0 );
 }
 
 //if (!empty($_GET['tda_iframe']) ) {

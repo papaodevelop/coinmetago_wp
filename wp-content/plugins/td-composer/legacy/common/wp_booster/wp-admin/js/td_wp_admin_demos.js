@@ -74,7 +74,7 @@ var td_wp_admin_demos = {};
                 // install (via normal button)
                 jQuery('.td-wp-admin-demo .td-button-install-demo').on( 'click', function(event) {
                     event.preventDefault();
-                    var include_demo_content_check = jQuery(this).parent().parent().parent().find('input[type=hidden]');
+                    var include_demo_content_check = jQuery(this).parent().parent().find('input[type=hidden]');
                     var demo_id = jQuery(this).data('demo-id');
                     var demo_req_plugins = jQuery(this).data('demo-req-plugins');
                     var demo_plugins = ( demo_req_plugins !== undefined ) ? demo_req_plugins : [];

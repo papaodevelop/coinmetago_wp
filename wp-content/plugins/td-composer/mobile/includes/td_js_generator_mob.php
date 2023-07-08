@@ -8,10 +8,6 @@ function td_js_generator_mob() {
     td_js_buffer::add_variable('td_email_user_incorrect', __td('Email or username incorrect!', TD_THEME_NAME));
     td_js_buffer::add_variable('td_email_incorrect', __td('Email incorrect!', TD_THEME_NAME));
 
-    $fb_login_enabled = td_util::get_option('tds_social_login_fb_enable');
-    if( $fb_login_enabled == 'true' ) {
-        td_js_buffer::add_variable('td_fb_login_enabled', '1');
-    }
 
     // The mini detector - ads classes to the HTML tag, it enables us to fix issues in each device.
     // Has to run as fast as possible

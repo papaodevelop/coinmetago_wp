@@ -800,19 +800,7 @@ class td_util {
 
         } else if ( function_exists('is_product_category') && is_product_category() ) {
 
-            $lang = '';
-            if (class_exists('SitePress', false)) {
-                global $sitepress;
-                $sitepress_settings = $sitepress->get_settings();
-                if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                    $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                    if (1 === $translation_mode) {
-                        $lang = $sitepress->get_current_language();
-                    }
-                }
-            }
-
-            $tdb_option_key = 'tdb_woo_archive_template' . $lang;
+            $tdb_option_key = 'tdb_woo_archive_template';
             $queried_object = get_queried_object();
 
             if ( $queried_object instanceof WP_Term ) {
@@ -833,19 +821,7 @@ class td_util {
 
         } else if ( function_exists('is_product_tag') && is_product_tag() ) {
 
-            $lang = '';
-            if (class_exists('SitePress', false)) {
-                global $sitepress;
-                $sitepress_settings = $sitepress->get_settings();
-                if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                    $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                    if (1 === $translation_mode) {
-                        $lang = $sitepress->get_current_language();
-                    }
-                }
-            }
-
-            $tdb_option_key = 'tdb_woo_archive_tag_template' . $lang;
+            $tdb_option_key = 'tdb_woo_archive_tag_template';
             $queried_object = get_queried_object();
 
             if ( $queried_object instanceof WP_Term ) {
@@ -872,19 +848,7 @@ class td_util {
                 taxonomy_is_product_attribute( get_queried_object()->taxonomy )
         ) {
 
-            $lang = '';
-            if (class_exists('SitePress', false)) {
-                global $sitepress;
-                $sitepress_settings = $sitepress->get_settings();
-                if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                    $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                    if (1 === $translation_mode) {
-                        $lang = $sitepress->get_current_language();
-                    }
-                }
-            }
-
-            $tdb_option_key = 'tdb_woo_archive_attribute_template' . $lang;
+            $tdb_option_key = 'tdb_woo_archive_attribute_template';
             $queried_object = get_queried_object();
 
             if ( $queried_object instanceof WP_Term ) {
@@ -1118,16 +1082,6 @@ class td_util {
 	        } else {
 
 		        $option_id = 'tdb_woo_product_template';
-                if (class_exists('SitePress', false )) {
-                    global $sitepress;
-                    $sitepress_settings = $sitepress->get_settings();
-                    if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                        $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                        if (1 === $translation_mode) {
-                            $option_id .= $sitepress->get_current_language();
-                        }
-                    }
-                }
 
 		        $td_default_site_post_template = td_util::get_option( $option_id );
 
@@ -1138,19 +1092,7 @@ class td_util {
 
         } else if (function_exists('is_shop') && is_shop()) {
 
-            $option_id = 'tdb_woo_shop_base_template';
-            if (class_exists('SitePress', false )) {
-                global $sitepress;
-                $sitepress_settings = $sitepress->get_settings();
-                if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                    $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                    if (1 === $translation_mode) {
-                        $option_id .= $sitepress->get_current_language();
-                    }
-                }
-            }
-
-            $tdb_template = td_util::get_option( $option_id );
+            $tdb_template = td_util::get_option( 'tdb_woo_shop_base_template' );
 
             if ( td_global::is_tdb_template( $tdb_template, true ) ) {
                 $template_id = td_global::tdb_get_template_id( $tdb_template );
@@ -3451,6 +3393,80 @@ class td_util {
     }
 
 
+    static function td_mail_template( $title, $content ) {
+
+        $message = '';
+
+        // If the user has set a logo in the theme panel, then build the html for it
+        $logo_html = '';
+        $td_customLogo = td_util::get_option('tds_logo_upload');
+        if( $td_customLogo != '' ) {
+            $logo_image_width_html = '';
+            $logo_image_height_html = '';
+
+            $td_logo_alt = td_util::get_option('tds_logo_alt');
+            $td_logo_title = td_util::get_option('tds_logo_title');
+            if (!empty($td_logo_title)) {
+                $td_logo_title = ' title="' . $td_logo_title . '"';
+            }
+
+            $attachment_id = attachment_url_to_postid( $td_customLogo );
+            $info_img = wp_get_attachment_image_src( $attachment_id, 'full');
+            if (is_array($info_img)) {
+                $logo_image_width_html = ' width="' . $info_img[1] . '"';
+                $logo_image_height_html = ' height="' . $info_img[2] . '"';
+            }
+
+            $logo_html =
+                '<tr style="padding: 0; vertical-align: top; text-align: left;">
+                            <td align="center" valign="middle" class="header" style="word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #444; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; margin: 0; Margin: 0; font-size: 14px; mso-line-height-rule: exactly; line-height: 140%; text-align: center; padding: 0 30px 30px 30px;">
+                                <img src="' . $td_customLogo . '" alt="' . $td_logo_alt . '"' . $td_logo_title . $logo_image_width_html . $logo_image_height_html . ' style="outline: none; text-decoration: none; clear: both; -ms-interpolation-mode: bicubic; display: inline-block !important; max-width: 250px"/>
+                            </td>
+                        </tr>';
+        }
+
+
+        // Assemble the final message html
+        $message .=
+            '<!doctype html>
+                <html lang="en">
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                        <meta name="viewport" content="width=device-width">
+                        <title>' . $title . '</title>
+                    </head>
+                
+                    <body style="height: 100% !important; width: 100% !important; min-width: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #444; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 0; margin: 0; Margin: 0; font-size: 14px; mso-line-height-rule: exactly; line-height: 140%; background-color: #f7f7f7; text-align: center;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" class="body" style="border-collapse: collapse; border-spacing: 0; vertical-align: top; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; height: 100% !important; width: 100% !important; min-width: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; background-color: #f7f7f7; color: #444; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 0; margin: 0; Margin: 0; text-align: left; font-size: 14px; mso-line-height-rule: exactly; line-height: 140%;">
+                            <tr style="padding: 0; vertical-align: top; text-align: left;">
+                                <td align="center" valign="top" class="body-inner wp-mail-smtp" style="word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #444; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 0; margin: 0; Margin: 0; font-size: 14px; mso-line-height-rule: exactly; line-height: 140%; text-align: center;">
+                                    <!-- Container -->
+                                    <table border="0" cellpadding="0" cellspacing="0" class="container" style="border-collapse: collapse; border-spacing: 0; padding: 0; vertical-align: top; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; max-width: 600px; margin: 30px auto 30px auto; Margin: 30px auto 30px auto; text-align: inherit;">
+                                        <!-- Header -->
+                                        ' . $logo_html . '
+                                        
+                                        <!-- Content -->
+                                        <tr style="padding: 0; vertical-align: top; text-align: left;">
+                                            <td align="left" valign="top" class="content" style="word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #444; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; margin: 0; Margin: 0; text-align: left; font-size: 14px; mso-line-height-rule: exactly; line-height: 140%; background-color: #ffffff; padding: 45px 40px 50px 40px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12); border-radius: 3px;">
+                                                <div class="success" style="text-align: center;">
+                                                    ' . $content . '
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </body>
+                </html>';
+
+
+        return $message;
+
+    }
+
+
     static function td_new_subscriber_user_notifications( $user_id, $notify = '' ) {
 
 		// Accepts only 'user', 'admin' , 'both' or default '' as $notify.
@@ -3461,34 +3477,46 @@ class td_util {
 
         // Get the user data
 		$user = get_userdata( $user_id );
-        
+
+
+		// The blogname option is escaped with esc_html() on the way into the database in sanitize_option().
+		// We want to reverse this for the plain text arena of emails.
+		$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
+
 
         // We are sending an email to the site admin to let them know that someone has just registered a new account
 		if ( 'user' !== $notify ) {
 			$switched_locale = switch_to_locale( get_locale() );
 
-            if( defined( 'TD_SUBSCRIPTION' ) ) {
-                tds_email_notifications::send_admin_email_notification('register', $user_id);
-            } else {
-                $admin_emails = get_bloginfo('admin_email');
-                $email_subject = '[' . td_email::get_email_from_name() . '] New user registration';
-                $email_message = 
-                    '<h3>New user!</h3>
-                    <p>Username: ' . $user->user_login . '<br>
-                    Email: ' . $user->user_email . '</p>';
-                $email_footer_text = td_email::get_email_footer_text();
-                
-                td_email::send_mail(
-                    $admin_emails,
-                    $email_subject,
-                    td_email::email_template(
-                        $email_subject,
-                        $email_message,
-                        '',
-                        $email_footer_text
-                    )
-                );
-            }
+            // Build the message content HTML
+            $message_content =
+                '<p class="text-extra-large text-center congrats" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: 500; color: #1d2327; padding: 0; mso-line-height-rule: exactly; line-height: 120%; font-size: 20px; text-align: left; margin: 0 0 35px 0; Margin: 0 0 35px 0;">
+                    New subscriber!
+                </p>
+                <p class="text-large" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 0; mso-line-height-rule: exactly; line-height: 160%; color: #1d2327; margin: 0 0 25px 0; Margin: 0 0 25px 0; font-size: 15px; text-align: justify;">
+                    A new subscriber has registered on your website:
+                </p>
+                <p class="text-large" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 25px; background-color: #F2F2F2; color: #59626B; text-align: left; mso-line-height-rule: exactly; line-height: 160%; margin: 0; Margin: 0; font-size: 15px; border-radius: 3px;">
+                    Username: ' . $user->user_login . '<br>
+                    Email: ' . $user->user_email . '
+                </p>';
+
+            // Email info
+			$wp_new_user_notification_email_admin = array(
+				'to'      => get_option( 'admin_email' ),
+				/* translators: New user registration notification email subject. %s: Site title. */
+				'subject' => __( '[%s] New Subscriber Registration' ),
+				'message' => self::td_mail_template('[' . $blogname . '] New Subscriber Registration', $message_content),
+				'headers' => array('Content-Type: text/html; charset=UTF-8'),
+			);
+
+            // Sending the email
+			wp_mail(
+				$wp_new_user_notification_email_admin['to'],
+				wp_specialchars_decode( sprintf( $wp_new_user_notification_email_admin['subject'], $blogname ) ),
+				$wp_new_user_notification_email_admin['message'],
+				$wp_new_user_notification_email_admin['headers']
+			);
 
 			if ( $switched_locale ) {
 				restore_previous_locale();
@@ -3498,38 +3526,44 @@ class td_util {
 
         // We are notifying the user that they have just registered an account on the website
 		$tds_validate = get_user_meta($user_id, 'tds_validate', true);
-		if ( !empty($tds_validate) && is_array($tds_validate) && !empty($tds_validate['key']) ) {
+		if (!empty($tds_validate) && is_array($tds_validate) && !empty($tds_validate['key'])) {
 		    $key = $tds_validate['key'];
 
 		    $switched_locale = switch_to_locale( get_user_locale( $user ) );
 
             $subscription_activation_link = network_site_url( "wp-login.php?action=tds_validate&key=$key&login=" . rawurlencode( $user->user_login ), 'login' );
 
-            if( defined( 'TD_SUBSCRIPTION' ) ) {
-                $add_tags = array('%verification_link%');
-                $add_tags_replacements = array($subscription_activation_link);
+            // Build the message content HTML
+            $message_content =
+                '<p class="text-extra-large text-center congrats" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #444; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: 500; color: #1d2327; padding: 0; mso-line-height-rule: exactly; line-height: 120%; font-size: 20px; text-align: left; margin: 0 0 35px 0; Margin: 0 0 35px 0;">
+                    Welcome onboard!
+                </p>
+                <p class="text-large" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;  font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 0;  mso-line-height-rule: exactly; line-height: 160%; margin: 0 0 25px 0; Margin: 0 0 25px 0; font-size: 15px; color: #1d2327; text-align: justify;">
+                    Hi ' . $user->user_login . ',
+                </p>
+                <p class="text-large" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 0; mso-line-height-rule: exactly; line-height: 160%; margin: 0 0 25px 0; Margin: 0 0 25px 0; font-size: 15px; color: #1d2327; text-align: justify;">
+                    Thank you for registering on ' . $blogname . '! To activate your account, please visit the following link:
+                </p>
+                <p class="text-large" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #444; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 20px 25px; background-color: #F2F2F2; color: #59626B; text-align: left; mso-line-height-rule: exactly; line-height: 160%; margin: 0; Margin: 0; font-size: 15px; border-radius: 3px;">
+                     <a style="text-decoration: none; color: #0489FC; word-break: break-all;" href="' . $subscription_activation_link . '">' . $subscription_activation_link . '</a>
+                </p>';
 
-                tds_email_notifications::send_user_email_notification('register', $user_id, $add_tags, $add_tags_replacements);
-            } else {
-                $email_from_name =  td_email::get_email_from_name();
-                $email_subject = '[' . $email_from_name . '] Activate account';
-                $email_message = 
-                    '<h3>Welcome onboard!</h3>
-                    <p>Hi,</p>
-                    <p>Thank you for registering on ' . $email_from_name . '! To activate your account, please visit the following link:</p>
-                    <p><a href="' . $subscription_activation_link . '">' . $subscription_activation_link . '</a></p>';
-    
-                td_email::send_mail(
-                    $user->user_email,
-                    $email_subject,
-                    td_email::email_template(
-                        $email_subject,
-                        $email_message,
-                        '',
-                        $email_footer_text
-                    )
-                );
-            }
+            // Email info
+            $wp_new_user_notification_email = array(
+                'to'      => $user->user_email,
+                /* translators: Login details notification email subject. %s: Site title. */
+                'subject' => __( '[%s] Activate Account' ),
+                'message' => self::td_mail_template('[' . $blogname . '] Activate Account', $message_content),
+                'headers' => array('Content-Type: text/html; charset=UTF-8'),
+            );
+
+            // Sending the email
+            wp_mail(
+                $wp_new_user_notification_email['to'],
+                wp_specialchars_decode( sprintf( $wp_new_user_notification_email['subject'], $blogname ) ),
+                $wp_new_user_notification_email['message'],
+                $wp_new_user_notification_email['headers']
+            );
 
             if ( $switched_locale ) {
                 restore_previous_locale();
@@ -3544,34 +3578,43 @@ class td_util {
 			return;
 		}
 
-        $subscription_activation_link = network_site_url("?action=tds_validate_email&email=$email");
+       // The blogname option is escaped with esc_html() on the way into the database in sanitize_option().
+       // We want to reverse this for the plain text arena of emails.
+       $blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
-        if( defined( 'TD_SUBSCRIPTION' ) ) {
-            $add_tags = array('%optin_confirm_link%');
-            $add_tags_replacements = array($subscription_activation_link);
+       $subscription_activation_link = network_site_url("?action=tds_validate_email&email=$email");
 
-            tds_email_notifications::send_user_email_notification('optin', $email, $add_tags, $add_tags_replacements);
-        } else {
-            $email_from_name = td_email::get_email_from_name();
-            $email_subject = '[' . $email_from_name . '] Confirm subscription';
-            $email_message = 
-                '<h3>Welcome onboard!</h3>
-                <p>Hi,</p>
-                <p>Thank you for subscribing to ' . $email_from_name . '! To confirm your subscription, please visit the following link:</p>
-                <p><a href="' . $subscription_activation_link . '">' . $subscription_activation_link . '</a></p>';
-            $email_footer_text = td_email::get_email_footer_text();
+       // Build the message content HTML
+       $message_content =
+           '<p class="text-extra-large text-center congrats" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: 500; color: #1d2327; padding: 0; mso-line-height-rule: exactly; line-height: 120%; font-size: 20px; text-align: left; margin: 0 0 35px 0;">
+                Welcome onboard!
+            </p>
+            <p class="text-large" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;  font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 0;  mso-line-height-rule: exactly; line-height: 160%; margin: 0 0 25px 0; Margin: 0 0 25px 0; font-size: 15px; color: #1d2327; text-align: justify;">
+                Hi,
+            </p>
+            <p class="text-large" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 0; mso-line-height-rule: exactly; line-height: 160%; margin: 0 0 25px 0; Margin: 0 0 25px 0; font-size: 15px; color: #1d2327; text-align: justify;">
+                Thank you for subscribing to ' . $blogname . '! To confirm your subscription, please visit the following link:
+            </p>
+            <p class="text-large" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #444; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', sans-serif; font-weight: normal; padding: 20px 25px; background-color: #F2F2F2; color: #59626B; text-align: left; mso-line-height-rule: exactly; line-height: 160%; margin: 0; Margin: 0; font-size: 15px; border-radius: 3px;">
+                 <a style="text-decoration: none; color: #0489FC; word-break: break-all;" href="' . $subscription_activation_link . '">' . $subscription_activation_link . '</a>
+            </p>';
 
-            td_email::send_mail(
-                $email,
-                $email_subject,
-                td_email::email_template(
-                    $email_subject,
-                    $email_message,
-                    '',
-                    $email_footer_text
-                )
-            );
-        }
+       // Email info
+       $wp_new_user_notification_email = array(
+           'to' => $email,
+           /* translators: Login details notification email subject. %s: Site title. */
+           'subject' => __('[%s] Confirm subscription'),
+           'message' => self::td_mail_template('[' . $blogname . ']', $message_content),
+           'headers' => array('Content-Type: text/html; charset=UTF-8'),
+       );
+
+       // Sending the email
+       wp_mail(
+           $wp_new_user_notification_email['to'],
+           wp_specialchars_decode(sprintf($wp_new_user_notification_email['subject'], $blogname)),
+           $wp_new_user_notification_email['message'],
+           $wp_new_user_notification_email['headers']
+       );
 
 	}
 
@@ -3877,7 +3920,7 @@ class td_util {
 
         $gm_api_key = '';
         if ( TDC_DEPLOY_MODE == 'dev' || TD_DEPLOY_MODE == 'demo' ) {
-            $gm_api_key = 'AIzaSyBHZbvztDzrXnBPPEuiviPISrgFgMd4sYc';
+            $gm_api_key = 'AIzaSyD_V87V3vN78k7rxf5fe5b0myePAJpzoWc';
         } else {
             if( td_util::get_option('tds_gm_api_key') != '' ) {
                 $gm_api_key = td_util::get_option('tds_gm_api_key');
@@ -3988,7 +4031,7 @@ class td_util {
             $author_plan_id_description = 'Show the element only if the author is subscribed to one of the plan IDs you enter here.';
         }
 
-        $params = array(
+        return array(
             array(
                 "param_name" => "separator",
                 "type" => "text_separator",
@@ -4018,7 +4061,7 @@ class td_util {
                 "type" => "text_separator",
                 'heading' => 'Subscriptions',
                 "value" => "",
-                "class" => "tdc-separator-small " . ( !defined( 'TD_SUBSCRIPTION' ) || !method_exists( 'tds_util', 'is_user_subscribed_to_plan' ) ? 'tdc-hidden' : '' ),
+                "class" => "tdc-separator-small " . ( !defined( 'TD_SUBSCRIPTION' ) ? 'tdc-hidden' : '' ),
                 "group" => $group,
                 'toggle_enabled_by' => 'subscr-restr',
             ),
@@ -4029,7 +4072,7 @@ class td_util {
                 "heading"     => 'Default plans restriction',
                 "description" => 'Show the element only if the logged in user is subscribed to one of the plan IDs you enter here.',
                 "holder"      => "div",
-                "class"       => "tdc-textfield-big " . ( !defined( 'TD_SUBSCRIPTION' ) || !method_exists( 'tds_util', 'is_user_subscribed_to_plan' ) ? 'tdc-hidden' : '' ),
+                "class"       => "tdc-textfield-big " . ( !defined( 'TD_SUBSCRIPTION' ) ? 'tdc-hidden' : '' ),
                 "placeholder" => "",
                 "group" => $group,
                 'toggle_enabled_by' => 'subscr-restr',
@@ -4041,14 +4084,12 @@ class td_util {
                 "heading"     => 'Author plans restriction',
                 "description" => $author_plan_id_description,
                 "holder"      => "div",
-                "class"       => "tdc-textfield-big " . ( !defined( 'TD_SUBSCRIPTION' ) || !method_exists( 'tds_util', 'is_user_subscribed_to_plan' ) ? 'tdc-hidden' : '' ),
+                "class"       => "tdc-textfield-big " . ( !defined( 'TD_SUBSCRIPTION' ) ? 'tdc-hidden' : '' ),
                 "placeholder" => "",
                 "group" => $group,
                 'toggle_enabled_by' => 'subscr-restr',
             )
         );
-
-        return $params;
     }
 
     static function plan_limit( $author_plan_ids = '', $all_users_plan_ids = '' ) {
@@ -4059,14 +4100,9 @@ class td_util {
 
         $is_subscribed = true;
 
-        if( 
-            !( tdc_state::is_live_editor_iframe() || tdc_state::is_live_editor_ajax() ) && 
-            !$is_current_user_admin &&
-            defined( 'TD_SUBSCRIPTION' ) && 
-            method_exists( 'tds_util', 'is_user_subscribed_to_plan' ) ) 
-        {
+        if( !( tdc_state::is_live_editor_iframe() || tdc_state::is_live_editor_ajax() ) ) {
             if ( defined( 'TD_CLOUD_LIBRARY' ) ) {
-                if( $author_plan_ids != '' ) {
+                if( defined( 'TD_SUBSCRIPTION' ) && $author_plan_ids != '' ) {
                     $tdb_template_type = tdb_state_template::get_template_type();
 
                     if( $tdb_template_type == 'cpt' || $tdb_template_type == 'single' || $tdb_template_type == 'author' ) {
@@ -4092,7 +4128,7 @@ class td_util {
                 }
             }
 
-            if( $all_users_plan_ids != '' ) {
+            if( defined( 'TD_SUBSCRIPTION' ) && $all_users_plan_ids != '' ) {
                 $is_subscribed = false;
                 $all_users_plan_ids = explode(',', $all_users_plan_ids);
 
@@ -4134,58 +4170,6 @@ class td_util {
 
         return $buffy;
 
-    }
-
-    static function get_attachment_id( $url ) {
-
-        global $wpdb;
-
-        $dir  = wp_get_upload_dir();
-        $path = $url;
-
-        $site_url   = parse_url( $dir['url'] );
-        $image_path = parse_url( $path );
-
-        // Force the protocols to match if needed.
-        if ( isset( $image_path['scheme'] ) && ( $image_path['scheme'] !== $site_url['scheme'] ) ) {
-            $path = str_replace( $image_path['scheme'], $site_url['scheme'], $path );
-        }
-
-        if ( 0 === strpos( $path, $dir['baseurl'] . '/' ) ) {
-            $path = substr( $path, strlen( $dir['baseurl'] . '/' ) );
-        }
-
-        $sql = $wpdb->prepare(
-            "SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = '_wp_attached_file' AND meta_value LIKE %s",
-            '%' . $path . '%'
-        );
-
-        $results = $wpdb->get_results( $sql );
-        $post_id = null;
-
-        if ( $results ) {
-            // Use the first available result, but prefer a case-sensitive match, if exists.
-            $post_id = reset( $results )->post_id;
-
-            if ( count( $results ) > 1 ) {
-                foreach ( $results as $result ) {
-                    if ( $path === $result->meta_value ) {
-                        $post_id = $result->post_id;
-                        break;
-                    }
-                }
-            }
-        }
-
-        /**
-         * Filters an attachment ID found by URL.
-         *
-         * @since 4.2.0
-         *
-         * @param int|null $post_id The post_id (if any) found by the function.
-         * @param string   $url     The URL being looked up.
-         */
-        return (int) apply_filters( 'attachment_url_to_postid', $post_id, $url );
     }
 
 } // end class td_util

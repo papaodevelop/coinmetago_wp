@@ -269,7 +269,7 @@ class td_demo_installer {
 
 		        foreach ( $template_files as $template_file ) {
 			        $template_file = trim( $template_file );
-			        $current_url = $api_url . $template_file;
+			        $current_url      = $api_url . $template_file;
 
 			        $current_response = td_remote_http::get_page( $current_url, __CLASS__ );
 

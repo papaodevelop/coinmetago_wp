@@ -15,14 +15,6 @@ if ($show_captcha == 'show' && $captcha_site_key != '') {
     $register_captcha_html = '<input type="hidden" id="gRecaptchaResponseMobR" name="gRecaptchaResponse" data-sitekey="' . $captcha_site_key . '" >';
 }
 
-$fb_login_enabled = td_util::get_option('tds_social_login_fb_enable');
-$fb_login_app_id = td_util::get_option('tds_social_login_fb_app_id');
-
-$fb_login_btn = '';
-if( is_ssl() && $fb_login_enabled == 'true' && $fb_login_app_id != '' ) {
-    $fb_login_btn = '<button class="td-login-social td-login-fb td-login-fb-mob">' . __td('Log in With Facebook', TD_THEME_NAME) . '</button>';
-}
-
 if ($users_can_register == 1) {
 
     //add the Register tab to the modal window if `Anyone can register` chec
@@ -32,11 +24,11 @@ if ($users_can_register == 1) {
             <div id="td-register-mob" class="td-login-animation td-login-hide-mob">
             	<!-- close button -->
 	            <div class="td-register-close">
-	                <span class="td-back-button"><i class="td-icon-read-down"></i></span>
+	                <a href="#" aria-label="Back" class="td-back-button"><i class="td-icon-read-down"></i></a>
 	                <div class="td-login-title">' . __td('Sign up', TD_THEME_NAME) . '</div>
 	                <!-- close button -->
 		            <div class="td-mobile-close">
-		                <span><i class="td-icon-close-mobile"></i></span>
+		                <a href="#" aria-label="Close"><i class="td-icon-close-mobile"></i></a>
 		            </div>
 	            </div>
             	<div class="td-login-panel-title"><span>' . __td('Welcome!', TD_THEME_NAME) . '</span>' . __td('Register for an account', TD_THEME_NAME) .'</div>
@@ -46,7 +38,6 @@ if ($users_can_register == 1) {
 	                <div class="td-login-inputs"><input class="td-login-input" type="text" name="register_user" id="register_user-mob" value="" required><label for="register_user-mob">' . __td('your username', TD_THEME_NAME) .'</label></div>
 	                <input type="button" name="register_button" id="register_button-mob" class="td-login-button" value="' . __td('REGISTER', TD_THEME_NAME) . '">
 	                ' . $register_captcha_html . '
-					' . $fb_login_btn . '
 	                <div class="td-login-info-text">' . __td('A password will be e-mailed to you.', TD_THEME_NAME) . '</div>
 	                ' . get_the_privacy_policy_link('<div class="td-login-info-text">', '</div>') . '
                 </form>
@@ -57,11 +48,11 @@ echo '
             <div id="td-login-mob" class="td-login-animation td-login-hide-mob">
             	<!-- close button -->
 	            <div class="td-login-close">
-	                <span class="td-back-button"><i class="td-icon-read-down"></i></span>
+	                <a href="#" aria-label="Back" class="td-back-button"><i class="td-icon-read-down"></i></a>
 	                <div class="td-login-title">' . __td('Sign in', TD_THEME_NAME) . '</div>
 	                <!-- close button -->
 		            <div class="td-mobile-close">
-		                <span><i class="td-icon-close-mobile"></i></span>
+		                <a href="#" aria-label="Close"><i class="td-icon-close-mobile"></i></a>
 		            </div>
 	            </div>
 	            <form class="td-login-form-wrap" action="#" method="post">
@@ -71,7 +62,6 @@ echo '
 	                <div class="td-login-inputs"><input class="td-login-input" autocomplete="current-password" type="password" name="login_pass" id="login_pass-mob" value="" required><label for="login_pass-mob">' . __td('your password', TD_THEME_NAME) .'</label></div>
 	                <input type="button" name="login_button" id="login_button-mob" class="td-login-button" value="' . __td('LOG IN', TD_THEME_NAME) . '">
 	                ' . $login_captcha_html . '
-					' . $fb_login_btn . '
 	                <div class="td-login-info-text">
 	                <a href="#" id="forgot-pass-link-mob">' . __td('Forgot your password?', TD_THEME_NAME) . '</a>
 	                </div>

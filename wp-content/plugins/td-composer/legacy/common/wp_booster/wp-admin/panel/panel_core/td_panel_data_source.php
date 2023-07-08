@@ -593,23 +593,17 @@ class td_panel_data_source {
 	    /** we schedule a save in @see td_panel_data_source::update() this function is used only there */
     	$td_options = &td_options::get_all_by_ref();
 
-        foreach( $td_option_array as $options_id => $option_value ) {
+        foreach($td_option_array as $options_id => $option_value) {
 
         	// search for the default value, only if we have at least one default. The live panel may not have defaults in testing
-        	if ( isset( $_POST['td_default'] ) ) {
-
-		        // get defaults array
+        	if (isset($_POST['td_default'])) {
+		        //get defaults array
 		        $default_array = $_POST['td_default'];
 
-		        // check for default values
-		        if( !empty( $default_array['td_option'][$options_id] ) and strtolower( $default_array['td_option'][$options_id] ) == strtolower($option_value) ) {
+		        //check for default values
+		        if(!empty($default_array['td_option'][$options_id]) and strtolower($default_array['td_option'][$options_id]) == strtolower($option_value)) {
 			        $option_value = '';
 		        }
-	        }
-
-			// don't allow eval( / String.fromCharCode( as option value
-	        if ( td_util::strpos_array( $option_value, array( 'eval(', 'String.fromCharCode(' ) ) !== false ) {
-		        $option_value = '';
 	        }
 
 	        $td_options[$options_id] = $option_value;

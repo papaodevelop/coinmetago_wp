@@ -216,7 +216,6 @@ class tdm_block_list extends td_block {
 			, $atts);
 
 	    $content_align_horizontal = $this->get_shortcode_att( 'content_align_horizontal' );
-
         $items = explode( "\n", td_util::get_custom_field_value_from_string( rawurldecode( base64_decode( strip_tags( $this->get_shortcode_att( 'items' ) ) ) ) ) );
         $icon = $this->get_icon_att( 'tdicon' );
 

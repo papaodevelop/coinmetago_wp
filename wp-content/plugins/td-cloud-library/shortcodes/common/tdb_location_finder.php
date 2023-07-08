@@ -33,9 +33,6 @@ class tdb_location_finder extends td_block {
                     font-family: -apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif;
                     font-size: 14px;
                 }
-                .tdb_location_finder .tdb-s-form-content {
-                    display: flex;
-                }
                 .tdb_location_finder .tdb-s-form-group-lf-search {
                     position: relative;
                 }
@@ -70,7 +67,7 @@ class tdb_location_finder extends td_block {
                 .tdb_location_finder .tdb-lf-curr-loc:hover svg {
                     opacity: 1;
                 }
-                .tdb_location_finder .tdb-s-form-label-optional {
+                .tdb_location_finder .tdb-s-form-label span {
                     opacity: .5;
                     font-size: .846em;
                 }
@@ -243,43 +240,11 @@ class tdb_location_finder extends td_block {
                 }
                 
                 
-                
-                /* @all_input_display_row */
-                body .$unique_block_class .tdb-s-form-content {
-                    flex-direction: column;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-lf-main-label {
-                    width: 100%;
-                    margin: 0 0 8px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 2px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-fc-inner {
-                    width: 100%;
-                }
-                
-                /* @all_input_display_columns */
-                body .$unique_block_class .tdb-s-form-content {
-                    flex-direction: row;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-lf-main-label {
-                    width: @all_label_width;
-                    margin: 0 24px 0 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-fc-inner {
-                    flex: 1;
-                }
-                
-                
                 /* @all_input_border */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input,
                 body .$unique_block_class .tdb-lf-search-outline {
                     border: @all_input_border @all_input_border_style @all_input_border_color;
-                }           
+                }
                 body .$unique_block_class .tdb-s-form .tdb-s-form-group:not(.tdb-s-fg-error) .tdb-s-form-input[readonly]:not(.tdb-s-form-input-date),
                 body .$unique_block_class .tdb-s-form .tdb-s-form-group:not(.tdb-s-fg-error) .tdb-s-form-input:disabled {
                     border-color: @all_input_border_color;
@@ -320,10 +285,6 @@ class tdb_location_finder extends td_block {
                 /* @label_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-label {
                     color: @label_color;
-                }
-                /* @descr_color */
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    color: @descr_color;
                 }
                 /* @input_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input,
@@ -421,25 +382,6 @@ class tdb_location_finder extends td_block {
             $res_ctx->load_settings_raw( 'map_height', $map_height . 'px' );
         }
 
-        // inputs display
-        $all_input_display = $res_ctx->get_shortcode_att('all_input_display');
-        if( $all_input_display == '' || $all_input_display == 'row' ) {
-            $res_ctx->load_settings_raw( 'all_input_display_row', 1 );
-        } else {
-            $res_ctx->load_settings_raw( 'all_input_display_columns', 1 );
-        }
-
-        // labels width
-        $all_label_width = $res_ctx->get_shortcode_att('all_label_width');
-        $res_ctx->load_settings_raw( 'all_label_width', $all_label_width );
-        if( $all_label_width != '' ) {
-            if( is_numeric( $all_label_width ) ) {
-                $res_ctx->load_settings_raw( 'all_label_width', $all_label_width . 'px' );
-            }
-        } else {
-            $res_ctx->load_settings_raw( 'all_label_width', '30%' );
-        }
-
 
         // inputs border size
         $all_input_border = $res_ctx->get_shortcode_att('all_input_border');
@@ -485,7 +427,6 @@ class tdb_location_finder extends td_block {
         }
 
         $res_ctx->load_settings_raw( 'label_color', $res_ctx->get_shortcode_att('label_color') );
-        $res_ctx->load_settings_raw( 'descr_color', $res_ctx->get_shortcode_att('descr_color') );
         $res_ctx->load_settings_raw( 'input_color', $res_ctx->get_shortcode_att('input_color') );
         $res_ctx->load_settings_raw( 'input_color_r', $res_ctx->get_shortcode_att('input_color_r') );
         $res_ctx->load_settings_raw( 'input_place', $res_ctx->get_shortcode_att('input_place') );
@@ -528,7 +469,6 @@ class tdb_location_finder extends td_block {
         // currently logged in user
         $current_user = wp_get_current_user();
         $current_user_id = $current_user->ID;
-        $is_current_user_admin = in_array('administrator', $current_user->roles);
 
 
         // tax type
@@ -564,7 +504,7 @@ class tdb_location_finder extends td_block {
         if ( isset($_GET['post_id']) && !( td_util::tdc_is_live_editor_iframe() || td_util::tdc_is_live_editor_ajax() ) ) {
             $post = get_post($_GET['post_id']);
 
-            if( $post && ( $post->post_author == $current_user_id || $is_current_user_admin ) ) {
+            if( $post && $post->post_author == $current_user_id ) {
                 $curr_post_id = $_GET['post_id'];
             }
         }
@@ -619,13 +559,6 @@ class tdb_location_finder extends td_block {
         }
 
 
-        // Label text
-        $label_txt = $this->get_att('label_txt');
-
-        // Label description
-        $label_descr_txt = rawurldecode( base64_decode( strip_tags( $this->get_att('descr_txt') ) ) );
-
-
         $buffy .= '<div class="' . $this->get_block_classes() . ' ' . ( $disable_for_guests ? 'tdb-disabled' : '' ) . '" ' . $this->get_block_html_atts() . ' data-tax-type="' . $tax_type  .'" data-required="' . $required . '">';
 
             //get the block css
@@ -641,19 +574,6 @@ class tdb_location_finder extends td_block {
                     $buffy .= '<input type="hidden" id="tdb-lf-type-' . $this->block_uid . '" value="' . $tax_type . '">';
 
                     $buffy .= '<div class="tdb-s-form-content">';
-                        if( $label_txt != '' ) {
-                            $buffy .= '<label class="tdb-s-form-label tdb-s-lf-main-label">';
-                                $buffy .= $label_txt;
-                                if( $required ) {
-                                    $buffy .= '<span class="tdb-s-form-label-required"> *</span>';
-                                }
-
-                                if( $label_descr_txt != '' ) {
-                                    $buffy .= '<span class="tdb-s-form-label-descr">' . $label_descr_txt . '</span>';
-                                }
-                            $buffy .= '</label>';
-                        }
-
                         $buffy .= '<div class="tdb-s-fc-inner">';
                             $buffy .= '<div class="tdb-s-form-group tdb-s-form-group-lf-search tdb-s-content">';
                                 $buffy .= '<input class="tdb-s-form-input" id="tdb-lf-search-' . $this->block_uid . '" type="text" ' . ( $searchValue ? 'value="' . $searchValue . '"' : '' ) . ' placeholder="' . __td( 'Search for a location', TD_THEME_NAME ) . '" ' . ( $disable_for_guests ? 'disabled' : '' ) . '>';
@@ -670,12 +590,12 @@ class tdb_location_finder extends td_block {
                             $buffy .= '<div class="tdb-s-notif tdb-s-notif-sm tdb-s-notif-warning tdb-notif-location"><div class="tdb-s-notif-descr">' . $notifMessage . '</div></div>';
 
                             $buffy .= '<div class="tdb-s-form-group tdb-s-form-group-lf-address tdb-s-content">';
-                                $buffy .= '<label class="tdb-s-form-label" for="tdb-lf-address-' . $this->block_uid . '"> ' . __td( 'Address line', TD_THEME_NAME ) . ' <span class="tdb-s-form-label-optional">' . __td( '(Optional)', TD_THEME_NAME ) . '</span></label>';
+                                $buffy .= '<label class="tdb-s-form-label" for="tdb-lf-address-' . $this->block_uid . '"> ' . __td( 'Address line', TD_THEME_NAME ) . ' <span>' . __td( '(Optional)', TD_THEME_NAME ) . '</span></label>';
                                 $buffy .= '<input class="tdb-s-form-input" id="tdb-lf-address-' . $this->block_uid . '" name="tdb-location-address-' . $this->block_uid . '" type="text" ' . ( $addressValue ? 'value="' . $addressValue . '"' : '' ) . ' ' . ( $disable_for_guests ? 'disabled' : '' ) . '>';
                             $buffy .= '</div>';
 
                             $buffy .= '<div class="tdb-s-form-group tdb-s-form-group-lf-postal-code tdb-s-content">';
-                                $buffy .= '<label class="tdb-s-form-label" for="tdb-lf-postal-code-' . $this->block_uid . '">' . __td( 'Postal code', TD_THEME_NAME ) . ' <span class="tdb-s-form-label-optional">' . __td( '(Optional)', TD_THEME_NAME ) . '</span></label>';
+                                $buffy .= '<label class="tdb-s-form-label" for="tdb-lf-postal-code-' . $this->block_uid . '">' . __td( 'Postal code', TD_THEME_NAME ) . ' <span>' . __td( '(Optional)', TD_THEME_NAME ) . '</span></label>';
                                 $buffy .= '<input class="tdb-s-form-input" id="tdb-lf-postal-code-' . $this->block_uid . '" name="tdb-location-postal-code-' . $this->block_uid . '" type="text" ' . ( $postalCodeValue ? 'value="' . $postalCodeValue . '"' : '' ) . ' ' . ( $disable_for_guests ? 'disabled' : '' ) . '>';
                             $buffy .= '</div>';
 

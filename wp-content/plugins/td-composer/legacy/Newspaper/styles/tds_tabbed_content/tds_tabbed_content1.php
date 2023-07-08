@@ -31,9 +31,6 @@ class tds_tabbed_content1 extends td_style {
                 .tds_tabbed_content1 .td_block_inner {
                     flex-direction: column;
                 }
-                .tds_tabbed_content1 .td-tc-tabs {
-                    overflow-x: auto;
-                }
                 .tds_tabbed_content1 .td-tc-tabs:before {
                     content: '';
                     position: absolute;
@@ -44,7 +41,6 @@ class tds_tabbed_content1 extends td_style {
                     background-color: #d7d7d7;
                 }
                 .tds_tabbed_content1 .td-tc-tab {
-                    white-space: nowrap;
                     padding-bottom: 18px;
                     font-size: 14px;
                     line-height: 1;
@@ -93,26 +89,9 @@ class tds_tabbed_content1 extends td_style {
                 }
                 
                 
-                /* @tabs_horiz_left */
-                body .$unique_block_class .td-tc-tab:first-child {
-                    margin-left: 0;
-                }
-                body .$unique_block_class .td-tc-tab:last-child {
-                    margin-right: 0;
-                }
-                /* @tabs_horiz_center */
-                body .$unique_block_class .td-tc-tab:first-child {
-                    margin-left: auto;
-                }
-                body .$unique_block_class .td-tc-tab:last-child {
-                    margin-right: auto;
-                }
-                /* @tabs_horiz_right */
-                body .$unique_block_class .td-tc-tab:first-child {
-                    margin-left: auto;
-                }
-                body .$unique_block_class .td-tc-tab:last-child {
-                    margin-right: 0;
+                /* @tabs_horiz */
+                body .$unique_block_class .td-tc-tabs {
+                    justify-content: @tabs_horiz;
                 }
                 /* @tabs_border */
                 body .$unique_block_class .td-tc-tabs:before {
@@ -250,11 +229,11 @@ class tds_tabbed_content1 extends td_style {
         // tabs horizontal align
         $tabs_horiz_align = $res_ctx->get_style_att('tabs_horiz', __CLASS__);
         if( $tabs_horiz_align == 'content-horiz-left' ) {
-            $res_ctx->load_settings_raw('tabs_horiz_left', 'flex-start');
+            $res_ctx->load_settings_raw('tabs_horiz', 'flex-start');
         } else if( $tabs_horiz_align == 'content-horiz-center' ) {
-            $res_ctx->load_settings_raw('tabs_horiz_center', 'center');
+            $res_ctx->load_settings_raw('tabs_horiz', 'center');
         } else if( $tabs_horiz_align == 'content-horiz-right' ) {
-            $res_ctx->load_settings_raw('tabs_horiz_right', 'flex-end');
+            $res_ctx->load_settings_raw('tabs_horiz', 'flex-end');
         }
 
         // tabs bottom border size

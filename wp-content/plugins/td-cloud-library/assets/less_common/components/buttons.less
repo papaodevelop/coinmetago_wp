@@ -84,55 +84,6 @@
 }
 
 
-// Button small
-.tdb-s-btn-sm {
-  min-width: 76px;
-  padding: 10px 19px 12px;
-  font-size: .929em;
-
-  // Button icon
-  svg {
-    top: 1px;
-  }
-
-  // Button saving state
-  &.tdb-s-btn-saving {
-    &:after {
-      width: 11px;
-      height: 11px;
-      margin-left: 13px;
-    }
-
-    &:not(.tdb-s-btn-saved) {
-      &:after {
-        top: 1px;
-      }
-    }
-  }
-
-  // Button saved state
-  &.tdb-s-btn-saved {
-    &:after {
-      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7.5" viewBox="0 0 10 7.5"><path d="M6.5,12.5a1,1,0,0,1-.707-.293l-2.5-2.5A1,1,0,0,1,4.707,8.293L6.5,10.086l4.793-4.793a1,1,0,0,1,1.414,1.414l-5.5,5.5A1,1,0,0,1,6.5,12.5Z" transform="translate(-3 -5)" fill="%23fff" opacity="0.8"/></svg>');
-      top: -2px;
-    }
-  }
-
-  // Hollow
-  &.tdb-s-btn-hollow {
-    min-width: 72px;
-    padding: 8px 17px 10px;
-
-    // Button saved state
-    &.tdb-s-btn-saved {
-      &:after {
-        content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7.5" viewBox="0 0 10 7.5"><path d="M6.5,12.5a1,1,0,0,1-.707-.293l-2.5-2.5A1,1,0,0,1,4.707,8.293L6.5,10.086l4.793-4.793a1,1,0,0,1,1.414,1.414l-5.5,5.5A1,1,0,0,1,6.5,12.5Z" transform="translate(-3 -5)" fill="%23B3B3B3" opacity="0.8"/></svg>');
-      }
-    }
-  }
-}
-
-
 // Red button
 .tdb-s-btn-red {
   background-color: #FF3838;
@@ -215,45 +166,50 @@
 }
 
 
-// Simple button
-.tdb-s-btn-simple {
-  padding: 0;
-  background-color: transparent;
-  min-width: 0;
-  color: #0489FC;
-  border-radius: 0;
-  outline: none;
+// Button small
+.tdb-s-btn-sm {
+  min-width: 76px;
+  padding: 10px 19px 12px;
+  font-size: .929em;
 
-  // Button hover & active states
-  &:hover,
-  &:active {
-    color: #152BF7;
-    background-color: transparent;
-  }
-
-  // Button disabled state
-  &:disabled {
-    background-color: transparent;
-    color: #9ACFFD;
+  // Button icon
+  svg {
+    top: 1px;
   }
 
   // Button saving state
   &.tdb-s-btn-saving {
     &:after {
-      margin-left: 10px;
-      border: 1px solid #0489FC;
-      border-left-color: transparent;
-      border-right-color: transparent;
+      width: 11px;
+      height: 11px;
+      margin-left: 13px;
+    }
+
+    &:not(.tdb-s-btn-saved) {
+      &:after {
+        top: 1px;
+      }
     }
   }
 
   // Button saved state
   &.tdb-s-btn-saved {
-    background-color: transparent;
-    color: #9ACFFD;
-
     &:after {
-      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8.875" viewBox="0 0 12 8.875"><path d="M7.125,13.875a1,1,0,0,1-.707-.293L3.293,10.457A1,1,0,0,1,4.707,9.043l2.418,2.418,6.168-6.168a1,1,0,0,1,1.414,1.414L7.832,13.582A1,1,0,0,1,7.125,13.875Z" transform="translate(-3 -5)" fill="%239ACFFD"/></svg>');
+      content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7.5" viewBox="0 0 10 7.5"><path d="M6.5,12.5a1,1,0,0,1-.707-.293l-2.5-2.5A1,1,0,0,1,4.707,8.293L6.5,10.086l4.793-4.793a1,1,0,0,1,1.414,1.414l-5.5,5.5A1,1,0,0,1,6.5,12.5Z" transform="translate(-3 -5)" fill="%23fff" opacity="0.8"/></svg>');
+      top: -2px;
+    }
+  }
+
+  // Hollow
+  &.tdb-s-btn-hollow {
+    min-width: 72px;
+    padding: 8px 17px 10px;
+
+    // Button saved state
+    &.tdb-s-btn-saved {
+      &:after {
+        content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7.5" viewBox="0 0 10 7.5"><path d="M6.5,12.5a1,1,0,0,1-.707-.293l-2.5-2.5A1,1,0,0,1,4.707,8.293L6.5,10.086l4.793-4.793a1,1,0,0,1,1.414,1.414l-5.5,5.5A1,1,0,0,1,6.5,12.5Z" transform="translate(-3 -5)" fill="%23B3B3B3" opacity="0.8"/></svg>');
+      }
     }
   }
 }

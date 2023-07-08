@@ -380,14 +380,6 @@ class tdb_header_logo extends td_block {
                 .$unique_block_class .tdb-logo-icon:last-child {
                     margin-right: 0;
                 }
-                /* @icon_padd */
-                .$unique_block_class .tdb-logo-icon {
-                    padding: @icon_padd;
-                }
-                /* @icon_radius */
-                .$unique_block_class .tdb-logo-icon {
-                    border-radius: @icon_radius;
-                }
                 
                 /* @icon_align */
                 .$unique_block_class .tdb-logo-icon {
@@ -519,14 +511,6 @@ class tdb_header_logo extends td_block {
                 .$unique_block_class .tdb-logo-a:hover .tdb-logo-icon-svg svg,
                 .$unique_block_class .tdb-logo-a:hover .tdb-logo-icon-svg svg * {
                     fill: @icon_color_h;
-                }
-                /* @icon_bg */
-                .$unique_block_class .tdb-logo-icon {
-                    background-color: @icon_bg;
-                }
-                /* @icon_bg_h */
-                .$unique_block_class .tdb-logo-a:hover .tdb-logo-icon {
-                    background-color: @icon_bg_h;
                 }
 				
 				
@@ -807,20 +791,6 @@ class tdb_header_logo extends td_block {
             }
         }
 
-        // icon padding
-        $icon_padd = $res_ctx->get_shortcode_att('icon_padd');
-        $res_ctx->load_settings_raw( 'icon_padd', $icon_padd );
-        if( $icon_padd != '' && is_numeric( $icon_padd ) ) {
-            $res_ctx->load_settings_raw( 'icon_padd', $icon_padd . 'px' );
-        }
-
-        // icon border radius
-        $icon_radius = $res_ctx->get_shortcode_att('icon_radius');
-        $res_ctx->load_settings_raw( 'icon_radius', $icon_radius );
-        if( $icon_radius != '' && is_numeric( $icon_radius ) ) {
-            $res_ctx->load_settings_raw( 'icon_radius', $icon_radius . 'px' );
-        }
-
         // icon align
         $res_ctx->load_settings_raw( 'icon_align', $res_ctx->get_shortcode_att('icon_align') . 'px' );
 
@@ -846,9 +816,6 @@ class tdb_header_logo extends td_block {
 
         $res_ctx->load_color_settings( 'icon_color', 'icon_color_solid', 'icon_color_gradient', 'icon_color_gradient_1', '' );
         $res_ctx->load_settings_raw( 'icon_color_h', $res_ctx->get_shortcode_att('icon_color_h') );
-
-        $res_ctx->load_settings_raw( 'icon_bg', $res_ctx->get_shortcode_att('icon_bg') );
-        $res_ctx->load_settings_raw( 'icon_bg_h', $res_ctx->get_shortcode_att('icon_bg_h') );
 
 
 

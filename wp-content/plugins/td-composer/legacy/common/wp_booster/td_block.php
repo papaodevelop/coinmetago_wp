@@ -2189,20 +2189,9 @@ class td_block {
 
 					// desktop css
 					if ($mediaCssDesktop !== '') {
-
 						$limit_bottom = td_global::$td_viewport_intervals[ count( td_global::$td_viewport_intervals ) - 1 ]['limitBottom'];
-
-                        $meta_is_mobile_template = get_post_meta(get_the_ID(), 'tdc_is_mobile_template', true);
-
-                        // we are on mobile template and desktop is landscape tablet
-                        // so, we get limit_bottom the phone viewport
-                        if ( $meta_is_mobile_template !== '' ){
-                            $limit_bottom = td_global::$td_viewport_intervals[ count( td_global::$td_viewport_intervals ) - 3 ]['limitBottom'] ;
-                        }
-
-                        $tdcCssProcessed .= PHP_EOL . '/* desktop */ @media(min-width: ' . ( $limit_bottom + 1 ) . 'px) { ' . '.' . $this->get_att('tdc_css_class') . ' { ' . PHP_EOL . $mediaCssDesktop . '} }' . PHP_EOL;
-
-                    }
+						$tdcCssProcessed .= PHP_EOL . '/* desktop */ @media(min-width: ' . ( $limit_bottom + 1 ) . 'px) { ' . '.' . $this->get_att('tdc_css_class') . ' { ' . PHP_EOL . $mediaCssDesktop . '} }' . PHP_EOL;
+					}
 
 					// Temporarily commented
 					//unset($tdcCssArray['all']);

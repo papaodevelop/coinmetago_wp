@@ -4,41 +4,35 @@
 /*  ----------------------------------------------------------------------------
 	PAGES
 */
-$page_posts_list_id = td_demo_content::add_page( array(
-    'title' => 'Posts List',
-    'file' => 'posts_list.txt',
-    'demo_unique_id' => '46347d1c93a92f',
-));
-
 $page_tab_pricing_plans_id = td_demo_content::add_page( array(
     'title' => 'Tab Pricing Plans',
     'file' => 'tab_pricing_plans.txt',
-    'demo_unique_id' => '386347d1c93ad43',
+    'demo_unique_id' => '7633c2a00c69ba',
 ));
 
 $page_video_tutorial_pop_up_id = td_demo_content::add_page( array(
     'title' => 'Video Tutorial Pop Up',
     'file' => 'video_tutorial_pop_up.txt',
-    'demo_unique_id' => '566347d1c93b0c7',
+    'demo_unique_id' => '99633c2a00c6d21',
 ));
 
 $page_pricing_plans_id = td_demo_content::add_page( array(
     'title' => 'Pricing Plans',
     'file' => 'pricing_plans.txt',
-    'demo_unique_id' => '426347d1c93b51b',
+    'demo_unique_id' => '94633c2a00c7177',
 ));
 
 $page_eastcoast_check_form_id = td_demo_content::add_page( array(
     'title' => 'EastCoast Check Form',
     'file' => 'eastcoast_check_form.txt',
-    'demo_unique_id' => '426347d1c93b961',
+    'demo_unique_id' => '93633c2a00c7574',
 ));
 
 $page_homepage_id = td_demo_content::add_page( array(
     'title' => 'Homepage',
     'file' => 'homepage.txt',
     'homepage' => true,
-    'demo_unique_id' => '176347d1c93c472',
+    'demo_unique_id' => '42633c2a00c803b',
 ));
 
 /*  ---------------------------------------------------------------------------- 
@@ -94,7 +88,7 @@ $plan_free_plan_id = td_demo_subscription::add_plan( array(
         'months_in_cycle' => '',
         'trial_days' => '0',
         'is_free' => '1',
-        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:14:"46347d1c90c9cb";}',
+        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"52633c2a009a527";}',
     )
 );
 
@@ -104,7 +98,7 @@ $plan_monthly_plan_id = td_demo_subscription::add_plan( array(
         'months_in_cycle' => '1',
         'trial_days' => '0',
         'is_free' => '0',
-        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"746347d1c90ca1f";}',
+        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"62633c2a009a57b";}',
     )
 );
 
@@ -114,7 +108,7 @@ $plan_yearly_plan_id = td_demo_subscription::add_plan( array(
         'months_in_cycle' => '12',
         'trial_days' => '0',
         'is_free' => '0',
-        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"456347d1c90ca67";}',
+        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"92633c2a009a654";}',
     )
 );
 
@@ -268,6 +262,10 @@ $cat_tech_id = td_demo_category::add_category(array(
 
 
 /*  ---------------------------------------------------------------------------- 
+	SUBSCRIPTION - start phase 2
+*/
+
+/*  ---------------------------------------------------------------------------- 
 	SUBSCRIPTIONS
 */
 // add locker
@@ -349,7 +347,7 @@ td_demo_content::add_locker_meta( array(
     )
 );
 
-td_util::update_option('tds_demo_options', 'a:1:{s:5:"plans";a:3:{i:0;a:2:{s:9:"unique_id";s:14:"46347d1c90c9cb";s:4:"name";s:9:"Free Plan";}i:1;a:2:{s:9:"unique_id";s:15:"746347d1c90ca1f";s:4:"name";s:12:"Monthly Plan";}i:2;a:2:{s:9:"unique_id";s:15:"456347d1c90ca67";s:4:"name";s:11:"Yearly Plan";}}}');
+td_util::update_option('tds_demo_options', 'a:1:{s:5:"plans";a:3:{i:0;a:2:{s:9:"unique_id";s:15:"52633c2a009a527";s:4:"name";s:9:"Free Plan";}i:1;a:2:{s:9:"unique_id";s:15:"62633c2a009a57b";s:4:"name";s:12:"Monthly Plan";}i:2;a:2:{s:9:"unique_id";s:15:"92633c2a009a654";s:4:"name";s:11:"Yearly Plan";}}}');
 
 
 /*  ---------------------------------------------------------------------------- 
@@ -631,9 +629,6 @@ $tax_term_united_states_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => 0,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'country',
-    ),
 ));
 
 
@@ -643,9 +638,6 @@ $tax_term_georgia_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_united_states_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'state',
-    ),
 ));
 
 $tax_term_new_york_id = td_demo_tax::add_taxonomy( array(
@@ -654,9 +646,6 @@ $tax_term_new_york_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_united_states_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'state',
-    ),
 ));
 
 $tax_term_north_carolina_id = td_demo_tax::add_taxonomy( array(
@@ -665,9 +654,6 @@ $tax_term_north_carolina_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_united_states_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'state',
-    ),
 ));
 
 $tax_term_pennsylvania_id = td_demo_tax::add_taxonomy( array(
@@ -676,9 +662,6 @@ $tax_term_pennsylvania_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_united_states_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'state',
-    ),
 ));
 
 $tax_term_albany_id = td_demo_tax::add_taxonomy( array(
@@ -687,9 +670,6 @@ $tax_term_albany_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_new_york_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_arona_id = td_demo_tax::add_taxonomy( array(
@@ -698,9 +678,6 @@ $tax_term_arona_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_asheville_id = td_demo_tax::add_taxonomy( array(
@@ -709,9 +686,6 @@ $tax_term_asheville_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_north_carolina_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_athens_id = td_demo_tax::add_taxonomy( array(
@@ -720,9 +694,6 @@ $tax_term_athens_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_georgia_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_atlanta_id = td_demo_tax::add_taxonomy( array(
@@ -731,9 +702,6 @@ $tax_term_atlanta_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_georgia_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_augusta_id = td_demo_tax::add_taxonomy( array(
@@ -742,9 +710,6 @@ $tax_term_augusta_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_georgia_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_bendersville_id = td_demo_tax::add_taxonomy( array(
@@ -753,9 +718,6 @@ $tax_term_bendersville_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_carlisle_id = td_demo_tax::add_taxonomy( array(
@@ -764,9 +726,6 @@ $tax_term_carlisle_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_charlotte_id = td_demo_tax::add_taxonomy( array(
@@ -775,9 +734,6 @@ $tax_term_charlotte_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_north_carolina_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_columbus_id = td_demo_tax::add_taxonomy( array(
@@ -786,9 +742,6 @@ $tax_term_columbus_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_georgia_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_durham_id = td_demo_tax::add_taxonomy( array(
@@ -797,9 +750,6 @@ $tax_term_durham_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_north_carolina_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_gettysburg_id = td_demo_tax::add_taxonomy( array(
@@ -808,9 +758,6 @@ $tax_term_gettysburg_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_greensboro_id = td_demo_tax::add_taxonomy( array(
@@ -819,9 +766,6 @@ $tax_term_greensboro_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_north_carolina_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_harrisburg_id = td_demo_tax::add_taxonomy( array(
@@ -830,9 +774,6 @@ $tax_term_harrisburg_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_helen_id = td_demo_tax::add_taxonomy( array(
@@ -841,9 +782,6 @@ $tax_term_helen_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_georgia_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_lancaster_id = td_demo_tax::add_taxonomy( array(
@@ -852,9 +790,6 @@ $tax_term_lancaster_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_lansdale_id = td_demo_tax::add_taxonomy( array(
@@ -863,9 +798,6 @@ $tax_term_lansdale_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_lawrenceville_id = td_demo_tax::add_taxonomy( array(
@@ -874,9 +806,6 @@ $tax_term_lawrenceville_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_georgia_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_macon_id = td_demo_tax::add_taxonomy( array(
@@ -885,9 +814,6 @@ $tax_term_macon_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_georgia_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_mechanicsburg_id = td_demo_tax::add_taxonomy( array(
@@ -896,9 +822,6 @@ $tax_term_mechanicsburg_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_new_york_new_york_id = td_demo_tax::add_taxonomy( array(
@@ -907,9 +830,6 @@ $tax_term_new_york_new_york_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_new_york_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_ocean_isle_beach_id = td_demo_tax::add_taxonomy( array(
@@ -918,9 +838,6 @@ $tax_term_ocean_isle_beach_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_north_carolina_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_philadelphia_id = td_demo_tax::add_taxonomy( array(
@@ -929,9 +846,6 @@ $tax_term_philadelphia_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_pittsburgh_id = td_demo_tax::add_taxonomy( array(
@@ -940,9 +854,6 @@ $tax_term_pittsburgh_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_pennsylvania_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_poughkeepsie_id = td_demo_tax::add_taxonomy( array(
@@ -951,9 +862,6 @@ $tax_term_poughkeepsie_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_new_york_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_raleigh_id = td_demo_tax::add_taxonomy( array(
@@ -962,9 +870,6 @@ $tax_term_raleigh_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_north_carolina_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_rochester_id = td_demo_tax::add_taxonomy( array(
@@ -973,9 +878,6 @@ $tax_term_rochester_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_new_york_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_savannah_id = td_demo_tax::add_taxonomy( array(
@@ -984,9 +886,6 @@ $tax_term_savannah_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_georgia_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_smyrna_id = td_demo_tax::add_taxonomy( array(
@@ -995,9 +894,6 @@ $tax_term_smyrna_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_georgia_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_syracuse_id = td_demo_tax::add_taxonomy( array(
@@ -1006,9 +902,6 @@ $tax_term_syracuse_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_new_york_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_utica_id = td_demo_tax::add_taxonomy( array(
@@ -1017,9 +910,6 @@ $tax_term_utica_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_new_york_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_wilmington_id = td_demo_tax::add_taxonomy( array(
@@ -1028,9 +918,6 @@ $tax_term_wilmington_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_north_carolina_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 $tax_term_yonkers_id = td_demo_tax::add_taxonomy( array(
@@ -1039,9 +926,6 @@ $tax_term_yonkers_id = td_demo_tax::add_taxonomy( array(
     'taxonomy_template' => '',
     'parent_id' => $tax_term_new_york_id,
     'description' => '',
-    'tax_term_meta' => array(
-        'tdb-location-type' => 'city',
-    ),
 ));
 
 
@@ -1053,7 +937,7 @@ $cpt_fish_n_chips_id = td_demo_content::add_cpt( array(
 	'type' => 'tdcpt_directories',
 	'file' => 'tdcpt_directories_default.txt',
 	'cpt_image_td_id' => 'td_pic_6',
-	'post_meta' => array(
+	'post_meta' => array( 
 		'tdcf_open_hours' => 'TW9uZGF5IC0gRnJpZGF5DQoxMCBBTSAtIDUgUE0NClNhdHVyZGF5IC0gU3VuZGF5DQpDbG9zZWQ=',
 		'_tdcf_open_hours' => 'ZmllbGRfNjJkMTI1ZTc4ZTBmMQ==',
 		'tdcf_free_wifi' => 'UGFzc3dvcmQgT25seQ==',
@@ -1076,7 +960,7 @@ $cpt_fish_n_chips_id = td_demo_content::add_cpt( array(
 		'_tdcf_email address' => 'ZmllbGRfNjJkMTI1NDM4ZTBlZA==',
 		'tdb-location-complete' => 'R2VvcmdpYSAxMCAsIEF0aGVucywgR2VvcmdpYSwgVW5pdGVkIFN0YXRlcw==',
 	),
-	'cpt_taxonomies' => array(
+	'cpt_taxonomies' => array( 
 		'tdtax_services' => array( $tax_term_restaurant_id ),
 		'tdtax_locations' => array( $tax_term_athens_id, $tax_term_georgia_id, $tax_term_united_states_id ),
 	),
@@ -4682,8 +4566,7 @@ td_demo_misc::update_global_header_template( 'tdb_template_' . $template_header_
 update_post_meta( $template_header_template_id, 'header_mobile_menu_id', $menu_td_demo_header_menu_id);
 
 
-
-/*  ----------------------------------------------------------------------------
+/*  ---------------------------------------------------------------------------- 
 	GENERAL SETTINGS
 */
 td_demo_misc::update_background('', false);
@@ -4704,9 +4587,8 @@ td_demo_misc::update_footer_logo(array('normal' => '','retina' => '',));
 
 td_demo_misc::add_social_buttons(array());
 
-$generated_css = td_css_generator();
-if ( function_exists('tdsp_css_generator') ) {
-    $generated_css .= tdsp_css_generator();
+$generated_css = td_css_generator(); 
+if ( function_exists('tdsp_css_generator') ) { 
+	$generated_css .= tdsp_css_generator();
 }
 td_util::update_option( 'tds_user_compile_css', $generated_css );
-

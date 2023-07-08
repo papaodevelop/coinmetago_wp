@@ -1,0 +1,81 @@
+
+ .tds-locker-select label {
+     padding: 5px;
+     color: orangered !important;
+}
+ .tds-locker-select {
+     margin-left: 10px;
+     margin-top: 10px;
+}
+
+ .tds-locker-select .components-select-control__input {
+     background: inherit !important;
+ }
+
+ .tds-locker-select .components-input-control__backdrop {
+     pointer-events: none !important;
+ }
+
+ .wp-block-tds-partiallocker {
+     text-align: center;
+     white-space: nowrap;
+     min-height: 34px;
+ }
+
+ .wp-block-tds-partiallocker::before {
+     content: "";
+     position: absolute;
+     top: calc(50%);
+     left: 0;
+     right: 0;
+     border-top: 3px dashed #ccc;
+ }
+
+ .tds-partial-locker-preview {
+     font-size: 12px;
+     line-height: 21px;
+     color: #444;
+     border: 1px solid #e1e1e1;
+     width: 150px;
+     max-width: 100%;
+     height: 34px;
+     padding: 10px;
+     position: relative;
+     text-transform: uppercase;
+     font-weight: 600;
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+     box-shadow: none;
+     white-space: nowrap;
+     text-align: center;
+     margin: 0;
+     border-radius: 4px;
+     background: #fff;
+ }
+
+.wp-block-tds-contentlocker {
+    position: relative;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px;
+}
+
+ .wp-block-tds-contentlocker .tds-top-bracket, .wp-block-tds-contentlocker .tds-bottom-bracket {
+     border: 4px solid rgba(139,139,150,0.1);
+     height: 30px;
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+ }
+
+ .wp-block-tds-contentlocker .tds-top-bracket {
+     border-bottom: 0px;
+     bottom: auto;
+ }
+
+ .wp-block-tds-contentlocker .tds-bottom-bracket {
+     border-top: 0px;
+     top: auto;
+ }

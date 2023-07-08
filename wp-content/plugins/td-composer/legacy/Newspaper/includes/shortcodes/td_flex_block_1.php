@@ -1615,12 +1615,12 @@ class td_flex_block_1 extends td_block {
 
             // block title wrap
             $buffy .= '<div class="td-block-title-wrap">';
-                $buffy .= $this->get_block_title(); // get the block title
-                $buffy .= $this->get_pull_down_filter(); // get the sub category filter for this block
+                $buffy .= $this->get_block_title(); //get the block title
+                $buffy .= $this->get_pull_down_filter(); //get the sub category filter for this block
             $buffy .= '</div>';
 
             $buffy .= '<div id=' . $this->block_uid . ' class="td_block_inner td-mc1-wrap">';
-	                $buffy .= $this->inner( $this->td_query->posts ); // inner content of the block
+	                $buffy .= $this->inner( $this->td_query->posts );//inner content of the block
             $buffy .= '</div>';
 
             //get the ajax pagination for this block

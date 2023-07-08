@@ -369,7 +369,7 @@ function td_css_generator() {
     #td-mobile-nav .td-menu-login-section a:hover,
     #td-mobile-nav .td-register-section a:hover,
     #td-mobile-nav .td-menu-socials-wrap a:hover i,
-    .td-search-close span:hover i {
+    .td-search-close a:hover i {
         color: @mobile_text_active_color;
     }
 

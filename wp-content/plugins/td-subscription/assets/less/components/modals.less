@@ -1,0 +1,132 @@
+// --------
+// -- MODALS
+// --------
+// Modal wrap & modal bg
+.tds-modal-wrap,
+.tds-modal-bg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+// Modal wrap
+.tds-modal-wrap {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  z-index: 10000;
+}
+.admin-bar .tds-modal-wrap {
+  @media (min-width: 783px) {
+    padding-top: 62px;
+  }
+  @media (max-width: 782px) {
+    padding-top: 76px;
+  }
+}
+
+
+// Modal bg
+.tds-modal-bg {
+  position: absolute;
+  background-color: rgba(107, 114, 128, 0.75);
+}
+
+
+// Modal
+.tds-modal {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  min-width: 400px;
+  max-width: 650px;
+  max-height: 100%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12);
+  border-radius: 3px;
+  z-index: 1;
+
+  /* responsive portrait phone */
+  @media (max-width: @responsive_p_phone_max) {
+    min-width: 0;
+  }
+}
+
+
+// Modal header & footer
+.tds-modal-header,
+.tds-modal-footer {
+  display: flex;
+  align-items: center;
+}
+
+
+// Modal header
+.tds-modal-header {
+  padding: 19px 25px 16px;
+  border-bottom: 1px solid #EBEBEB;
+
+  // Modal header close button
+  .tds-modal-close {
+    margin-left: auto;
+    fill: #878d93;
+    cursor: pointer;
+    transition: transform .2s ease-in-out, fill .2s ease-in-out;
+
+    &:hover {
+      fill: #000;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+// Modal header title
+body h3.tds-modal-title {
+  margin: 0;
+  padding: 0;
+  font-size: 1.286em;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #1D2327;
+}
+
+
+// Modal body
+.tds-modal-body {
+  padding: 30px 25px;
+  overflow: auto;
+
+  .tds-s-notif {
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+  }
+}
+
+// Modal text
+.tds-modal-txt {
+  font-size: 1em;
+  line-height: 1.4;
+  color: #59626B;
+}
+
+
+// Modal footer
+.tds-modal-footer {
+  justify-content: flex-end;
+  padding: 18px 25px;
+  border-top: 1px solid #EBEBEB;
+
+  &:empty {
+    display: none;
+  }
+
+  .tds-s-btn {
+    &:not(:last-of-type) {
+      margin-right: 16px;
+    }
+  }
+}

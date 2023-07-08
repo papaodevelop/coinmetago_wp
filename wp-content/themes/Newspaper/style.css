@@ -2,7 +2,7 @@
 Theme Name: 	Newspaper
 Theme URI: 		http://tagdiv.com
 Description: 	Premium WordPress template, clean and easy to use.
-Version: 		12.2
+Version: 		12.1
 Author: 		tagDiv
 Author URI: 	http://themeforest.net/user/tagDiv/portfolio
 License:
@@ -4962,18 +4962,10 @@ header .td-icon-comments {
 /*  ----------------------------------------------------------------------------
     less for Gutenberg elements
 */
-.wp-block-image {
-  margin-bottom: 21px;
-}
-.wp-block-image.aligncenter,
-.wp-block-image.alignleft,
-.wp-block-image.alignright {
-  margin-bottom: 21px;
-}
 .wp-block-image figcaption {
   font-family: Verdana, BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-align: left;
-  margin: 6px 0 0 0;
+  margin: 6px 0 26px 0;
   font-size: 11px;
   font-style: italic;
   font-weight: normal;
@@ -4983,14 +4975,6 @@ header .td-icon-comments {
 .wp-block-image.alignfull figcaption {
   margin-right: 20px;
   margin-left: 20px;
-}
-.wp-block-gallery {
-  margin-bottom: 26px;
-}
-.wp-block-gallery figcaption {
-  font-family: Verdana, BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 11px;
-  line-height: 17px;
 }
 .wp-block-gallery .blocks-gallery-image figcaption,
 .wp-block-gallery .blocks-gallery-item figcaption {
@@ -5698,8 +5682,8 @@ header .td-icon-comments {
 }
 @font-face {
   font-family: 'newspaper';
-  src: url('images/icons/newspaper.eot?22');
-  src: url('images/icons/newspaper.eot?22#iefix') format('embedded-opentype'), url('images/icons/newspaper.woff?221') format('woff'), url('images/icons/newspaper.ttf?22') format('truetype'), url('images/icons/newspaper.svg?22#newspaper') format('svg');
+  src: url('images/icons/newspaper.eot?21');
+  src: url('images/icons/newspaper.eot?21#iefix') format('embedded-opentype'), url('images/icons/newspaper.woff?21') format('woff'), url('images/icons/newspaper.ttf?21') format('truetype'), url('images/icons/newspaper.svg?21#newspaper') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -6149,9 +6133,6 @@ header .td-icon-comments {
 .td-icon-strava:before {
   content: "\e936";
 }
-.td-icon-website:before {
-  content: "\e938";
-}
 .td-social-icon-wrap:hover .td-icon-font {
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
@@ -6300,9 +6281,6 @@ header .td-icon-comments {
 }
 .td-social-icon-wrap:hover i.td-icon-whatsapp {
   color: #7bbf6a;
-}
-.td-social-icon-wrap:hover i.td-icon-whebsite {
-  color: #000000;
 }
 /*  ----------------------------------------------------------------------------
     WordPress default widgets
@@ -6672,49 +6650,39 @@ header .td-icon-comments {
   td {
     page-break-before: avoid;
   }
-  .single .td-main-sidebar,
-  .single #td-theme-settings,
-  .single .td-header-top-menu,
-  .single .td-header-menu-wrap,
-  .single .td-header-sp-ads,
-  .single .td-main-sidebar,
-  .single .td-post-source-tags,
-  .single .td-post-sharing,
-  .single .td-post-next-prev,
-  .single .td_block_related_posts,
-  .single #comments,
-  .single .td-footer-container,
-  .single .td-footer-wrapper,
-  .single .td-sub-footer-container,
-  .single .td-category,
-  .single .td-post-views,
-  .single .td-post-comments,
-  .single .td-scroll-up,
-  .single iframe,
-  .single .td-more-articles-box,
-  .single .td_block_video_playlist,
-  .single .td-crumb-container,
-  .single .td-g-rec,
-  .single .td-a-rec,
-  .single .td-menu-background,
-  .single .author-box-wrap .avatar {
+  .single-post .td-header-wrap,
+  .single-post .td-main-sidebar,
+  .single-post #td-theme-settings,
+  .single-post .td-header-top-menu,
+  .single-post .td-header-menu-wrap,
+  .single-post .td-header-sp-ads,
+  .single-post .td-main-sidebar,
+  .single-post .td-post-source-tags,
+  .single-post .td-post-sharing,
+  .single-post .td-post-next-prev,
+  .single-post .td_block_related_posts,
+  .single-post #comments,
+  .single-post .td-footer-container,
+  .single-post .td-footer-wrapper,
+  .single-post .td-sub-footer-container,
+  .single-post .td-category,
+  .single-post .td-post-views,
+  .single-post .td-post-comments,
+  .single-post .td-scroll-up,
+  .single-post iframe,
+  .single-post .td-more-articles-box,
+  .single-post .td_block_video_playlist,
+  .single-post .td-crumb-container,
+  .single-post .td-g-rec,
+  .single-post .td-a-rec,
+  .single-post .td-menu-background,
+  .single-post .author-box-wrap .avatar {
     display: none !important;
-  }
-  .td-header-desktop-wrap {
-    display: block !important;
-  }
-  .td-footer-template-wrap,
-  .td_block_wrap:not(.tdb_breadcrumbs):not(.tdb_header_logo):not(.tdb_single_categories):not(.tdb-single-title):not(.tdb_single_author):not(.tdb_single_date ):not(.tdb_single_comments_count ):not(.tdb_single_post_views):not(.tdb_single_featured_image):not(.tdb_single_content):not(.td_woo_breadcrumbs):not(.td-woo-product-title):not(.td_woo_product_description):not(.td_woo_add_to_cart):not(.td_woo_product_sku):not(.td_woo_product_image):not(.td_woo_product_tabs):not(.td_woo_product_categories):not(.td_woo_product_tags ):not(.td_woo_product_image_bg):not(.td_woo_product_price):not(.td_woo_product_rating) {
-    display: none !important;
-  }
-  .body.td-animation-stack-type0 img {
-    opacity: 1 !important;
   }
   .backstretch {
     display: none;
   }
   .td-main-content,
-  .td-main-content-wrap .tdc-column,
   header {
     width: 100% !important;
   }

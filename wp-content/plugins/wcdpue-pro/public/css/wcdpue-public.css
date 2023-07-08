@@ -1,0 +1,11 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+#wcdpue-metabox-fields-wrapper{
+	width: 450px;
+	margin: 0 auto;
+	background: #f5f5f5;
+	padding: 10px;
+}

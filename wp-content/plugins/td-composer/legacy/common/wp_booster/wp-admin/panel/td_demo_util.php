@@ -1477,9 +1477,6 @@ class td_demo_content extends td_demo_base {
         // new post / page
         $post_id = wp_insert_post($new_post);
 
-        //wp_insert_post() currently doesn't create a revision for a newly created post
-        wp_save_post_revision($post_id);
-
         // add our demo custom meta field, using this field we will delete all the pages
         update_post_meta($post_id, 'td_demo_content', true);
 
@@ -1604,31 +1601,16 @@ class td_demo_content extends td_demo_base {
             'guid' => td_global::td_generate_unique_id()
         );
 
-        // new page
-        $page_id = wp_insert_post( $new_post, true );
+        //new post / page
+        $page_id = wp_insert_post ($new_post);
 
-	    if ( is_wp_error( $page_id ) ) {
-
-			//die( json_encode( $page_id->get_all_error_data('db_insert_error') ) );
-
-		    self::kill(
-				__CLASS__,
-				__FUNCTION__,
-				$page_id->get_error_message()
-		    );
-
+	    if (is_wp_error($page_id)) {
+		    self::kill(__CLASS__, __FUNCTION__, $page_id->get_error_message());
 	    }
 
-	    if ( $page_id === 0 ) {
-		    self::kill(
-				__CLASS__,
-				__FUNCTION__,
-				'wp_insert_post returned 0. Not ok! Page title: ' . $params['title']
-		    );
+	    if ($page_id === 0) {
+		    self::kill(__CLASS__, __FUNCTION__, 'wp_insert_post returned 0. Not ok! Page title: ' . $params['title']);
 	    }
-
-        //wp_insert_post() currently doesn't create a revision for a newly created post
-        wp_save_post_revision($page_id);
 
         // add our demo custom meta field, using this field we will delete all the pages
         update_post_meta($page_id, 'td_demo_content', true);
@@ -1748,24 +1730,15 @@ class td_demo_content extends td_demo_base {
         );
 
         //new template
-        $template_id = wp_insert_post( $new_post, true );
+        $template_id = wp_insert_post($new_post);
 
 	    if ( is_wp_error( $template_id ) ) {
-
-		    self::kill(
-			    __CLASS__,
-			    __FUNCTION__,
-			    $template_id->get_error_message()
-		    );
-
+		    self::kill(__CLASS__, __FUNCTION__, $template_id->get_error_message());
 	    }
 
 	    if ( $template_id === 0 ) {
 		    self::kill(__CLASS__, __FUNCTION__, 'wp_insert_post returned 0. Not ok! Page title: ' . $params['title']);
 	    }
-
-        //wp_insert_post() currently doesn't create a revision for a newly created post
-        wp_save_post_revision($template_id);
 
         // set the cloud template template type post meta
         update_post_meta( $template_id, 'tdb_template_type', $template_type );
@@ -1837,9 +1810,6 @@ class td_demo_content extends td_demo_base {
 				)
 			);
 		}
-
-        //wp_insert_post() currently doesn't create a revision for a newly created post
-        wp_save_post_revision($new_product_id);
 
 		// set product image
 		if ( !empty($params['product_image_td_id']) ) {
@@ -2028,9 +1998,6 @@ class td_demo_content extends td_demo_base {
 			);
 		}
 
-        //wp_insert_post() currently doesn't create a revision for a newly created post
-        wp_save_post_revision($new_cpt_id);
-
 		// add post meta ( custom fields )
 		if( !empty( $params['post_meta'] ) && is_array( $params['post_meta'] ) ) {
 			foreach ( $params['post_meta'] as $meta_key => $meta_value ) {
@@ -2134,8 +2101,7 @@ class td_demo_content extends td_demo_base {
 		$demo_cpts = array();
 
 		foreach ( $post_types as $post_type ) {
-            //use strpos() for old php versions
-			if ( strpos( $post_type, 'tdcpt_' ) !== false ) {
+			if ( str_contains( $post_type, 'tdcpt_' ) ) {
 				$demo_cpts[] = $post_type;
 			}
 		}

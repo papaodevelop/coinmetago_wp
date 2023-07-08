@@ -1,0 +1,70 @@
+// --------
+// -- INFO BUBBLES
+// --------
+//  Bubble toggle
+.tds-s-bubble-toggle {
+  color: #fff;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .786em;
+  font-weight: 700;
+}
+
+
+// Bubble description
+.tds-s-bubble-descr {
+  position: absolute;
+  bottom: calc(~'100% + 3px');
+  right: 0;
+  width: 200px;
+  padding: 6px 6px 8px;
+  background-color: rgba(0, 0, 0, 0.75);
+  font-size: .714em;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: 400;
+  color: #fff;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    height: 4px;
+  }
+}
+
+
+// Bubble hover state
+.tds-s-bubble:hover {
+  .tds-s-bubble-descr {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+
+// Small bubble
+.tds-s-bubble-sm {
+  .tds-s-bubble-toggle {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+
+// Warning bubble
+.tds-s-bubble-warn {
+  .tds-s-bubble-toggle {
+    background-color: #d78500;
+  }
+}

@@ -1221,8 +1221,8 @@ blockquote.pull-right:after {
 }
 @font-face {
   font-family: 'newspaper';
-  src: url('images/icons/newspaper.eot?22');
-  src: url('images/icons/newspaper.eot?22#iefix') format('embedded-opentype'), url('images/icons/newspaper.woff?221') format('woff'), url('images/icons/newspaper.ttf?22') format('truetype'), url('images/icons/newspaper.svg?22#newspaper') format('svg');
+  src: url('images/icons/newspaper.eot?21');
+  src: url('images/icons/newspaper.eot?21#iefix') format('embedded-opentype'), url('images/icons/newspaper.woff?21') format('woff'), url('images/icons/newspaper.ttf?21') format('truetype'), url('images/icons/newspaper.svg?21#newspaper') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -1672,9 +1672,6 @@ blockquote.pull-right:after {
 .td-icon-strava:before {
   content: "\e936";
 }
-.td-icon-website:before {
-  content: "\e938";
-}
 .td-social-icon-wrap:hover .td-icon-font {
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
@@ -1823,9 +1820,6 @@ blockquote.pull-right:after {
 }
 .td-social-icon-wrap:hover i.td-icon-whatsapp {
   color: #7bbf6a;
-}
-.td-social-icon-wrap:hover i.td-icon-whebsite {
-  color: #000000;
 }
 .mx_image_background {
   background-color: #f2f2f2;

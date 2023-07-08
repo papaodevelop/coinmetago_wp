@@ -304,50 +304,6 @@ if ( 'Newsmag' == TD_THEME_NAME || ( 'Newspaper' == TD_THEME_NAME && defined('TD
 
 <?php echo td_panel_generator::box_end(); ?>
 
-<!-- Social Login -->
-<?php echo td_panel_generator::box_start( 'Social Login', false ); ?>
-
-<div class="td-box-row td-social-login-sec-header">
-    <div class="td-box-description">
-        <span class="td-box-title">Facebook login</span>
-        <p>
-            Follow this <a href="https://forum.tagdiv.com/how-to-generate-facebook-app-id/" target="_blank">guide</a> to generate your Facebook App ID. Your site must be using SSL encryption (HTTPS) in order for this option to work.
-        </p>
-    </div>
-</div>
-
-<div class="td-box-row">
-    <div class="td-box-description">
-        <span class="td-box-title">Enable</span>
-    </div>
-    <div class="td-box-control-full">
-        <?php
-        echo td_panel_generator::checkbox(array(
-            'ds' => 'td_option',
-            'option_id' => 'tds_social_login_fb_enable',
-            'true_value' => 'true',
-            'false_value' => 'false'
-        ));
-        ?>
-    </div>
-</div>
-
-<div class="td-box-row">
-    <div class="td-box-description">
-        <span class="td-box-title">APP ID</span>
-    </div>
-    <div class="td-box-control-full">
-        <?php
-        echo td_panel_generator::input(array(
-            'ds' => 'td_option',
-            'option_id' => 'tds_social_login_fb_app_id'
-        ));
-        ?>
-    </div>
-</div>
-
-<?php echo td_panel_generator::box_end(); ?>
-
 <!-- Facebook Account (Business) -->
 <?php echo td_panel_generator::box_start( 'Facebook Account', false ); ?>
 

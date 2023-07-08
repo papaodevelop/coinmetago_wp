@@ -312,8 +312,7 @@ class tdb_state_single extends tdb_state_base {
             $featured_image_info = td_util::attachment_get_full_info( $post_thumb_id );
 
             if ( !is_null( $post_thumb_id ) ) {
-                $img_src = wp_get_attachment_image_src( $post_thumb_id, $tdb_image_size );
-                $data_array['featured_image_src'] = $img_src !== false ? $img_src[0] : '';
+                $data_array['featured_image_src'] = wp_get_attachment_image_src( $post_thumb_id, $tdb_image_size )[0];
                 $data_array['alt'] = $featured_image_info['alt'];
                 $data_array['caption'] = $featured_image_info['caption'];
             } else {
@@ -821,29 +820,43 @@ class tdb_state_single extends tdb_state_base {
             $post = $this->get_wp_query()->post;
             $categories_array = array();
 
-            $post_categories = get_the_terms( $post->ID, 'category' );
+            $post_categories = get_the_category($post->ID);
 
-            if ( isset($atts['cat_order']) and $atts['cat_order'] === '' && false !== $post_categories && !is_wp_error( $post_categories ) ) {
-                $sorted_categories = array();
-                self::sort_terms_hierarchically( $post_categories, $sorted_categories );
-
-                if ( !empty( $sorted_categories ) ) {
-                    foreach ( $sorted_categories as $category ) {
-                        $post_categories[] = $category;
-
-                        self::add_term_children( $post_categories, $category, 'post_categories' );
+            // check cat order -- by default.. we show parent category first so.. add parent categories && sort by parent
+	        if ( isset($atts['cat_order']) and $atts['cat_order'] === '' && !empty( $post_categories ) ) {
+		        $sorted_by_parent = array();
+		        foreach ( $post_categories as $post_category ) {
+			        $td_parent_cat_obj = get_category( $post_category->category_parent ); // get parent
+			        if ( !empty($td_parent_cat_obj->name) ) {
+			            // if the parent cat hasn't been added .. add it first
+			            if ( !isset($sorted_by_parent[$td_parent_cat_obj->name]) ) {
+				            $sorted_by_parent[$td_parent_cat_obj->name][] = $td_parent_cat_obj; // add parent cat
+                        }
+			            // then add current
+				        $sorted_by_parent[$td_parent_cat_obj->name][] = $post_category; // add current cat
+                    } else {
+				        $sorted_by_parent[] = $post_category;
                     }
                 }
+		        // level sorted array
+		        $post_categories = array_reduce( $sorted_by_parent, function($carry, $item) {
+		            if ( is_array( $item ) ) {
+			            $carry = array_merge( $carry, $item );
+                    } else {
+			            $carry[] = $item;
+                    }
+		            return $carry;
+                }, array() );
             }
 
             if ( !empty( $post_categories ) ) {
                 foreach ( $post_categories as $post_category ) {
                     // process cat meta && add to categories_array
-                    $category_meta__color        = td_util::get_category_option( $post_category->term_id, 'tdc_color' );
-                    $category_meta__hide_on_post = td_util::get_category_option( $post_category->term_id, 'tdc_hide_on_post' );
+                    $category_meta__color        = td_util::get_category_option( $post_category->cat_ID, 'tdc_color' );
+                    $category_meta__hide_on_post = td_util::get_category_option( $post_category->cat_ID, 'tdc_hide_on_post' );
                     $categories_array[ $post_category->name ]  = array(
                         'color'        => $category_meta__color,
-                        'link'         => get_category_link( $post_category->term_id ),
+                        'link'         => get_category_link( $post_category->cat_ID ),
                         'hide_on_post' => $category_meta__hide_on_post
                     );
                 }
@@ -3142,10 +3155,6 @@ class tdb_state_single extends tdb_state_base {
 							'color' => !empty( $sanitized_hex_color ) ? $sanitized_hex_color : ''
 						);
 						break;
-
-                    case 'post_categories':
-                        $to_array[] = $term;
-                        break;
 				}
 
 				self::add_term_children( $to_array, $term, $tdb_shortcode );

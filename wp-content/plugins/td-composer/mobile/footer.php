@@ -61,18 +61,15 @@
                 $td_footer_logo_title = $td_logo_title;
             }
 
-            $logo_image_size = '';
+            $logo_image_width_html = '';
+            $logo_image_height_html = '';
 
-            if ($td_footer_logo !== '') {
-                $td_logo_headers = @get_headers($td_footer_logo);
-
-                if ($td_logo_headers && strpos($td_logo_headers[0], '200') !== false) {
-                    if (function_exists('wp_getimagesize')) {
-                        $info_img = wp_getimagesize($td_footer_logo);
-                        if (is_array($info_img)) {
-                            $logo_image_size = $info_img[3];
-                        }
-                    }
+            if( $td_footer_logo != '' ) {
+                $attachment_id = attachment_url_to_postid( $td_footer_logo );
+                $info_img = wp_get_attachment_image_src( $attachment_id, 'full');
+                if (is_array($info_img)) {
+                    $logo_image_width_html = ' width="' . $info_img[1] . '"';
+                    $logo_image_height_html = ' height="' . $info_img[2] . '"';
                 }
             }
 
@@ -82,9 +79,9 @@
             $buffy .= '<div class="td-footer-wrap"><aside class="td-footer-logo">';
             if (!empty($td_footer_logo)) { // if have footer logo
                 if (empty($td_footer_retina_logo)) { // if don't have a retina footer logo load the normal logo
-                    $buffy .= '<a href="' . esc_url(home_url( '/' )) . '" aria-label="Logo"><img src="' . $td_footer_logo . '" alt="' . $td_footer_logo_alt . '" title="' . $td_footer_logo_title . '" ' . $logo_image_size . '/></a>';
+                    $buffy .= '<a href="' . esc_url(home_url( '/' )) . '" aria-label="Logo"><img src="' . $td_footer_logo . '" alt="' . $td_footer_logo_alt . '" title="' . $td_footer_logo_title . '" ' . $logo_image_width_html . $logo_image_height_html . '/></a>';
                 } else {
-                    $buffy .= '<a href="' . esc_url(home_url( '/' )) . '" aria-label="Logo"><img class="td-retina-data" src="' . $td_footer_logo . '" data-retina="' . esc_attr($td_footer_retina_logo) . '" alt="' . $td_footer_logo_alt . '" title="' . $td_footer_logo_title . '" ' . $logo_image_size . '/></a>';
+                    $buffy .= '<a href="' . esc_url(home_url( '/' )) . '" aria-label="Logo"><img class="td-retina-data" src="' . $td_footer_logo . '" data-retina="' . esc_attr($td_footer_retina_logo) . '" alt="' . $td_footer_logo_alt . '" title="' . $td_footer_logo_title . '" ' . $logo_image_width_html . $logo_image_height_html . '/></a>';
                 }
             } else { // if you don't have a footer logo load the top logo
                 if (empty($td_top_retina_logo)) {

@@ -35,15 +35,13 @@ $category_id = td_util::get_http_post_val('category_id');
         }
 
         $option_id = 'tdb_category_template';
-        $lang = '';
-
         if (class_exists('SitePress', false)) {
             global $sitepress;
             $sitepress_settings = $sitepress->get_settings();
             if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
                 $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
                 if (1 === $translation_mode) {
-                    $lang = $sitepress->get_current_language();
+                    $option_id .= $sitepress->get_current_language();
                 }
             }
         }
@@ -63,7 +61,7 @@ $category_id = td_util::get_http_post_val('category_id');
             echo td_panel_generator::dropdown(array(
                 'ds' => 'td_category',
                 'item_id' => $category_id,
-                'option_id' => 'tdb_category_template' . $lang,
+                'option_id' => $option_id,
                 'values' => array_merge(
                     array(
                         array(
@@ -97,7 +95,7 @@ $category_id = td_util::get_http_post_val('category_id');
             echo td_panel_generator::dropdown(array(
                 'ds' => 'td_category',
                 'item_id' => $category_id,
-                'option_id' => 'tdb_post_category_template' . $lang,
+                'option_id' => 'tdb_post_category_template',
                 'values' => array_merge(
                     array(
                         array(

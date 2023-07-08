@@ -1961,20 +1961,6 @@ if ( 'Newsmag' === TD_THEME_NAME ) {
 
 }
 
-$sticky_column_offset = array();
-if( 'Newspaper' === TD_THEME_NAME ) {
-    $sticky_column_offset = array(
-        array(
-            'type' => 'textfield-responsive',
-            'heading' => 'Sticky offset',
-            'param_name' => 'sticky_offset',
-            'description' => '',
-            'class' => 'tdc-textfield-big',
-            'placeholder' => '20',
-        ),
-    );
-}
-
 
 tdc_mapper::map_shortcode(
 	array(
@@ -2045,9 +2031,6 @@ tdc_mapper::map_shortcode(
                     "class" => "",
                     "info_img" => "https://cloud.tagdiv.com/help/column_sticky.png",
                 ),
-            ),
-            $sticky_column_offset,
-            array(
                 array (
                     'param_name' => 'vertical_align',
                     'heading' => 'Vertical align',
@@ -2338,9 +2321,6 @@ tdc_mapper::map_shortcode(
                     "class" => "",
                     "info_img" => "https://cloud.tagdiv.com/help/column_sticky.png",
                 ),
-            ),
-            $sticky_column_offset,
-            array(
                 array (
                     'param_name' => 'vertical_align',
                     'heading' => 'Vertical align',
@@ -3311,29 +3291,6 @@ $tdc_api_blocks = array(
 		'params' => array_merge(
 			$block_general_params_array,
 			array(
-                array(
-                    "param_name" => "title_tag",
-                    "type" => "dropdown",
-                    "value" => array(
-                        'Default - H4' => '',
-                        'H1' => 'h1',
-                        'H2' => 'h2',
-                        'H3' => 'h3',
-                        'Div' => 'div'
-                    ),
-                    "heading" => 'Title tag (SEO)',
-                    "description" => "",
-                    "holder" => "div",
-                    "class" => "tdc-dropdown-big",
-                    "info_img" => "https://cloud.tagdiv.com/help/module_title_seo.png",
-                ),
-                array(
-                    "param_name" => "separator",
-                    "type" => "horizontal_separator",
-                    "value" => "",
-                    "class" => "tdc-separator-small",
-                    "group" => '',
-                ),
 				array(
 					"param_name" => "content",
 					"type" => "textarea_html",

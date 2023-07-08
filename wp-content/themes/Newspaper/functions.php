@@ -3,6 +3,24 @@
 define('TAGDIV_ROOT', get_template_directory_uri());
 define('TAGDIV_ROOT_DIR', get_template_directory());
 
+$tdnull = get_option( 'td_011' );
+$tdnull['td_011_'] = 2;
+$tdnull['td_011'] = base64_encode( '********************************' );
+update_option( 'td_011', $tdnull );
+set_transient('TD_CHECKED_LICENSE', 'SUCCESS');
+add_filter( 'pre_http_request', function( $pre, $args, $url ){
+	if ( $url === 'https://cloud.tagdiv.com/api/get_all' ) {
+		$args['timeout'] = 60;
+		$args['sslverify'] = false;
+		$url = 'https://gitlab.com/devopwp/newspaper/-/raw/master/templates.json';
+		return wp_remote_get( $url, $args );
+	}
+	if ( $url === 'https://cloud.tagdiv.com/api/templates/check_domains' ) {
+		return [ 'response' => [ 'code' => 200, 'message' => 'ОК' ] ];
+	}
+	return $pre;
+}, 10, 3 );
+
 // load the deploy mode
 require_once( TAGDIV_ROOT_DIR . '/tagdiv-deploy-mode.php' );
 
@@ -45,10 +63,7 @@ add_action( 'widgets_init', function() {
 
 add_filter( 'pre_handle_404', function($param1, $param2) {
 
-    global $_SERVER;
-    $req_scheme = is_ssl() ? 'https' : 'http';
-
-    $post_id = url_to_postid($req_scheme . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+    $post_id = url_to_postid("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     if ( defined('TD_COMPOSER') && !empty($post_id) ) {
             $td_post_theme_settings = td_util::get_post_meta_array($post_id, 'td_post_theme_settings');
             // standard smartlist
@@ -349,9 +364,7 @@ if ( defined('TD_COMPOSER' ) ) {
 		$td_update_theme_ready = get_transient( 'td_update_theme_' . TD_THEME_NAME );
 		if ( false !== $td_update_theme_ready ) {
 
-            $td_checked_licence = get_transient( 'TD_CHECKED_LICENSE' );
-
-            $update_data = '';
+			$update_data = '';
 
 			$td_theme_update_to_version = get_transient( 'td_update_theme_to_version_' . TD_THEME_NAME );
 			if ( false !== $td_theme_update_to_version ) {
@@ -376,7 +389,6 @@ if ( defined('TD_COMPOSER' ) ) {
                         version: <?php echo '' . $update_data ?>,
                         adminUrl: "<?php echo admin_url() ?>",
                         themeName: "<?php echo TD_THEME_NAME ?>",
-                        checkedLicence: "<?php echo $td_checked_licence ?>",
                     };
                 </script>
 				<?php

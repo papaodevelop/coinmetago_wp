@@ -1,0 +1,544 @@
+# Copyright (C) 2021 WCDPUE
+# This file is distributed under the same license as the WCDPUE package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WCDPUE 2.0.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wcdpue-pro\n"
+"POT-Creation-Date: 2021-06-26 01:12:53+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/class-wcdpue-admin-notices.php:38
+msgid ""
+"%1$s%2$sWCDPUE NOTICE:%3$s WooCommerce is not activated, please activate it "
+"to use WCDPUE."
+msgstr ""
+
+#: admin/class-wcdpue-admin-notices.php:77
+msgid ""
+"%1$s%2$sWCDPUE NOTICE:%3$s The WordPress Cron seems is disabled on your "
+"website. This can cause issues with sending out product update emails with "
+"WCDPUE.<br/> If sending of emails is not working, then see %4$shere for "
+"solutions.%5$s%6$s%7$s"
+msgstr ""
+
+#: admin/class-wcdpue-admin-notices.php:156
+msgid ""
+"%1$s%2$sWCDPUE NOTICE:%3$s There might be an issue preventing WCDPUE from "
+"sending emails. If product update emails are not sending(check email log to "
+"find out), <br/>then see %4$shere for solutions.%5$s%6$s%7$s"
+msgstr ""
+
+#: admin/class-wcdpue-admin.php:143
+msgid "Every 15 Minutes"
+msgstr ""
+
+#: admin/class-wcdpue-admin.php:183
+msgid "Email Options"
+msgstr ""
+
+#: admin/class-wcdpue-admin.php:217
+msgid "Opted-out of updated notifications for:"
+msgstr ""
+
+#: admin/class-wcdpue-admin.php:224
+msgid "Opted-in to updated notifications for:"
+msgstr ""
+
+#: admin/class-wcdpue-customer-email.php:58
+#: admin/partials/wcdpue-admin-display.php:281
+msgid "A product you bought has been updated!"
+msgstr ""
+
+#: admin/class-wcdpue-customer-email.php:71
+msgid ""
+"There is a new update for one of your digital products! Log into your "
+"account to download it: "
+msgstr ""
+
+#: admin/class-wcdpue-metabox.php:150
+msgid "Notify Customers About This Update"
+msgstr ""
+
+#: admin/class-wcdpue-metabox.php:153
+msgid "Unique download access count: "
+msgstr ""
+
+#: admin/class-wcdpue-metabox.php:182
+msgid "What Changed?"
+msgstr ""
+
+#: admin/class-wcdpue-metabox.php:183
+msgid ""
+"You need to have the {what_changed} variable inside your email template for "
+"this option to take effect."
+msgstr ""
+
+#: admin/class-wcdpue-metabox.php:189
+#: admin/partials/wcdpue-admin-display.php:95
+msgid "Schedule"
+msgstr ""
+
+#: admin/class-wcdpue-metabox.php:190
+msgid "Immediately"
+msgstr ""
+
+#: admin/class-wcdpue-metabox.php:198
+msgid "Send Emails"
+msgstr ""
+
+#: admin/partials/class-wcdpue-log-list.php:36
+msgid "Log"
+msgstr ""
+
+#: admin/partials/class-wcdpue-log-list.php:37
+msgid "Logs"
+msgstr ""
+
+#: admin/partials/class-wcdpue-log-list.php:115
+msgid "No logs found"
+msgstr ""
+
+#: admin/partials/class-wcdpue-log-list.php:184
+msgid "Customer"
+msgstr ""
+
+#: admin/partials/class-wcdpue-log-list.php:185
+msgid "Email Address"
+msgstr ""
+
+#: admin/partials/class-wcdpue-log-list.php:186
+msgid "Product Name"
+msgstr ""
+
+#: admin/partials/class-wcdpue-log-list.php:187
+msgid "Status"
+msgstr ""
+
+#: admin/partials/class-wcdpue-log-list.php:188
+msgid "Timestamp"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:79
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:85
+msgid "Plugin Settings"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:93
+msgid "General Settings"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:94
+msgid "Email Settings"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:96
+msgid "Maintenance"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:106
+msgid "Enable Dokan Support"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:116
+msgid ""
+"Check this option if you'd like Dokan Product Vendors to have the ability to "
+"send product update emails to their customers."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:125
+msgid "Send Update Emails for Guest Purchases"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:140
+msgid ""
+"Check this option if you'd like guest customers to also receive product "
+"update emails."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:147
+msgid "Enable send immediately option (Simple Products)"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:157
+msgid ""
+"This option will let you choose between scheduling emails and sending "
+"immediately on simple downloadable products. This option is not recommended "
+"if your products have a high number buyers."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:164
+msgid "Add unsubscribe button to user accounts"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:174
+msgid ""
+"This option adds an \"Unsubscribe\"/\"Subscribe\" button on the downloads "
+"page of customer accounts. It allows customers to unsubscribe from ALL "
+"future emails regardless of the whether they opted-in for specific emails at "
+"checkout. Customers can always resubscribe to update emails by clicking the "
+"button again, but their per order notification preference will still be "
+"respected if they opted out of updates for a particular download at checkout."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:181
+msgid "Unsubscribe button text"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:188
+msgid "Override \"Unsubscribe\" with the text of your choice."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:195
+msgid "Subscribe button text"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:202
+msgid "Override \"Subscribe\" with the text of your choice."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:209
+msgid "Allow customers to opt in/out of email updates on checkout page."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:211
+msgid ""
+"Enabling either of these options below will allow customers to either opt-"
+"out or opt-in to email updates. This option is visible on the checkout page "
+"and works on a per order basis."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:239
+msgid "Don't Show"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:241
+msgid "Opt-in"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:243
+msgid "Opt-out"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:258
+msgid "Test email sucessfully sent to: %1$s, please check your inbox."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:259
+msgid ""
+"%1$s%1$sIf email is not in your inbox then please check your spam/junk mail."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:260
+msgid ""
+"%1$s%1$s%2$sIf these emails are landing in your junk/spam mail then you "
+"should set up dedicated SMTP sending using a plugin like %3$sthis one%4$s to "
+"improve email deliverability.%5$s"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:266
+msgid ""
+"Something went wrong while trying to send the test email. Please make sure "
+"that your website is able to send emails."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:272
+msgid "No orders with valid download permissions found."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:280
+msgid "E-mail subject"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:286
+msgid "E-mail body"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:300
+msgid "Available Variables:"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:306
+msgid "Email Templates"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:311
+#: admin/partials/wcdpue-admin-display.php:323
+#: admin/partials/wcdpue-admin-display.php:335
+#: admin/partials/wcdpue-admin-display.php:347
+msgid "Show HTML"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:314
+#: admin/partials/wcdpue-admin-display.php:326
+#: admin/partials/wcdpue-admin-display.php:338
+#: admin/partials/wcdpue-admin-display.php:350
+msgid "Email Template Code"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:315
+#: admin/partials/wcdpue-admin-display.php:327
+#: admin/partials/wcdpue-admin-display.php:339
+#: admin/partials/wcdpue-admin-display.php:352
+msgid "Copy"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:364
+msgid "Using"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:364
+#: admin/partials/wcdpue-admin-display.php:374
+msgid "or"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:364
+msgid "magic tag?"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:374
+msgid "IMPORTANT:"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:374
+msgid "Check this option if you're using the"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:374
+msgid "magic tag in the email body."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:381
+msgid "Use WooCommerce default styles"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:391
+msgid ""
+"This will format your update email so it looks like the default WooCommerce "
+"emails (product order etc.). It wraps whatever you enter into the body "
+"inside the default WooCommerce styles."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:396
+msgid "Send test email:"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:398
+msgid "Send now"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:400
+msgid ""
+"Send a test email to yourself. Uses email address inside Settings->General. "
+"You need to have at least one valid download purchase for this feature to "
+"work."
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:408
+msgid "Send e-mails in bursts of:"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:413
+msgid "(It is recommend you keep this value below 10)"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:416
+msgid "Schedule:"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:454
+msgid "Log date format:"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:486
+msgid "Emails in queue:"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:489
+msgid "Clear Queue"
+msgstr ""
+
+#: admin/partials/wcdpue-admin-display.php:493
+msgid "Delete all plugin settings on uninstall?"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:57
+msgid "WooCommerce Downloadable Product Update E-mails"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:60
+msgid "Get started quickly with your brand new plugin!"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:63
+msgid "Step 1 (Recommended):"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:64
+msgid "Read plugin documentation"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:65
+msgid "Documentation"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:67
+msgid "Step 2 (Recommended):"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:68
+msgid ""
+"Head over to the plugin settings page to configure your e-mail preferences."
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:69
+msgid "Settings page"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:71
+msgid "Step 3 (Recommended):"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:72
+msgid ""
+"We highly recommend that you install and configure Post SMTP for better "
+"email deliverability."
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:73
+msgid "Get plugin"
+msgstr ""
+
+#: admin/partials/wcdpue-welcome-screen.php:75
+msgid ""
+"Be sure to delete the Lite version of the plugin and all it's settings by "
+"select \"Delete all plugin settings on uninstall?\" on the WCDPUE Lite "
+"settings page and then deactivating and deleting it."
+msgstr ""
+
+#: public/class-wcdpue-public.php:144
+msgid "%1$s DO %2$s"
+msgstr ""
+
+#: public/class-wcdpue-public.php:149
+msgid "%1$s DO NOT %2$s"
+msgstr ""
+
+#: public/class-wcdpue-public.php:153
+msgid "Receive Update Notifications"
+msgstr ""
+
+#: public/class-wcdpue-public.php:154
+msgid ""
+"You can receive email notifcations letting you know when a new version of "
+"your download is available. Select the products you %1$s want to receive "
+"update notifications for.</p>"
+msgstr ""
+
+#: public/class-wcdpue-public.php:175
+msgid "Enter something"
+msgstr ""
+
+#: public/class-wcdpue-public.php:282
+msgid ""
+"Use the button below to unsubscribe or subscribe to update notifications for "
+"downloadable products."
+msgstr ""
+
+#: public/class-wcdpue-public.php:318
+msgid "Unsubscribe"
+msgstr ""
+
+#: public/class-wcdpue-public.php:330
+msgid "Subscribe"
+msgstr ""
+
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:4
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:5
+#: svn/tools/i18n/t/data/add-textdomain-0.php:4
+#: svn/tools/i18n/t/data/add-textdomain-0.php:5
+msgid "Hello World"
+msgstr ""
+
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:6
+#: svn/tools/i18n/t/data/add-textdomain-0.php:6
+msgid "Single"
+msgid_plural "Plural"
+msgstr[0] ""
+msgstr[1] ""
+
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:7
+#: svn/tools/i18n/t/data/add-textdomain-0.php:7
+msgid "Single Noop"
+msgid_plural "Plural Noop"
+msgstr[0] ""
+msgstr[1] ""
+
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:8
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:9
+#: svn/tools/i18n/t/data/add-textdomain-0.php:8
+#: svn/tools/i18n/t/data/add-textdomain-0.php:9
+msgctxt "Testing"
+msgid "Hello World"
+msgstr ""
+
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:11
+msgctxt "test-domain"
+msgid "Hello World Noop"
+msgid_plural "Testing"
+msgstr[0] ""
+msgstr[1] ""
+
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:12
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:14
+#: svn/tools/i18n/t/data/add-textdomain-0.php:12
+#: svn/tools/i18n/t/data/add-textdomain-0.php:14
+msgid "Attribute"
+msgstr ""
+
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:13
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:15
+#: svn/tools/i18n/t/data/add-textdomain-0.php:13
+#: svn/tools/i18n/t/data/add-textdomain-0.php:15
+msgid "HTML"
+msgstr ""
+
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:16
+#: svn/tools/i18n/t/data/add-textdomain-0.php:16
+msgctxt "Testing"
+msgid "Attribute"
+msgstr ""
+
+#: svn/tools/i18n/t/data/add-textdomain-0-result.php:17
+#: svn/tools/i18n/t/data/add-textdomain-0.php:17
+msgctxt "Testing"
+msgid "HTML"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WCDPUE"
+msgstr ""
+
+#. #-#-#-#-#  wcdpue.pot (WCDPUE 2.0.8)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  wcdpue.pot (WCDPUE 2.0.8)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "https://uriahsvictor.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Inform customers when there is an update to their Woocommerce downloadable "
+"product via email."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Uriahs Victor"
+msgstr ""

@@ -1,0 +1,64 @@
+/**
+* CSS for admin metabox
+*
+*/
+
+.wcdpue-center-text{
+  text-align: center;
+}
+
+.wcdpue-top-margin{
+  margin-top: 30px;
+}
+
+#wcdpue-variable-customer-count-breakdown{
+  margin: 1em 0;
+}
+
+#wcdpue-what-changed-label{
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+}
+
+#wcdpue-what-changed-info{
+  font-size: 10px;
+  margin: 10px 0 0 0;
+  font-style: italic;
+  text-align: center;
+}
+
+#wcdpue-what-changed-textarea{
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* #wcdpue_metabox .select2-container {
+	width: 80% !important;
+} */
+/*
+#wcdpue-switch, #circle {
+  height: 50px;
+  transition: .4s;
+}
+
+#wcdpue-switch {
+  width: 100px;
+  margin: 10px auto 0;
+  cursor: pointer;
+  border: 2px solid #E8EAEC;
+  border-radius: 27px;
+  -moz-border-radius: 27px;
+  -webkit-border-radius: 27px;
+  background: #FAFAFB;
+}
+
+#wcdpue-switch #circle {
+  width: 50%;
+  border-radius: 25px;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  box-shadow: 0 4px 4px rgba(26,53,71,.25), 0 0 0 1px rgba(26,53,71,.07);
+  background: #fff;
+} */

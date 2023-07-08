@@ -280,7 +280,7 @@ class tdb_filters_loop_sorting_options extends td_block {
 						foreach ( $orderby_options as $id => $name ) {
 							$value = esc_attr( $id );
 							$selected = selected( $orderby, $id, false );
-							$name = esc_html( __td($name, TD_THEME_NAME) );
+							$name = esc_html( $name );
 
 							$buffy .= '<option value="' . $value . '" ' . $selected . '>' . $name . '</option>';
 

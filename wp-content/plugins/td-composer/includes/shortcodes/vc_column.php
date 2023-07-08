@@ -205,7 +205,6 @@ class vc_column extends tdc_composer_block {
         $this->atts = shortcode_atts( array(
 			'width' => '1/1',
 			'is_sticky' => '',
-			'sticky_offset' => '',
             'vertical_align' => '',
             'column_height' => '',
 
@@ -267,16 +266,8 @@ class vc_column extends tdc_composer_block {
 		global $td_column_count;
 		$td_column_count = $this->atts['width'];
 
-        $is_sticky = false;
-        $sticky_offset = '20';
 		if ( ! empty( $this->atts['is_sticky'] ) ) {
 			$td_pb_class .= ' td-is-sticky';
-
-            if ( ! empty( $this->atts['sticky_offset'] ) ) {
-                $sticky_offset = $this->atts['sticky_offset'];
-            }
-
-            $is_sticky = true;
 		}
 
 		$column_class = 'tdc-column';
@@ -312,7 +303,7 @@ class vc_column extends tdc_composer_block {
 			// get_block_css is out of wpb_wrapper for FF
 			$buffy .= $this->get_block_css();
 
-				$buffy .= '<div class="wpb_wrapper" ' . ( ( $is_sticky && TD_THEME_NAME == 'Newspaper' ) ? 'data-sticky-offset="' . $sticky_offset . '"' : '' ) . '>';
+				$buffy .= '<div class="wpb_wrapper">';
 					$buffy .= $this->do_shortcode($content);
 				$buffy .= '</div>';
 		$buffy .= '</div>';

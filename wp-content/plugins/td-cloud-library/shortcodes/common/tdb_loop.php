@@ -752,13 +752,13 @@ class tdb_loop extends td_block {
                 .tdb_loop .td-spot-id-loop .tdc-placeholder-title:before {
                     content: 'Posts Loop Ad' !important;
                 }
-                
-                .tdb_loop.tdc-no-posts .td_block_inner {
+                .tdb-loop-search-tpl-no-posts .td_block_inner {
                     margin-left: 0 !important;
                     margin-right: 0 !important;
                 }
-                
-                .tdb_loop.tdc-no-posts .td_block_inner .no-results h2 {
+                .tdb-loop-search-tpl-no-posts .td_block_inner:after {
+                    content: 'No posts' !important;
+                    display: block !important;
                     font-size: 13px;
                     font-weight: normal;
                     text-align: left;
@@ -1729,6 +1729,11 @@ class tdb_loop extends td_block {
 
 		    }
 
+		    // add no posts style for search templates results
+		    if ( tdb_state_template::get_template_type() === 'search' ) {
+			    $additional_classes_array[] = 'tdb-loop-search-tpl-no-posts';
+		    }
+
 	    }
 
         // pagination
@@ -1755,6 +1760,7 @@ class tdb_loop extends td_block {
 
             // custom title
             $custom_title = $this->get_att( 'custom_title' );
+
             if( $custom_title != '' ) {
                 //get the filter for this block
                 $buffy .= '<div class="td-block-title-wrap">';
@@ -1763,22 +1769,8 @@ class tdb_loop extends td_block {
             }
 
             $buffy .= '<div id=' . $this->block_uid . ' class="td_block_inner tdb-block-inner td-fix-index">';
-                if ( !empty( $loop_data['loop_posts'] ) ) {
-                    $buffy .= $this->inner( $loop_data['loop_posts'] );  // inner content of the block
-                } else {
-
-	                if ( !empty( tdb_state_template::get_template_type() ) && 'search' === tdb_state_template::get_template_type() ) {
-		                $buffy .= '<div class="no-results td-pb-padding-side">';
-		                $buffy .= '<h2>' . __td('No results', TD_THEME_NAME ) . '</h2>';
-		                $buffy .= '</div>';
-	                } else {
-		                /**
-		                 * no posts to display. This function generates the __td('No posts to display').
-		                 * the text can be overwritten by the template using the global @see td_global::$custom_no_posts_message
-		                 */
-		                $buffy .= td_page_generator::no_posts();
-	                }
-
+                if ( !empty($loop_data['loop_posts']) ) {
+                    $buffy .= $this->inner($loop_data['loop_posts']);  // inner content of the block
                 }
 	        $buffy .= '</div>';
 
@@ -1825,6 +1817,7 @@ class tdb_loop extends td_block {
         if ( $this->get_att('ad_loop_disable')  !='' && ( current_user_can('administrator') || current_user_can('editor') ) ) {
             $loop_ad_disable = true;
         }
+
 
         $buffy = '';
         $td_block_layout = new td_block_layout();

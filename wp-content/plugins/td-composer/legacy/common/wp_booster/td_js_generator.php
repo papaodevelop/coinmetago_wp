@@ -99,25 +99,6 @@ function td_js_generator() {
         td_js_buffer::add_variable('tds_video_playlists', false);
     }
 
-    $fb_login_enabled = td_util::get_option('tds_social_login_fb_enable');
-    if( is_ssl() && $fb_login_enabled == 'true' ) {
-        td_js_buffer::add_variable('td_fb_login_enabled', '1');
-    }
-
-    // opt-in builder
-    if( defined( 'TD_SUBSCRIPTION' ) ) {
-        td_js_buffer::add_variable('td_reset_pass_empty', __td('Please enter a new password before proceeding.', TD_THEME_NAME));
-        td_js_buffer::add_variable('td_reset_pass_confirm_empty', __td('Please confirm the new password before proceeding.', TD_THEME_NAME));
-        td_js_buffer::add_variable('td_reset_pass_not_matching', __td('Please make sure that the passwords match.', TD_THEME_NAME));
-    }
-
-    if( 'Newspaper' === TD_THEME_NAME ) {
-        td_js_buffer::add_variable('tdb_modal_confirm', __td('Save', TD_THEME_NAME));
-        td_js_buffer::add_variable('tdb_modal_cancel', __td('Cancel', TD_THEME_NAME));
-        td_js_buffer::add_variable('tdb_modal_confirm_alt', __td('Yes', TD_THEME_NAME));
-        td_js_buffer::add_variable('tdb_modal_cancel_alt', __td('No', TD_THEME_NAME));
-    }
-
 
     // This js code has to run as fast as possible. No jQuery dependencies here
     ob_start();

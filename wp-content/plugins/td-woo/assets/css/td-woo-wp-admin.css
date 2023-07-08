@@ -1,0 +1,179 @@
+[class*="tdc-ico-td_woo"] {
+  background: url('../../../td-woo/assets/images/pagebuilder/tdc-icons.png') !important;
+  background-position: -5px -5px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_title {
+  background-position: -5px -39px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_image {
+  background-position: -5px -73px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_price {
+  background-position: -5px -107px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_attributes {
+  background-position: -5px -141px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_description,
+.tdc-ico-td_woo_page_description {
+  background-position: -5px -175px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_categories,
+.tdc-ico-td_woo_product_tags {
+  background-position: -5px -209px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_tabs {
+  background-position: -5px -243px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_sku {
+  background-position: -5px -277px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_add_to_cart,
+.tdc-ico-td_woo_add_to_cart_custom {
+  background-position: -55px -5px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_reviews {
+  background-position: -55px -39px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_related,
+.tdc-ico-td_woo_product_upsell {
+  background-position: -55px -73px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_notices {
+  background-position: -55px -107px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_rating {
+  background-position: -55px -141px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_breadcrumbs {
+  background-position: -55px -175px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_products_live_search {
+  background-position: -55px -209px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_products_loop,
+.tdc-ico-td_woo_products_block {
+  background-position: -55px -243px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_menu_cart {
+  background-position: -55px -277px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_menu_login {
+  background-position: -105px -5px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_loop_sorting_options {
+  background-position: -105px -39px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_archive_subcategories_list {
+  background-position: -105px -73px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_image_bg {
+  background-position: -105px -107px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_attribute_filter {
+  background-position: -105px -141px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_filters_list {
+  background-position: -105px -175px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_cart {
+  background-position: -105px -209px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_checkout {
+  background-position: -105px -243px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_my_account {
+  background-position: -105px -277px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_brand_image {
+  background-position: -155px -5px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_product_favourite {
+  background-position: -155px -39px !important;
+  width: 40px;
+  height: 24px;
+}
+.tdc-ico-td_woo_menu_favorites {
+  background-position: -155px -73px !important;
+  width: 40px;
+  height: 24px;
+}
+#td-woo-plugin .hide-settings.tdb-hide {
+  display: none;
+}
+#td-woo-plugin .hide-settings.tdb-show {
+  display: block;
+}
+.no-click {
+  pointer-events: none !important;
+}
+.tdc-add-to-cart-btn-style + div + div + [class*="-icon_color"],
+.tdc-add-to-cart-btn-style + div + div + div + [class*="-icon_hover_color"],
+.tdc-add-to-cart-btn-style + div + div + div + div + [class*="-icon_color"],
+.tdc-add-to-cart-btn-style + div + div + div + div + div + [class*="-icon_hover_color"] {
+  display: none;
+}
+#td-woo-meta-preview {
+  width: 20px;
+}
+.td-woo-preview {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+}

@@ -107,8 +107,7 @@ if ( ( td_util::get_option('tds_disable_comments_sidewide' ) == '' ) && post_typ
                                         ?>
                                     </div>
                                 </article>
-                                <!-- closing li is not needed  will break the comment indent on reply -->
-                                <!-- </li> -->
+                            </li>
                             <?php
                         }
                     )

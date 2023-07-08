@@ -1243,7 +1243,7 @@ function updateCustomFontsOnFocusout(){
 }
 
 
-//code for submitting the form with ajax
+//code for submiting the form with ajax
 function td_ajax_form_submit() {
 
     var form = jQuery('#td_panel_big_form');

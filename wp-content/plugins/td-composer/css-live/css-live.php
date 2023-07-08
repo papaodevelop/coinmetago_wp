@@ -442,15 +442,13 @@ if ( ! function_exists( 'load_css_live' ) ) {
 		/**
 		 * WP-admin - add js in header on all the admin pages (wp-admin and the iframe Wrapper. Does not run in the iframe)
 		 */
-		if ( !$load_in_composer_iframe && is_user_logged_in() && current_user_can('publish_pages') ) {
-			add_action( 'wp_head', 'td_live_css_on_wp_head' );
-		}
-
+		add_action( 'wp_head', 'td_live_css_on_wp_head' );
 		add_action( 'admin_head', 'td_live_css_on_wp_head' );
 		function td_live_css_on_wp_head() {
 
+
 			// the settings that we load in wp-admin and wrapper. We need json to be sure we don't get surprises with the encoding/escaping
-			$td_live_css_global = array(
+			$td_live_css_blobal = array(
 				'adminUrl' => admin_url(),
 				'wpRestNonce' => wp_create_nonce('wp_rest'),
 				'wpRestUrl' => rest_url(),
@@ -460,7 +458,7 @@ if ( ! function_exists( 'load_css_live' ) ) {
 			ob_start();
 			?>
 			<script>
-				window.tdwGlobal = <?php echo json_encode( $td_live_css_global );?>;
+				window.tdwGlobal = <?php echo json_encode( $td_live_css_blobal );?>;
 			</script>
 			<?php
 			$buffer = ob_get_clean();
@@ -469,7 +467,7 @@ if ( ! function_exists( 'load_css_live' ) ) {
 
 
 
-		if ( !$load_in_composer_iframe && is_user_logged_in() && current_user_can('publish_pages') ) {
+		if ( ! $load_in_composer_iframe && is_user_logged_in() && current_user_can('publish_pages') ) {
 			add_action( 'wp_enqueue_scripts', 'td_live_css_load_plugin_css' );
 			add_action( 'wp_enqueue_scripts', 'td_live_css_load_plugin_js' );
 		}
@@ -564,4 +562,8 @@ if ( ! function_exists( 'load_css_live' ) ) {
 	}
 	load_css_live();
 }
+
+
+
+
 

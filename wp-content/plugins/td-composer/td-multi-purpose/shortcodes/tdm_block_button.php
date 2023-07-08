@@ -134,12 +134,11 @@ class tdm_block_button extends td_block {
 
         // display restrictions
         $hide_for_user_type = $this->get_shortcode_att( 'hide_for_user_type' );
-
         if( $hide_for_user_type != '' ) {
             if( !( td_util::tdc_is_live_editor_ajax() || td_util::tdc_is_live_editor_iframe() ) &&
                 (
                     ( $hide_for_user_type == 'logged-in' && is_user_logged_in() ) ||
-                    ( $hide_for_user_type == 'guests' && !is_user_logged_in() )
+                    ( $hide_for_user_type == 'guest' && !is_user_logged_in() )
                 )
             ) {
                 return $buffy;

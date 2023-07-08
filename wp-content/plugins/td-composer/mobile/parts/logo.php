@@ -35,20 +35,18 @@ if(!empty($td_header_logoR_mob)) {
     $td_mobile_customLogoR = $td_header_logoR_mob;
 }
 
-$logo_image_size = '';
+$logo_image_width_html = '';
+$logo_image_height_html = '';
 
-if ($td_mobile_customLogo !== '') {
-    $td_logo_headers = @get_headers($td_mobile_customLogo);
-
-    if ($td_logo_headers && strpos($td_logo_headers[0], '200') !== false) {
-        if (function_exists('wp_getimagesize')) {
-            $info_img = wp_getimagesize($td_mobile_customLogo);
-            if (is_array($info_img)) {
-                $logo_image_size = $info_img[3];
-            }
-        }
+if( $td_mobile_customLogo != '' ) {
+    $attachment_id = attachment_url_to_postid( $td_mobile_customLogo );
+    $info_img = wp_get_attachment_image_src( $attachment_id, 'full');
+    if (is_array($info_img)) {
+        $logo_image_width_html = ' width="' . $info_img[1] . '"';
+        $logo_image_height_html = ' height="' . $info_img[2] . '"';
     }
 }
+
 
 //if(!empty($td_logo_text_mob)) {
 //    $td_logo_text = $td_logo_text_mob;
@@ -87,7 +85,7 @@ if (!empty($td_mobile_customLogo)) {
             <img class="td-retina-data"
                  data-retina="<?php echo esc_attr($td_mobile_customLogoR) ?>"
                  src="<?php echo $td_mobile_customLogo ?>"
-                 alt="<?php echo $td_logo_alt ?>"<?php echo $td_logo_title . ' ' . $logo_image_size ?>/>
+                 alt="<?php echo $td_logo_alt ?>"<?php echo $td_logo_title . $logo_image_width_html . $logo_image_height_html ?>/>
         </a>
     <?php
         if($td_use_h1_logo === true) {
@@ -101,7 +99,7 @@ if (!empty($td_mobile_customLogo)) {
             }
             ?>
             <a class="td-mobile-logo" aria-label="Logo" href="<?php echo esc_url(home_url('/')); ?>">
-                <img src="<?php echo $td_mobile_customLogo ?>" alt="<?php echo $td_logo_alt ?>"<?php echo $td_logo_title . ' ' . $logo_image_size ?>/>
+                <img src="<?php echo $td_mobile_customLogo ?>" alt="<?php echo $td_logo_alt ?>"<?php echo $td_logo_title . $logo_image_width_html . $logo_image_height_html ?>/>
             </a>
         <?php
             if($td_use_h1_logo === true) {
@@ -124,7 +122,7 @@ if (!empty($td_mobile_customLogo)) {
             <img class="td-retina-data"
                  data-retina="<?php echo esc_attr($td_header_logoR) ?>"
                  src="<?php echo $td_header_logo ?>"
-                 alt="<?php echo $td_logo_alt ?>"<?php echo $td_logo_title . ' ' . $logo_image_size ?>/>
+                 alt="<?php echo $td_logo_alt ?>"<?php echo $td_logo_title ?>/>
         </a>
     <?php
         if($td_use_h1_logo === true) {

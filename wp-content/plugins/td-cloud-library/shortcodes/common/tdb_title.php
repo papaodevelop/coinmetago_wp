@@ -479,15 +479,8 @@ class tdb_title extends td_block {
                     $buffy .= '<div class="tdb-title-line"></div>';
                 }
 
-                $title_letter = '';
                 if ( $first_letter == true ) {
-                    if( mb_substr( $title_data['title'], 0, 5 ) == '&#821' ) {
-                        $title_letter = '\'';
-                    } else if( mb_substr( $title_data['title'], 0, 5 ) == '&#822' ) {
-                        $title_letter = '"';
-                    } else {
-                        $title_letter = mb_substr( $title_data['title'], 0, 1 );
-                    }
+                    $title_letter = '<div class="tdb-first-letter">' . substr( $title_data['title'], 0, 1 ) . '</div>';
                 }
 
 
@@ -500,11 +493,7 @@ class tdb_title extends td_block {
                             $buffy .= '<span class="tdb-add-text">' . $add_text . '</span>';
                         }
 
-                        $buffy .= $title_data['title'];
-
-                        if( $title_letter != '' ) {
-                            $buffy .= '<div class="tdb-first-letter">' . $title_letter . '</div>';
-                        }
+                        $buffy .= $title_data['title'] . $title_letter;
 
                         if( $add_text_position == 'after' && $add_text != '' ) {
                             $buffy .= '<span class="tdb-add-text">' . $add_text . '</span>';

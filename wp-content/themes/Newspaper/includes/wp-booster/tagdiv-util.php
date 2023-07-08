@@ -59,12 +59,7 @@ class tagdiv_util {
 				}
 			}
 			return false;
-		} elseif ( strpos($plugin_key, 'TD_DEMO_') !== false ) {
-            if ( class_exists( $plugin['td_class'], false ) ) {
-                return true;
-            }
-        }
-
+		}
 		return false;
 	}
 

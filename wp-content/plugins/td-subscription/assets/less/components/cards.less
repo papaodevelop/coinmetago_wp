@@ -1,0 +1,178 @@
+body {
+  // --------
+  // -- CARDS
+  // --------
+  // Cards list
+  .tds-s-cards-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+  }
+
+
+  // Card inner
+  .tds-s-card-inner {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 22px 24px;
+    height: 100%;
+    background-color: #FCFCFD;
+    border: 2px solid #D7D8DE;
+    border-radius: 5px;
+
+    // Info bubbles
+    .tds-s-bubble {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+    }
+  }
+
+
+  // Card title
+  h3.tds-s-card-title {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin: 0;
+    padding: 0 15px 0 0;
+    font-size: 1.143em;
+    line-height: 1.1;
+    font-weight: 600;
+    color: #444;
+    position: relative;
+    min-height: 20px;
+  }
+
+  .tds-s-card-title-count {
+    width: 100%;
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 400;
+    color: #888;
+
+    span {
+      &:not(:last-child) {
+        &:after {
+          content: ' - ';
+        }
+      }
+    }
+  }
+
+  .tds-s-card-title-id {
+    margin-left: 6px;
+    font-size: .786em;
+    font-weight: 400;
+    color: #888;
+  }
+
+  .tds-s-card-title-label {
+    margin-left: 10px;
+    padding: 2px 4px;
+    font-size: .714em;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    border-radius: 2px;
+  }
+
+  .tds-s-card-title-label-trial {
+    background-color: #E5F3FF;
+    color: #152bf7;
+    white-space: nowrap;
+  }
+
+
+  // Card price
+  .tds-s-card-counter {
+    display: flex;
+    align-items: baseline;
+    position: relative;
+    top: -3px;
+    width: auto;
+    font-size: 1.714em;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #444;
+
+    span {
+      margin-left: 5px;
+      font-size: .625em;
+      font-weight: 400;
+    }
+  }
+
+
+  // Card options
+  .tds-s-card-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(248, 252, 255, .9);
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+    border-radius: 5px;
+  }
+
+  .tds-s-card-options-inner {
+    display: flex;
+    align-items: center;
+  }
+
+  // Card options button
+  .tds-s-card-btn {
+    display: flex;
+    align-items: center;
+    font-size: .7em;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease;
+    padding: 10px 18px 11px;
+    margin: 0 5px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .tds-s-card-btn-edit {
+    color: #0489fc;
+  }
+  .tds-s-card-btn-delete {
+    color: #FF0000;
+  }
+
+
+  // Card hover & active classes
+  .tds-s-card-hover {
+    .tds-s-card-inner {
+      cursor: pointer;
+      outline: 3px solid transparent;
+      transition: background-color .2s ease-in-out, border-color .2s ease-in-out, outline .2s ease-in-out;
+    }
+
+
+    &.tds-s-card-active .tds-s-card-inner,
+    .tds-s-card-inner:hover {
+      background-color: #F8FCFF;
+      border-color: #0489FC;
+      outline-color: rgba(4, 137, 252, .1);
+
+      .tds-s-card-options {
+        opacity: 1;
+      }
+    }
+  }
+}

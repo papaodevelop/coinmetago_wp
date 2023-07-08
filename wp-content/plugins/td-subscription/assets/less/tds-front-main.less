@@ -1,0 +1,97 @@
+// --------
+// -- COMPONENTS
+// --------
+@import "variables";
+@import "components/sections";
+@import "components/buttons";
+@import "components/forms";
+@import "components/lists";
+@import "components/notifications";
+@import "components/tables";
+@import "components/pagination";
+
+
+
+
+/**
+
+    Global
+
+ */
+// --------
+// -- KEEP FOOTER ALWAYS AT THE BOTTOM OF THE PAGE
+// --------
+.tds-page {
+  #td-outer-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &:not(.admin-bar) {
+    #td-outer-wrap {
+      min-height: 100vh;
+    }
+  }
+
+  &.admin-bar {
+    #td-outer-wrap {
+      @media (min-width: 783px) {
+        min-height: calc(~'100vh - 32px');
+      }
+
+      @media (max-width: 782px) {
+        min-height: calc(~'100vh - 46px');
+      }
+    }
+  }
+
+  .td-main-content-wrap {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    flex-direction: column;
+
+    .tdc-content-wrap {
+      width: 100%;
+      min-height: 100%;
+
+      > .tdc-zone {
+        height: 100%;
+
+        > .tdc_zone {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &.page-template-page-pagebuilder-latest {
+    .td-main-content-wrap {
+      flex-direction: column;
+    }
+  }
+
+}
+
+/* block error */
+.tds-block-error {
+  margin-bottom: 26px;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  text-align: left;
+  padding: 20px;
+  border: 1px solid #eeecf0;
+  color: black;
+
+  span {
+    background-color: #ec4d4d;
+    color: white;
+    font-weight: bold;
+    padding: 3px 8px 4px;
+    font-size: 10px;
+    position: relative;
+    top: -1px;
+  }
+
+}

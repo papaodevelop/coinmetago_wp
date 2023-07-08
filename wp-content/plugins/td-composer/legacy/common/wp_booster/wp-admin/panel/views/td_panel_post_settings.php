@@ -23,25 +23,6 @@
     </div>
 </div>
 
-<!-- enable/disable Reviews -->
-<div class="td-box-row">
-    <div class="td-box-description">
-        <span class="td-box-title">Reviews system</span>
-        <p>Enable or disable the Reviews in WordPress menu.</p>
-    </div>
-    <div class="td-box-control-full">
-        <?php
-        echo td_panel_generator::checkbox(array(
-            'ds' => 'td_option',
-            'option_id' => 'tds_reviews',
-            'true_value' => '',
-            'false_value' => 'hide'
-        ));
-        ?>
-    </div>
-</div>
-
-
 <!-- set theme article schema -->
 <div class="td-box-row">
     <div class="td-box-description">

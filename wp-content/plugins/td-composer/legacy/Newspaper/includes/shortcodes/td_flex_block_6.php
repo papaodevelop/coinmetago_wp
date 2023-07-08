@@ -111,6 +111,15 @@ class td_flex_block_6 extends td_block {
                 .td_flex_block_6 .td-block-missing-settings {
                     width: 100%;
                 }
+                
+                .td_flex_block_6.tdc-no-posts .td_block_inner:after {
+                    content: 'No results' !important;
+                    width: 100%;
+                }
+                
+                .td_flex_block_6.tdc-no-posts .td_block_inner {
+                    margin: 0;
+                }
 
 				/* @f_header */
 				.$unique_block_class .td-block-title a,
@@ -217,11 +226,14 @@ class td_flex_block_6 extends td_block {
 
         parent::render( $atts );
 
+
         // get the active module style class
         $tds_module_loop_class = $this->get_att('tds_module_loop_style') != '' ? $this->get_att('tds_module_loop_style') : 'tds_module_loop_1_style';
 
+
         // additional block classes
         $additional_classes_array = array( $tds_module_loop_class );
+
 
         $this->unique_block_class = $this->block_uid;
         $this->shortcode_atts = shortcode_atts(
@@ -250,6 +262,7 @@ class td_flex_block_6 extends td_block {
                 return $buffy;
             }
 
+
             // render the module style
             $tds_module_flex_instance = new $tds_module_loop_class( $this->shortcode_atts, $this->unique_block_class );
             $buffy .= $tds_module_flex_instance->render();
@@ -262,7 +275,7 @@ class td_flex_block_6 extends td_block {
 
             // block inner
             $buffy .= '<div id=' . $this->block_uid . ' class="td_block_inner td-fix-index">';
-                $buffy .= $this->inner( $this->td_query->posts );  // inner content of the block
+	            $buffy .= $this->inner( $this->td_query->posts );
             $buffy .= '</div>';
 
             //get the ajax pagination for this block

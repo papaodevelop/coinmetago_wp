@@ -108,36 +108,30 @@ class td_login {
             // Now insert the new md5 key into the db
             $wpdb->update($wpdb->users, array('user_activation_key' => $key_hash), array('user_login' => $user_login));
         //}
+        $message = __td( 'Someone has requested a password reset for the following account:', TD_THEME_NAME ) . "\r\n\r\n";
+        $message .= network_home_url( '/' ) . "\r\n\r\n";
+        $message .= sprintf( __td( 'Username: %s', TD_THEME_NAME ), $user_login ) . "\r\n\r\n";
+        $message .= __td( 'If this was a mistake, just ignore this email and nothing will happen.',TD_THEME_NAME ) . "\r\n\r\n";
+        $message .= __td( 'To reset your password, visit the following address:',TD_THEME_NAME ) . "\r\n\r\n";
+        $message .= network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . "\r\n";
 
-        $password_reset_link = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login');
+        if ( is_multisite() )
+            $blogname = $GLOBALS['current_site']->site_name;
+        else
+            // The blogname option is escaped with esc_html on the way into the database in sanitize_option
+            // we want to reverse this for the plain text arena of emails.
+        $blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
-        if( defined( 'TD_SUBSCRIPTION' ) ) {
-            $add_tags = array('%pass_reset_link%');
-            $add_tags_replacements = array($password_reset_link);
+        $title = sprintf( __( '[%s] Password Reset' ), $blogname );
 
-            return tds_email_notifications::send_user_email_notification('password', $user_data->ID, $add_tags, $add_tags_replacements);
-        } else {
-            $email_from_name = td_email::get_email_from_name();
-            $email_subject = '[' . $email_from_name . '] Password reset';
-            $email_message = 
-                '<h3>Welcome onboard!</h3>
-                <p>Hi,</p>
-                <p>Someone has requested a password reset for your account.</p>
-                <p>To reset your password, visit the following address: <a href="' . $password_reset_link . '">' . $password_reset_link . '.</p>
-                <p>If this was a mistake, just ignore this email and nothing will happen.</p>';
-            $email_footer_text = td_email::get_email_footer_text();
+        $title = apply_filters('retrieve_password_title', $title);
+        $message = apply_filters('retrieve_password_message', $message, $key);
 
-            return td_email::send_mail(
-                $user_email,
-                $email_subject,
-                td_email::email_template(
-                    $email_subject,
-                    $email_message,
-                    '',
-                    $email_footer_text
-                )
-            );
+        if ( $message ){
+        	do_action( 'td_wp_mail', $user_email, $title, $message );
         }
+
+        return true;
     }
 
 }

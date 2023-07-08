@@ -296,30 +296,6 @@ class tds_social5 extends td_style {
             $td_youtube_add_input = rawurldecode( base64_decode( strip_tags( $this->get_shortcode_att('youtube_add_input') ) ) );
         }
 
-
-        // extra social icon
-        $extra_social_icon = $this->get_icon_att('extra_social_tdicon');
-        $data_icon = '';
-        if ( td_util::tdc_is_live_editor_iframe() || td_util::tdc_is_live_editor_ajax() ) {
-            $data_icon = 'data-td-svg-icon="' . $this->get_att('extra_social_tdicon') . '"';
-        }
-
-        $svg_code = '';
-        if ( base64_encode( base64_decode( $extra_social_icon ) ) == $extra_social_icon ) {
-            $svg_code = base64_decode( $extra_social_icon );
-        }
-
-        // extra social name
-        $extra_social_name = '';
-        if ('' !== $this->get_shortcode_att('extra_social_name')) {
-            $extra_social_name = $this->get_shortcode_att('extra_social_name') ;
-        }
-        // extra social url
-        $extra_social_url = '#';
-        if ('' !== $this->get_shortcode_att('extra_social_url')) {
-            $extra_social_url = td_util::get_custom_field_value_from_string($this->get_shortcode_att('extra_social_url')) ;
-        }
-
         //socials in order of input
         $social_ordered_array = array();
         if( '' !== $this->get_shortcode_att('social_order') ) {
@@ -334,14 +310,9 @@ class tds_social5 extends td_style {
             //in order of input
             if ( !empty($social_ordered_array) ) {
                 foreach ( $social_ordered_array as $index => $social_id ) {
-                    if( $social_id == 'mail' ) {
-                        $social_id = 'mail-1';
-                    }
-
                     if ( array_key_exists ( strtolower($social_id), td_social_icons::$td_social_icons_array ) ) {
                         $social_array[$social_id] = array($this->get_shortcode_att(strtolower($social_id)), ucfirst($social_id));
-                    }
-                }
+                    }                }
             } else { //get all
                 foreach ( td_social_icons::$td_social_icons_array as $social_id => $social_name ) {
                     $social_array[$social_id] = array( $this->get_shortcode_att( $social_id ), $social_name );
@@ -362,24 +333,9 @@ class tds_social5 extends td_style {
                             $buffy .= '<i class="td-icon-font td-icon-' . strtolower($social_key) . '"></i>';
                         $buffy .= '</a>';
 
-                        $buffy .= '<a href="' . $social_url . '" ' . $target . $td_social_rel . ' class="tdm-social-text">' . ( $social_value[1] == 'Mail-1' ? 'Mail' : $social_value[1] ) . '</a>';
+                        $buffy .= '<a href="' . $social_url . '" ' . $target . $td_social_rel . 'class="tdm-social-text">' . $social_value[1] . '</a>';
                     $buffy .= '</div>';
                 }
-            }
-            if ( $extra_social_icon != '' ) {
-
-                $buffy .= '<div class="tdm-social-item-wrap">';
-                $buffy .= '<a href="' . $extra_social_url . '" ' . $target . $td_social_rel . ' title="' . $extra_social_name . '" class="tdm-social-item">';
-                if ( $svg_code == '' ) {
-                    $buffy .= '<i class="' . self::get_group_style( __CLASS__ ) . ' ' . $extra_social_icon . ' ' . $this->unique_style_class . ' td-fix-index"></i>';
-                } else {
-                    $buffy .= '<div class="' . self::get_group_style( __CLASS__ ) . ' tds-icon-svg-wrap ' . $this->unique_style_class . ' td-fix-index"><div class="tds-icon-svg" ' . $data_icon . '>' . $svg_code . '</div></div>';
-                }
-                $buffy .= '</a>';
-
-                $buffy .= '<a href="' . $extra_social_url . '" class="tdm-social-text" ' . $target . $td_social_rel . ' >' . $extra_social_name . '</a>';
-                $buffy .= '</div>';
-
             }
         $buffy .= '</div>';
 

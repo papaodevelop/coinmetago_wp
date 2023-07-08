@@ -245,60 +245,60 @@ var ThemePluginsSetup = (function($){
 
 ThemePluginsSetup.init();
 
-// jQuery(window).on( "YoastSEO:ready", function() {
-//
-//     if ( typeof YoastSEO !== 'undefined' && typeof YoastSEO.app !== "undefined" ) {
-//
-//         YoastSEO.app.registerPlugin( 'tdYoastSEOPlugin', { status: 'loading' } );
-//
-//         window.tdYoastSEOUpdateContent = function() {
-//
-//             //console.log( 'tdYoastSEOUpdateContent' );
-//
-//             if ( 'undefined' !== typeof window.tdYoastSEOUpdateContentFlag ) {
-//                 return;
-//             }
-//
-//             window.tdYoastSEOUpdateContentFlag = setTimeout(function() {
-//                 window.tdYoastSEOUpdateContentFlag = undefined;
-//             }, 1500 );
-//
-//             var content = wp.data.select('core/editor').getEditedPostContent();
-//
-//             jQuery.ajax({
-//                 timeout: 10000,
-//                 type: 'POST',
-//                 url: td_ajax_url,
-//                 beforeSend: function ( xhr ) {
-//                     xhr.setRequestHeader( 'X-WP-Nonce', window.tdwGlobal.wpRestNonce );
-//                 },
-//                 dataType: 'json',
-//                 data: {
-//                     action: 'td_render_content',
-//                     content: content
-//                 }
-//             }).done( function( data, textStatus, jqXHR ) {
-//
-//                 if ( 'success' === textStatus && 'undefined' !== typeof data.content ) {
-//
-//                     YoastSEO.app.registerModification( 'content', function() { return data.content; }, 'tdYoastSEOPlugin', 5 );
-//
-//                     wp.data.dispatch( 'core/notices' ).createNotice( 'info', 'Yoast SEO Analysis has been updated!', { id: 'td_yoast_info'} );
-//
-//                     setTimeout( function() {
-//                         wp.data.dispatch( 'core/notices' ).removeNotice('td_yoast_info');
-//                     }, 1200 );
-//                 }
-//             }).fail(function( jqXHR, textStatus, errorThrown ) {
-//                 console.log(errorThrown);
-//             });
-//         };
-//
-//         tdYoastSEOUpdateContent();
-//
-//         YoastSEO.app.pluginReady( 'tdYoastSEOPlugin' );
-//     }
-// });
+jQuery(window).on( "YoastSEO:ready", function() {
+
+    if ('undefined' !== typeof YoastSEO) {
+
+        YoastSEO.app.registerPlugin( 'tdYoastSEOPlugin', {status: 'loading'} );
+
+        window.tdYoastSEOUpdateContent = function() {
+
+            if ( 'undefined' !== typeof window.tdYoastSEOUpdateContentFlag ) {
+                return;
+            }
+
+            window.tdYoastSEOUpdateContentFlag = setTimeout(function() {
+                window.tdYoastSEOUpdateContentFlag = undefined;
+            }, 1500);
+
+            var content = wp.data.select('core/editor').getEditedPostContent();
+
+            jQuery.ajax({
+                timeout: 10000,
+                type: 'POST',
+
+                url: td_ajax_url,
+
+                beforeSend: function ( xhr ) {
+                    xhr.setRequestHeader( 'X-WP-Nonce', window.tdwGlobal.wpRestNonce);
+                },
+
+                dataType: 'json',
+                data: {
+                    action: 'td_render_content',
+                    content: content
+                }
+            }).done(function( data, textStatus, jqXHR ) {
+
+                if ( 'success' === textStatus && 'undefined' !== typeof data.content ) {
+
+                    YoastSEO.app.registerModification( 'content', function() { return data.content; }, 'tdYoastSEOPlugin', 5 );
+
+                    // wp.data.dispatch( 'core/notices' ).createNotice( 'info', 'Yoast SEO Analysis has been updated!', { id: 'td_yoast_info'} );
+                    //
+                    // setTimeout(function() {
+                    //     wp.data.dispatch( 'core/notices' ).removeNotice('td_yoast_info');
+                    // }, 1200);
+                }
+            });
+        };
+
+        // Commented function call! There're some issues with wp 3.5 (yoast couldn't get the subheading, outbound/inbound links, etc)
+        //tdYoastSEOUpdateContent();
+
+        YoastSEO.app.pluginReady( 'tdYoastSEOPlugin' );
+    }
+});
 
 
 jQuery(window).on('load', function () {
@@ -310,28 +310,13 @@ jQuery(window).on('load', function () {
         event.stopPropagation();
 
         if ( 'undefined' !== typeof window.tdData ) {
-
-            var $checkedLicence = window.tdData.checkedLicence,
-                $htmlInfoContent = 'VERY IMPORTANT! Before updating to ' + Object.keys(window.tdData.version)[0] + ' version, please ensure the theme has full access permissions to the WordPress folders (or temporarily deactivate any security plugin). We also recommend you make a complete website and database backup. <a target="_blank" href="https://forum.tagdiv.com/how-to-update-the-theme-2/">Read more</a><br><br><br>Continue to update?',
-                $hideNoButton = false,
-                $textYes = 'Update',
-                $url = window.tdData.adminUrl + 'update-core.php?action=do-theme-upgrade&update_theme=' + window.tdData.themeName;
-
-            if ( $checkedLicence !== 'SUCCESS' ) {
-                $htmlInfoContent = 'You are about to start updating to the new theme version available '  + Object.keys(window.tdData.version)[0] + '. Continue to the update page?';
-                $hideNoButton = true;
-                $textYes = 'Ok';
-                $url = window.tdData.adminUrl + 'admin.php?page=td_theme_updates';
-            }
-
             tdConfirm.modal({
                 caption: 'Update Theme & Plugins',
                 //htmlInfoContent: 'The theme version will change to ' + Object.keys(window.tdData.version)[0] + '. The activated plugins should be automatically updated and reactivated!',
                 url: '#TB_inline?inlineId=td-confirm&width=780',
-                htmlInfoContent: $htmlInfoContent,
+                htmlInfoContent: 'VERY IMPORTANT! Before updating to ' + Object.keys(window.tdData.version)[0] + ' version, please ensure the theme has full access permissions to the WordPress folders (or temporarily deactivate any security plugin). We also recommend you make a complete website and database backup. <a target="_blank" href="https://forum.tagdiv.com/how-to-update-the-theme-2/">Read more</a><br><br><br>Continue to update?',
                 switchButtons: false,
-                textYes: $textYes,
-                hideNoButton: $hideNoButton,
+                textYes: 'Update',
                 callbackYes: function () {
 
                     jQuery.ajax({
@@ -347,7 +332,7 @@ jQuery(window).on('load', function () {
                             console.log(textStatus);
                             console.log(data);
 
-                            window.location.replace( $url );
+                            window.location.replace( window.tdData.adminUrl + 'update-core.php?action=do-theme-upgrade&update_theme=' + window.tdData.themeName );
                         },
                         error: function (MLHttpRequest, textStatus, errorThrown) {
                             //console.log(errorThrown);

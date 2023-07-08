@@ -33,45 +33,10 @@ class tdb_form_content extends td_block {
                     font-family: -apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif;
                     font-size: 14px;
                 }
-                .tdb_form_content .tdb-s-form-group {
-                    display: flex;
-                }
                 
                 /* @style_general_tdb_form_content_composer */
                 .tdb_form_content .tdb-block-inner {
                     pointer-events: none;
-                }
-                
-                
-                
-                /* @all_input_display_row */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: column;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: 100%;
-                    margin: 0 0 8px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 2px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-wpeditor {
-                    width: 100%;
-                }
-                
-                /* @all_input_display_columns */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: row;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: @all_label_width;
-                    margin: 0 24px 0 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-wpeditor {
-                    flex: 1;
                 }
                 
                 
@@ -87,10 +52,6 @@ class tdb_form_content extends td_block {
                 /* @label_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-label {
                     color: @label_color;
-                }
-                /* @descr_color */
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    color: @descr_color;
                 }
                 /* @input_color */
                 body .$unique_block_class textarea {
@@ -128,26 +89,6 @@ class tdb_form_content extends td_block {
 
 
         /*-- LAYOUT -- */
-        // inputs display
-        $all_input_display = $res_ctx->get_shortcode_att('all_input_display');
-        if( $all_input_display == '' || $all_input_display == 'row' ) {
-            $res_ctx->load_settings_raw( 'all_input_display_row', 1 );
-        } else {
-            $res_ctx->load_settings_raw( 'all_input_display_columns', 1 );
-        }
-
-        // labels width
-        $all_label_width = $res_ctx->get_shortcode_att('all_label_width');
-        $res_ctx->load_settings_raw( 'all_label_width', $all_label_width );
-        if( $all_label_width != '' ) {
-            if( is_numeric( $all_label_width ) ) {
-                $res_ctx->load_settings_raw( 'all_label_width', $all_label_width . 'px' );
-            }
-        } else {
-            $res_ctx->load_settings_raw( 'all_label_width', '30%' );
-        }
-
-
         // inputs border size
         $all_input_border = $res_ctx->get_shortcode_att('all_input_border');
         $res_ctx->load_settings_raw( 'all_input_border', $all_input_border );
@@ -178,7 +119,6 @@ class tdb_form_content extends td_block {
 
         /*-- COLORS -- */
         $res_ctx->load_settings_raw( 'label_color', $res_ctx->get_shortcode_att('label_color') );
-        $res_ctx->load_settings_raw( 'descr_color', $res_ctx->get_shortcode_att('descr_color') );
         $res_ctx->load_settings_raw( 'input_color', $res_ctx->get_shortcode_att('input_color') );
         $res_ctx->load_settings_raw( 'input_bg', $res_ctx->get_shortcode_att('input_bg') );
         $all_input_border_color = $res_ctx->get_shortcode_att('all_input_border_color');
@@ -241,10 +181,6 @@ class tdb_form_content extends td_block {
         }
 
 
-        // Label description
-        $label_descr_txt = rawurldecode( base64_decode( strip_tags( $this->get_att('descr_txt') ) ) );
-
-
         // Form type
         $form_type = $this->get_att('form_type');
         if( $form_type == '' ) {
@@ -259,7 +195,7 @@ class tdb_form_content extends td_block {
                 if ( isset($_GET['post_id']) && !( tdc_state::is_live_editor_iframe() || tdc_state::is_live_editor_ajax() ) ) {
                     $post = get_post($_GET['post_id']);
 
-                    if( $post && ( $post->post_author == $current_user_id || $is_current_user_admin ) ) {
+                    if( $post && $post->post_author == $current_user_id ) {
                         if( $custom_field == 'post_content' ) {
                             $content_value = get_the_content(null, false, $_GET['post_id']);
                         } else {
@@ -297,10 +233,6 @@ class tdb_form_content extends td_block {
                                 $buffy .= $label_txt;
                                 if( $required ) {
                                     $buffy .= '<span class="tdb-s-form-label-required"> *</span>';
-                                }
-
-                                if( $label_descr_txt != '' ) {
-                                    $buffy .= '<span class="tdb-s-form-label-descr">' . $label_descr_txt . '</span>';
                                 }
                             $buffy .= '</label> ';
 

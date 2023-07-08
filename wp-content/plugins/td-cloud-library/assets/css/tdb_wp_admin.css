@@ -80,14 +80,6 @@ This file is loaded on all the wp-admin pages - including the TD composer wrappe
   background-color: rgba(255, 56, 56, 0.12);
   color: #ff3838;
 }
-.tdb-s-notif-xsm {
-  padding: 10px 15px;
-}
-.tdb-s-notif-xsm,
-.tdb-s-notif-xsm *:not(.tdb-s-btn) {
-  font-size: .929em;
-  line-height: 1.4;
-}
 .tdb-s-notif-sm {
   padding: 18px;
 }
@@ -525,7 +517,6 @@ This file is loaded on all the wp-admin pages - including the TD composer wrappe
   height: 24px;
 }
 .tdc-ico-tdb_form_input,
-.tdc-ico-tdb_form_link_post,
 .tdc-ico-tdb_form_title {
   background-position: -405px -209px !important;
   width: 40px;

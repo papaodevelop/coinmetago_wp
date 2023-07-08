@@ -452,7 +452,7 @@ class tds_button8 extends td_style {
         $icon = $this->get_icon_att('button_tdicon', $this->index_style);
         $icon_data = '';
         if( td_util::tdc_is_live_editor_iframe() || td_util::tdc_is_live_editor_ajax() ) {
-            $icon_data = 'data-td-svg-icon="' . $this->get_icon_att( 'button_tdicon', $this->index_style ) . '"';
+            $icon_data = 'data-td-svg-icon="' . $this->get_att( 'button_tdicon', $this->index_style ) . '"';
         }
         $icon_position = $this->get_shortcode_att('button_icon_position', $this->index_style);
 

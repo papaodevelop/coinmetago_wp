@@ -364,12 +364,6 @@ class tdm_block_inline_image extends td_block {
 
         $image = $this->get_shortcode_att( 'image' );
 
-        // external image
-        $image_external = td_util::get_custom_field_value_from_string( $this->get_shortcode_att('image_cf') );
-        if (is_numeric($image_external)) {
-            $image_external = wp_get_attachment_image_url($image_external, 'full');
-        }
-
         $caption_text = rawurldecode( base64_decode( strip_tags( $this->get_shortcode_att( 'caption_text' ) ) ) );
         $caption_position = $this->get_shortcode_att( 'caption_position' );
 
@@ -387,7 +381,7 @@ class tdm_block_inline_image extends td_block {
             $image_height = $image_height_all['all'];
         }
 
-        $image_info = array();
+        $image_info = '';
         $image_width_html = '';
         $image_height_html = '';
 
@@ -412,9 +406,7 @@ class tdm_block_inline_image extends td_block {
                 $image_width_html = ' width="' . $image_info ["width"] . '"';
                 $image_height_html = ' height="' . $image_info["height"] . '"';
             }
-	    } elseif ( '' !== $image_external ) {
-            $image_info['url'] = $image_external;
-        }
+	    }
 
 	    $image_title = '';
 	    if( isset($image_info['title']) && $image_info['title'] !== '' ) {

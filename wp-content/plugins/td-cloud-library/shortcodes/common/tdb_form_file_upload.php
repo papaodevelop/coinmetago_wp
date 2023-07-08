@@ -34,7 +34,6 @@ class tdb_form_file_upload extends td_block {
                     font-size: 14px;
                 }
                 body .tdb_form_file_upload .tdb-s-form .tdb-s-form-group {
-                    display: flex;
                     margin-bottom: 0;
                 }
                 body .tdb_form_file_upload .tdb-s-form .tdb-s-notif {
@@ -45,38 +44,6 @@ class tdb_form_file_upload extends td_block {
                 /* @style_general_tdb_form_file_upload_composer */
                 .tdb_form_file_upload .tdb-s-form-file-input {
                     pointer-events: none;
-                }
-                
-                
-                
-                /* @all_input_display_row */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: column;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: 100%;
-                    margin: 0 0 8px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 2px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-file {
-                    width: 100%;
-                }
-                
-                /* @all_input_display_columns */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: row;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: @all_label_width;
-                    margin: 0 24px 0 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-file {
-                    flex: 1;
                 }
                 
                 
@@ -124,10 +91,6 @@ class tdb_form_file_upload extends td_block {
                 /* @label_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-label {
                     color: @label_color;
-                }
-                /* @descr_color */
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    color: @descr_color;
                 }
                 /* @input_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-file-box {
@@ -191,25 +154,6 @@ class tdb_form_file_upload extends td_block {
 
 
         /*-- LAYOUT -- */
-        // inputs display
-        $all_input_display = $res_ctx->get_shortcode_att('all_input_display');
-        if( $all_input_display == '' || $all_input_display == 'row' ) {
-            $res_ctx->load_settings_raw( 'all_input_display_row', 1 );
-        } else {
-            $res_ctx->load_settings_raw( 'all_input_display_columns', 1 );
-        }
-
-        // labels width
-        $all_label_width = $res_ctx->get_shortcode_att('all_label_width');
-        $res_ctx->load_settings_raw( 'all_label_width', $all_label_width );
-        if( $all_label_width != '' ) {
-            if( is_numeric( $all_label_width ) ) {
-                $res_ctx->load_settings_raw( 'all_label_width', $all_label_width . 'px' );
-            }
-        } else {
-            $res_ctx->load_settings_raw( 'all_label_width', '30%' );
-        }
-
         // inputs border size
         $all_input_border = $res_ctx->get_shortcode_att('all_input_border');
         $res_ctx->load_settings_raw( 'all_input_border', $all_input_border );
@@ -258,7 +202,6 @@ class tdb_form_file_upload extends td_block {
         }
 
         $res_ctx->load_settings_raw( 'label_color', $res_ctx->get_shortcode_att('label_color') );
-        $res_ctx->load_settings_raw( 'descr_color', $res_ctx->get_shortcode_att('descr_color') );
         $res_ctx->load_settings_raw( 'input_color', $res_ctx->get_shortcode_att('input_color') );
         $res_ctx->load_settings_raw( 'input_bg', $res_ctx->get_shortcode_att('input_bg') );
         $all_input_border_color = $res_ctx->get_shortcode_att('all_input_border_color');
@@ -354,9 +297,6 @@ class tdb_form_file_upload extends td_block {
             $label_txt = 'File upload';
         }
 
-        // Label description
-        $label_descr_txt = rawurldecode( base64_decode( strip_tags( $this->get_att('descr_txt') ) ) );
-
 
         // Form type
         $form_type = $this->get_att('form_type');
@@ -375,7 +315,7 @@ class tdb_form_file_upload extends td_block {
                 if ( isset($_GET['post_id']) && !( tdc_state::is_live_editor_iframe() || tdc_state::is_live_editor_ajax() ) ) {
                     $post = get_post($_GET['post_id']);
 
-                    if( $post && ( $post->post_author == $current_user_id || $is_current_user_admin ) ) {
+                    if( $post && $post->post_author == $current_user_id ) {
                         $post_id = $_GET['post_id'];
 
                         if( $custom_field == 'featured_image' ) {
@@ -389,13 +329,13 @@ class tdb_form_file_upload extends td_block {
                             $featured_audio_url = get_post_meta( $post_id, 'td_post_audio', true );
 
                             if( !empty($featured_audio_url) ) {
-                                $file_id = td_util::get_attachment_id($featured_audio_url['td_audio']);
+                                $file_id = attachment_url_to_postid($featured_audio_url['td_audio']);
                             }
                         } else if( $custom_field == 'featured_video' ) {
                             $featured_video_url = get_post_meta( $post_id, 'td_post_video', true );
 
                             if( !empty($featured_video_url) ) {
-                                $file_id = td_util::get_attachment_id($featured_video_url['td_video']);
+                                $file_id = attachment_url_to_postid($featured_video_url['td_video']);
                             }
                         } else {
                             $file_id = get_post_meta($post_id, $custom_field, true);
@@ -502,10 +442,6 @@ class tdb_form_file_upload extends td_block {
                                 if( $required ) {
                                     $buffy .= '<span class="tdb-s-form-label-required"> *</span>';
                                 }
-
-                                if( $label_descr_txt != '' ) {
-                                    $buffy .= '<span class="tdb-s-form-label-descr">' . $label_descr_txt . '</span>';
-                                }
                             $buffy .= '</label> ';
 
                             $buffy .= '<div class="tdb-s-form-file tdb-s-content ' . ( $is_previewing ? 'tdb-s-form-file-previewing' : '' ) . ' ' . ( $disable_for_guests ? 'tdb-s-form-file-disabled' : '' ) . '">';
@@ -516,7 +452,7 @@ class tdb_form_file_upload extends td_block {
                                 $buffy .= '<div class="tdb-s-form-file-box tdb-s-form-file-upload">';
                                     $buffy .= '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload-cloud tdb-s-ffu-ico"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>';
 
-                                    $buffy .= '<div class="tdb-s-ffu-txt">' . __td( 'Drag and drop or browse', TD_THEME_NAME ) . '</div>';
+                                    $buffy .= '<div class="tdb-s-ffu-txt">Drag and drop or browse</div>';
 
                                     $buffy .= '<input class="tdb-s-form-file-input" name="tdb-posts-form-file" type="file" accept=".' . implode(',.', $file_extensions) . '" ' . ( $disable_for_guests ? 'disabled' : '' ) . ' />';
                                 $buffy .= '</div>';

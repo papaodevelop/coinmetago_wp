@@ -203,7 +203,6 @@ class vc_column_inner extends tdc_composer_block {
         $this->atts = shortcode_atts( array(
 			'width' => '1/1',
             'is_sticky' => '',
-            'sticky_offset' => '',
             'vertical_align' => '',
             'column_height' => '',
 
@@ -266,16 +265,8 @@ class vc_column_inner extends tdc_composer_block {
 		    $inner_column_class .= '-composer';
         }
 
-        $is_sticky = false;
-        $sticky_offset = '20';
         if ( ! empty( $this->atts['is_sticky'] ) ) {
 			$td_pb_class .= ' td-is-sticky';
-
-            if ( ! empty( $this->atts['sticky_offset'] ) ) {
-                $sticky_offset = $this->atts['sticky_offset'];
-            }
-
-            $is_sticky = true;
 		}
 
         // display restrictions
@@ -307,7 +298,7 @@ class vc_column_inner extends tdc_composer_block {
 		$buffy .= $this->get_block_css();
 
 			$buffy .= '<div class="vc_column-inner">'; // requiered to maintain vc compatibility
-				$buffy .= '<div class="wpb_wrapper" ' . ( ( $is_sticky && TD_THEME_NAME == 'Newspaper' ) ? 'data-sticky-offset="' . $sticky_offset . '"' : '' ) . '>';
+				$buffy .= '<div class="wpb_wrapper">';
 					$buffy .= $this->do_shortcode($content);
 				$buffy .= '</div>';
 			$buffy .= '</div>';

@@ -6337,7 +6337,3 @@ p span.td_text_columns_two_cols {
 .wp-block-button.is-style-3d .wp-block-button__link:hover:after {
   height: 0;
 }
-.wp-block-table td,
-.wp-block-table th {
-  padding: 2px 8px;
-}

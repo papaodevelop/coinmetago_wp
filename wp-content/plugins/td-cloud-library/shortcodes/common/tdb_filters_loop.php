@@ -123,18 +123,13 @@ class tdb_filters_loop extends td_block {
                     width: 100%;
                 }
                 
-                .tdb_filters_loop.tdc-no-posts .td_block_inner {
-                    margin-left: 0 !important;
-                    margin-right: 0 !important;
+                .tdb_filters_loop.tdc-no-posts .td_block_inner:after {
+                    content: 'No results' !important;
+                    width: 100%;
                 }
                 
-                .tdb_filters_loop.tdc-no-posts .td_block_inner .no-results h2 {
-                    font-size: 13px;
-                    font-weight: normal;
-                    text-align: left;
-                    padding: 20px;
-                    border: 1px solid rgba(190, 190, 190, 0.35);
-                    color: rgba(125, 125, 125, 0.8);
+                .tdb_filters_loop.tdc-no-posts .td_block_inner {
+                    margin: 0;
                 }
 
 				/* @f_header */
@@ -396,11 +391,6 @@ class tdb_filters_loop extends td_block {
         // additional block classes
         $additional_classes_array = array( $tds_module_loop_class );
 
-	    // pagination
-	    $pagination = $this->get_att( 'ajax_pagination' );
-	    if( $pagination != '' && $pagination === 'numbered' ) {
-		    $additional_classes_array[] = 'tdb-numbered-pagination';
-	    }
 
         $this->unique_block_class = $this->block_uid;
         $this->shortcode_atts = shortcode_atts(
@@ -438,6 +428,7 @@ class tdb_filters_loop extends td_block {
 
             // custom title
             $custom_title = $this->get_att( 'custom_title' );
+
             if( $custom_title != '' ) {
                 //get the filter for this block
                 $buffy .= '<div class="td-block-title-wrap">';
@@ -447,7 +438,7 @@ class tdb_filters_loop extends td_block {
 
 
             // process filters
-	        if ( !( tdc_state::is_live_editor_iframe() || tdc_state::is_live_editor_ajax() ) ) {
+	        if ( ! ( tdc_state::is_live_editor_iframe() || tdc_state::is_live_editor_ajax() ) ) {
 
 		        // render js
 		        ob_start();
@@ -470,27 +461,17 @@ class tdb_filters_loop extends td_block {
 
             }
 
-
             // block inner
             $buffy .= '<div id=' . $this->block_uid . ' class="td_block_inner tdb-block-inner td-fix-index">';
-                if ( !empty( $this->td_query->posts ) ) {
-	                $buffy .= $this->inner( $this->td_query->posts );
-                } else {
-
-	                if ( !empty( tdb_state_template::get_template_type() ) && 'search' === tdb_state_template::get_template_type() ) {
-		                $buffy .= '<div class="no-results td-pb-padding-side">';
-		                    $buffy .= '<h2>' . __td('No results', TD_THEME_NAME ) . '</h2>';
-		                $buffy .= '</div>';
-                    } else {
-		                /**
-		                 * no posts to display. This function generates the __td('No posts to display').
-		                 * the text can be overwritten by the template using the global @see td_global::$custom_no_posts_message
-		                 */
-		                $buffy .= td_page_generator::no_posts();
-                    }
-
-                }
+	            $buffy .= $this->inner( $this->td_query->posts );
             $buffy .= '</div>';
+
+
+            // pagination
+            $pagination = $this->get_att( 'ajax_pagination' );
+            if( $pagination != '' && $pagination === 'numbered' ) {
+                $additional_classes_array[] = 'tdb-numbered-pagination';
+            }
 
             if ( $pagination != '' ) {
                 if ( $pagination === 'numbered' ) {

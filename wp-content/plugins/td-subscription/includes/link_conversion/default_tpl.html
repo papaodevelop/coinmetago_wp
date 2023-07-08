@@ -1,0 +1,42 @@
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxxxx"></script> //Your Google Analytics ID
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag( 'js', new Date() );
+    gtag( 'config', 'UA-xxxxxxxx-x' ); //Your Google Analytics ID
+    gtag(
+        'event', // Sends your conversion as an Event with the "ecommerce" "category" in your GA events reports
+        'purchase', // Specifies the "action" of the event
+        {
+            'event_label': 'NAMEIT', // This is the "label" of the event. You can rename. (e.g. Plan2)
+            'transaction_id': 'INVOICE NUMBER', // This is the ID of conversion. (e.g. 634)
+            'value': XXX.00, // Specifies the total revenue or grand total associated with the transaction (e.g. 11.99)
+            'currency': "XXX", // Local currency code. (e.g USD)
+            'tax': 0.0, // Specifies the total shipping cost of the transaction. (e.g. 5)
+            'shipping': 0, // Specifies the total tax of the transaction. (e.g. 1.29)
+            "items": [
+                {
+                    "id": "Your Plan ID", // Transaction ID. For this specific case it's SKU. Required.
+                    "name": "NameIt", // Product name. Required.
+                    "quantity": XX, // Quantity. Required.
+                    "price": "XX.0" // Price per Unit. Required.
+                },
+                {
+                    "id": "Your Plan ID2",
+                    "name": "NameIt2",
+                    "quantity": XX,
+                    "price": "XX.0"
+                },
+                {
+                    "id": "Your Plan ID3",
+                    "name": "NameIt3",
+                    "quantity": XX,
+                    "price": "XX.0"
+                }
+            ],
+            'event_callback': function() {
+                redirect(1000);
+            }
+        }
+    );
+</script>

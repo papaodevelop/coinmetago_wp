@@ -385,9 +385,6 @@ class tdb_single_user_reviews_form extends td_block {
         parent::render( $atts ); // sets the live atts, $this->atts, $this->block_uid, $this->td_query (it runs the query)
 
 
-        $in_composer = td_util::tdc_is_live_editor_iframe() || td_util::tdc_is_live_editor_ajax();
-
-
         // GET the single post ID
         $post_id = '';
         $curr_template_type = tdb_state_template::get_template_type();
@@ -477,15 +474,6 @@ class tdb_single_user_reviews_form extends td_block {
         $required_field_error = __td( 'This field is required!', TD_THEME_NAME );
 
 
-        // Limit notification
-        $show_notif = $this->get_att('show_notif');
-
-        $limit_notif = rawurldecode( base64_decode( strip_tags( $this->get_att('limit_notif_txt') ) ) );
-        if( $limit_notif == '' ) {
-            $limit_notif = __td( 'You have reached the limit of reviews that you can submit for this article.', TD_THEME_NAME );
-        }
-
-
         $buffy .= '<div class="' . $this->get_block_classes() . '" ' . $this->get_block_html_atts() . '>';
 
             // get the block css
@@ -500,8 +488,8 @@ class tdb_single_user_reviews_form extends td_block {
                     $buffy .= '<' . $header_tag . ' class="tdb-spsh-title">' . $header_text . '</' . $header_tag . '>';
                 $buffy .= '</div>';
 
-                if( ( $in_composer && $show_notif != '' ) || ( TD_DEPLOY_MODE != 'dev' && !$in_composer && in_array( $user_ip, $post_user_reviews_ips ) ) ) {
-                    $buffy .= '<div class="tdb-s-notif tdb-s-notif-info"><div class="tdb-s-notif-descr">' . $limit_notif . '</div></div>';
+                if( TD_DEPLOY_MODE != 'dev' && !( tdc_state::is_live_editor_iframe() || tdc_state::is_live_editor_ajax() ) && in_array( $user_ip, $post_user_reviews_ips ) ) {
+                    $buffy .= '<div class="tdb-s-notif tdb-s-notif-info"><div class="tdb-s-notif-descr">' . __td( 'You have reached the limit of reviews that you can submit for this article.', TD_THEME_NAME ) . '</div></div>';
                 } else {
                     $buffy .= '<form action="#" id="tdc-review-form" class="tdb-s-form tdb-s-content">';
                         $buffy .= '<div class="tdb-s-form-content">';

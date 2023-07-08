@@ -374,7 +374,7 @@ class tdb_state_single_page extends tdb_state_base {
                         'linkedin',
                         'reddit',
                         'mail',
-//                        'print',
+                        'print',
                         'tumblr',
                         'telegram',
                         'stumbleupon',
@@ -387,21 +387,12 @@ class tdb_state_single_page extends tdb_state_base {
                     'style' => $atts['like_share_style']
                 );
             }
-
-            // print doesn't work properly on pages
-            $enabled_socials = td_api_social_sharing_styles::_helper_get_enabled_socials();
-            foreach ( $enabled_socials as $index=>$enabled_social ) {
-                if ( $enabled_social === 'print' ) {
-                    unset($enabled_socials[$index]);
-                }
-            }
-
             return array(
                 'is_tdb_block' => true,
                 'is_amp' => false,
                 'post_id' => $this->get_page_obj()->ID,
                 'post_permalink' => esc_url( get_permalink( $this->get_page_obj()->ID ) ),
-                'services' => $enabled_socials,
+                'services' => td_api_social_sharing_styles::_helper_get_enabled_socials(),
                 'style' => $atts['like_share_style'],
                 'share_text_show' => $atts['like_share_text'] !== 'yes',
                 'social_rel' => ( $atts['social_rel'] !== '' ) ? ' rel="' . $atts['social_rel'] . '" ' : '',

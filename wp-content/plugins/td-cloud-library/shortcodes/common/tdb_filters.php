@@ -1803,10 +1803,10 @@ class tdb_filters extends td_block {
 	                // set filter type
 	                $filter_data['filter_type'] = 'taxonomy';
 
-	                // filter output type
+	                // set filter output type
                     $filter_output_type = !empty( $tax_filter_type ) ? $tax_filter_type : 'button';
 
-                    // set filter output type on filter data
+                    // set multiple select as output type for dropdowns with multiple option set
 	                $filter_data['type'] = $filter_output_type;
 
 	                // tax filter terms args
@@ -1885,7 +1885,6 @@ class tdb_filters extends td_block {
 	                        array_unshift( $terms, $current_tax_term_obj );
                         }
 
-                        // sort terms for dropdowns output type
                         if ( $filter_output_type === 'dropdown' ) {
 
                             $parent = 0;
@@ -2543,24 +2542,6 @@ class tdb_filters extends td_block {
 			$atts['in_all_terms'] = 'yes'; // filtered results must belong to all taxonomies
 			$atts['block_type'] = 'tdb_filters_loop'; // set the block type to simulate a tdb_filters_loop query
 			$atts['include_children'] = 'no'; // do not include child terms
-		}
-
-		// set post type
-        if ( !empty( $_GET['post_type'] ) ) {
-	        $atts['installed_post_types'] = tdb_util::clean( wp_unslash( $_GET['post_type'] ) );
-        }
-
-		// set search query
-		global $wp_query, $tdb_state_search;
-		if ( !empty($tdb_state_search) && $tdb_state_search->has_wp_query() && $filter_action_type === 'multiple' ) {
-
-			$search_template_wp_query = $wp_query;
-			$wp_query = $tdb_state_search->get_wp_query();
-
-			$atts['search_query'] = get_search_query();
-
-			$wp_query = $search_template_wp_query;
-
 		}
 
         // run query

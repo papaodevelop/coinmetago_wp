@@ -829,10 +829,7 @@ function td_load_css_fonts() {
 
 add_filter( 'pre_handle_404', function($param1, $param2) {
 
-    global $_SERVER;
-    $req_scheme = is_ssl() ? 'https' : 'http';
-
-	$post_id = url_to_postid($req_scheme . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+	$post_id = url_to_postid("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 	if ( !empty($post_id) ) {
 		$td_post_theme_settings = td_util::get_post_meta_array($post_id, 'td_post_theme_settings');
 		// standard smartlist

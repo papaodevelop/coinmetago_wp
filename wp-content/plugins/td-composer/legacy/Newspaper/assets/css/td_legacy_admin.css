@@ -1457,9 +1457,6 @@ body:not(.td-standard-pack) .edit-post-sidebar option[value*="page-pagebuilder"]
 .post-type-tdb_templates #post-status-select option[value="draft"] {
   display: none;
 }
-.post-type-tdb_templates #visibility {
-  display: none;
-}
 .tdc-modal-align-selector.tdc-property-nextprev_position label[title="Top left"] {
   order: 1;
 }

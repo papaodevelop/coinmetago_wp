@@ -645,7 +645,7 @@ class td_config_mob {
                     'Sign in / Join' => __('Sign in / Join', $theme),
                     'Sign in' => __('Sign in', $theme),
                     'Sign up' => __('Sign up', $theme),
-                    'Log in With Facebook' => __('Log in With Facebook', $theme),
+//                    'Log in With Facebook' => __('Log in With Facebook', $theme),
                     'Join' => __('Join', $theme),
                     'Log In' => __('Log In', $theme),
                     'Login' => __('Login', $theme),

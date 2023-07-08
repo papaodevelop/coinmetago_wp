@@ -464,7 +464,7 @@ class tdb_single_custom_field extends td_block {
             if( !( td_util::tdc_is_live_editor_ajax() || td_util::tdc_is_live_editor_iframe() ) &&
                 (
                     ( $hide_for_user_type == 'logged-in' && is_user_logged_in() ) ||
-                    ( $hide_for_user_type == 'guests' && !is_user_logged_in() )
+                    ( $hide_for_user_type == 'guest' && !is_user_logged_in() )
                 )
             ) {
                 return $buffy;

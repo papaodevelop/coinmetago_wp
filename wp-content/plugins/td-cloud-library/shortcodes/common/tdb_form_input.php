@@ -23,9 +23,6 @@ class tdb_form_input extends td_block {
                 .tdb_form_input .tdb-s-content {
                     min-height: auto;
                 }
-                .tdb_form_input .tdb-s-form-group {
-                    display: flex;
-                }
                 
                 /* @style_general_tdb_form_input_composer */
                 .tdb_form_input .tdb-form-inner {
@@ -34,46 +31,12 @@ class tdb_form_input extends td_block {
                 
                 
                 
-                /* @all_input_display_row */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: column;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: 100%;
-                    margin: 0 0 8px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 2px;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-input:not(select),
-                body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-checkboxes-wrap,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-btns-wrap {
-                    width: 100%;
-                }
-                
-                /* @all_input_display_columns */
-                body .$unique_block_class .tdb-s-form-group {
-                    flex-direction: row;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label {
-                    width: @all_label_width;
-                    margin: 0 24px 0 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    margin-bottom: 0;
-                }
-                body .$unique_block_class .tdb-s-form .tdb-s-form-input:not(select),
-                body .$unique_block_class .tdb-s-form .tdb-s-form-select-wrap,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-checkboxes-wrap,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-btns-wrap {
-                    flex: 1;
-                }
-                
-                
                 /* @checkbox_display_inline */
                 body .$unique_block_class .tdb-s-form-checkboxes-wrap .tdb-s-form-check {
                     width: 25%;
+                }
+                body .$unique_block_class .tdb-s-form-checkboxes-wrap .tdb-s-form-check:nth-last-child(-n+4) {
+                    margin-bottom: 0;
                 }
                 body .$unique_block_class .tdb-s-form-checkboxes-wrap,
                 body .$unique_block_class .tdb-s-form-btns-wrap {
@@ -94,19 +57,19 @@ class tdb_form_input extends td_block {
                 body .$unique_block_class .tdb-s-form-checkboxes-wrap .tdb-s-form-check {
                     width: 100%;
                 }
+                body .$unique_block_class .tdb-s-form-checkboxes-wrap .tdb-s-form-check:nth-last-child(-n+4) {
+                    margin-bottom: 7px;
+                }
+                body .$unique_block_class .tdb-s-form-checkboxes-wrap .tdb-s-form-check:last-child {
+                    margin-bottom: 0;
+                }
                 body .$unique_block_class .tdb-s-form-btns-wrap .tdb-s-form-btn {
                     margin-bottom: 7px;
                     margin-right: 0;
                 }
-                /* @checkbox_cols */
-                body .$unique_block_class .tdb-s-form-checkboxes-wrap .tdb-s-form-check {
-                    width: @checkbox_cols;
-                }
-                /* @checkbox_cols_remove_margin */
-                body .$unique_block_class .tdb-s-form-checkboxes-wrap .tdb-s-form-check:nth-last-child(@checkbox_cols_remove_margin) {
+                body .$unique_block_class .tdb-s-form-btns-wrap .tdb-s-form-btn:last-child {
                     margin-bottom: 0;
                 }
-
                 
                 /* @all_input_border */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input {
@@ -116,8 +79,7 @@ class tdb_form_input extends td_block {
                     border: 2px solid @all_input_border_color;
                 }
                 /* @input_radius */
-                body .$unique_block_class .tdb-s-form .tdb-s-form-input,
-                body .$unique_block_class .tdb-s-form .tdb-s-form-check .tdb-s-fc-check {
+                body .$unique_block_class .tdb-s-form .tdb-s-form-input {
                     border-radius: @input_radius;
                 }
                 
@@ -153,10 +115,6 @@ class tdb_form_input extends td_block {
                 body .$unique_block_class .tdb-s-form .tdb-s-form-label,
                 body .$unique_block_class .tdb-s-form .tdb-s-form-check .tdb-s-fc-title {
                     color: @label_color;
-                }
-                /* @descr_color */
-                body .$unique_block_class .tdb-s-form .tdb-s-form-label-descr {
-                    color: @descr_color;
                 }
                 /* @input_color */
                 body .$unique_block_class .tdb-s-form .tdb-s-form-input {
@@ -249,77 +207,12 @@ class tdb_form_input extends td_block {
 
 
         /*-- LAYOUT -- */
-        // inputs display
-        $all_input_display = $res_ctx->get_shortcode_att('all_input_display');
-        if( $all_input_display == '' || $all_input_display == 'row' ) {
-            $res_ctx->load_settings_raw( 'all_input_display_row', 1 );
-        } else {
-            $res_ctx->load_settings_raw( 'all_input_display_columns', 1 );
-        }
-
-        // labels width
-        $all_label_width = $res_ctx->get_shortcode_att('all_label_width');
-        $res_ctx->load_settings_raw( 'all_label_width', $all_label_width );
-        if( $all_label_width != '' ) {
-            if( is_numeric( $all_label_width ) ) {
-                $res_ctx->load_settings_raw( 'all_label_width', $all_label_width . 'px' );
-            }
-        } else {
-            $res_ctx->load_settings_raw( 'all_label_width', '30%' );
-        }
-
-
-        // checkboxe/radio display
+        // inputs border style
         $checkbox_display = $res_ctx->get_shortcode_att('checkbox_display');
         if( $checkbox_display == '' ) {
             $res_ctx->load_settings_raw( 'checkbox_display_inline', 1 );
         } else {
             $res_ctx->load_settings_raw( 'checkbox_display_new_line', 1 );
-        }
-
-        // checkboxes/radio inputs per row
-        $checkbox_cols = $res_ctx->get_shortcode_att('checkbox_cols');
-        if( $checkbox_cols == '' ) {
-            $checkbox_cols = '25%';
-        }
-        if( $checkbox_display == '' ) {
-            $res_ctx->load_settings_raw( 'checkbox_cols', $checkbox_cols );
-
-            switch ($checkbox_cols) {
-                case '100%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '1' );
-                    break;
-                case '50%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '-n+2' );
-                    break;
-                case '33.33333333%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '-n+3' );
-                    break;
-                case '25%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '-n+4' );
-                    break;
-                case '20%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '-n+5' );
-                    break;
-                case '16.66666667%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '-n+6' );
-                    break;
-                case '14.28571428%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '-n+7' );
-                    break;
-                case '12.5%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '-n+8' );
-                    break;
-                case '11.11111111%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '-n+9' );
-                    break;
-                case '10%':
-                    $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '-n+10' );
-                    break;
-            }
-        } else {
-            $res_ctx->load_settings_raw( 'checkbox_cols', '100%' );
-            $res_ctx->load_settings_raw( 'checkbox_cols_remove_margin',  '1' );
         }
 
 
@@ -367,7 +260,6 @@ class tdb_form_input extends td_block {
         }
 
         $res_ctx->load_settings_raw( 'label_color', $res_ctx->get_shortcode_att('label_color') );
-        $res_ctx->load_settings_raw( 'descr_color', $res_ctx->get_shortcode_att('descr_color') );
         $res_ctx->load_settings_raw( 'input_color', $res_ctx->get_shortcode_att('input_color') );
         $res_ctx->load_settings_raw( 'input_bg', $res_ctx->get_shortcode_att('input_bg') );
         $all_input_border_color = $res_ctx->get_shortcode_att('all_input_border_color');
@@ -455,7 +347,6 @@ class tdb_form_input extends td_block {
                     $field_value = '';
                     $field_placeholder = '';
                     $field_label = $this->get_att('label_txt');
-                    $field_label_descr = rawurldecode( base64_decode( strip_tags( $this->get_att('descr_txt') ) ) );
                     $field_required = '';
                     $acf_field_data = array();
                     $is_acf_field = false;
@@ -472,9 +363,6 @@ class tdb_form_input extends td_block {
                             }
                             if( $field_label == '' ) {
                                 $field_label = $acf_field_data['label'];
-                            }
-                            if( $field_label_descr == '' ) {
-                                $field_label_descr = $acf_field_data['instructions'];
                             }
                             $field_required = $acf_field_data['required'];
                             $is_acf_field = true;
@@ -499,7 +387,7 @@ class tdb_form_input extends td_block {
                             if ( isset($_GET['post_id']) && !( tdc_state::is_live_editor_iframe() || tdc_state::is_live_editor_ajax() ) ) {
                                 $post = get_post($_GET['post_id']);
 
-                                if( $post && ( $post->post_author == $current_user_id || $is_current_user_admin ) ) {
+                                if( $post && $post->post_author == $current_user_id ) {
                                     $curr_post_field_value = get_post_meta($_GET['post_id'], $field, true);
                                 }
                             }
@@ -536,10 +424,6 @@ class tdb_form_input extends td_block {
 
                                     if( $field_required ) {
                                         $buffy .= '<span class="tdb-s-form-label-required"> *</span>';
-                                    }
-
-                                    if( $field_label_descr != '' ) {
-                                        $buffy .= '<span class="tdb-s-form-label-descr">' . $field_label_descr . '</span>';
                                     }
                                 $buffy .= '</label>';
 

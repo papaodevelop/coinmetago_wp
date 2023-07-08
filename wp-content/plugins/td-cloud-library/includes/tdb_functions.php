@@ -24,8 +24,6 @@ require_once "tdb_cpt.php"; // load the cpt things
 require_once "tdb_menu.php"; // load the td menu shortcode support
 require_once "tdb_term_meta.php"; // load taxonomies tdb term meta support
 
-require_once "tdb_posts_list_utils.php"; // load utils for the posts list shortcode
-
 // The mobile detection library used.
 if ( ! class_exists('Mobile_Detect', false)) {
 	require_once 'Mobile_Detect.php';
@@ -595,14 +593,6 @@ add_action('tdc_loaded', function() {
                     }
                 }
 
-                if ( isset($_GET['td_preview_template_id']) && is_user_logged_in() ) {
-                    $td_preview_template_id = 'tdb_template_' . $_GET['td_preview_template_id'];
-                    if ( td_global::is_tdb_template( $td_preview_template_id, true ) ) {
-                        $template_id = $_GET['td_preview_template_id'];
-                    }
-                }
-
-
             } elseif ( is_search() && ! td_util::is_mobile_theme() ) {
 
                 $option_id = 'tdb_search_template';
@@ -623,13 +613,6 @@ add_action('tdc_loaded', function() {
                     $template_id = td_global::tdb_get_template_id( $tdb_search_template );
                 }
 
-                if ( isset($_GET['td_preview_template_id']) && is_user_logged_in() ) {
-                    $td_preview_template_id = 'tdb_template_' . $_GET['td_preview_template_id'];
-                    if ( td_global::is_tdb_template( $td_preview_template_id, true ) ) {
-                        $template_id = $_GET['td_preview_template_id'];
-                    }
-                }
-
             } elseif ( is_date() && ! td_util::is_mobile_theme() ) {
 
                 $option_id = 'tdb_date_template';
@@ -648,13 +631,6 @@ add_action('tdc_loaded', function() {
                 $tdb_date_template = td_options::get( $option_id );
                 if ( td_global::is_tdb_template( $tdb_date_template, true ) ) {
                     $template_id = td_global::tdb_get_template_id( $tdb_date_template );
-                }
-
-                if ( isset($_GET['td_preview_template_id']) && is_user_logged_in() ) {
-                    $td_preview_template_id = 'tdb_template_' . $_GET['td_preview_template_id'];
-                    if ( td_global::is_tdb_template( $td_preview_template_id, true ) ) {
-                        $template_id = $_GET['td_preview_template_id'];
-                    }
                 }
 
             } elseif ( is_tag() && ! td_util::is_mobile_theme() ) {
@@ -706,13 +682,6 @@ add_action('tdc_loaded', function() {
                     if ( td_global::is_tdb_template( $tdb_tag_template, true ) ) {
 		                $template_id = td_global::tdb_get_template_id( $tdb_tag_template );
 	                }
-                }
-
-                if ( isset($_GET['td_preview_template_id']) && is_user_logged_in() ) {
-                    $td_preview_template_id = 'tdb_template_' . $_GET['td_preview_template_id'];
-                    if ( td_global::is_tdb_template( $td_preview_template_id, true ) ) {
-                        $template_id = $_GET['td_preview_template_id'];
-                    }
                 }
 
             } elseif ( is_page() && ! td_util::is_mobile_theme() ) {
@@ -1032,13 +1001,6 @@ function tdb_on_template_include( $original_template ) {
             }
         }
 
-        if ( isset($_GET['td_preview_template_id']) && is_user_logged_in() ) {
-            $td_preview_template_id = 'tdb_template_' . $_GET['td_preview_template_id'];
-            if ( td_global::is_tdb_template( $td_preview_template_id, true ) ) {
-                $template_id = $_GET['td_preview_template_id'];
-            }
-        }
-
         // if we don't have a template return the original temp
         if ( !empty( $template_id ) ) {
 
@@ -1082,13 +1044,6 @@ function tdb_on_template_include( $original_template ) {
         $tdb_attachment_template = td_options::get( $option_id );
         if ( td_global::is_tdb_template( $tdb_attachment_template, true ) ) {
             $template_id = td_global::tdb_get_template_id( $tdb_attachment_template );
-        }
-
-        if ( isset($_GET['td_preview_template_id']) && is_user_logged_in() ) {
-            $td_preview_template_id = 'tdb_template_' . $_GET['td_preview_template_id'];
-            if ( td_global::is_tdb_template( $td_preview_template_id, true ) ) {
-                $template_id = $_GET['td_preview_template_id'];
-            }
         }
 
         if ( !empty( $template_id ) ) {
@@ -1173,13 +1128,6 @@ function tdb_on_template_include( $original_template ) {
 	            // look and set the global cat cloud template if we have an individual category but it's not found
 	            $template_id = td_global::tdb_get_template_id( $tdb_category_template );
 
-            }
-        }
-
-        if ( isset($_GET['td_preview_template_id']) && is_user_logged_in() ) {
-            $td_preview_template_id = 'tdb_template_' . $_GET['td_preview_template_id'];
-            if ( td_global::is_tdb_template( $td_preview_template_id, true ) ) {
-                $template_id = $_GET['td_preview_template_id'];
             }
         }
 
@@ -1481,13 +1429,6 @@ add_filter('td_single_override', function($template_id) {
             if ( !empty($tdc_mobile_template_id) && 'publish' === get_post_status( $tdc_mobile_template_id ) ) {
                 $template_id = $tdc_mobile_template_id;
             }
-        }
-    }
-
-    if ( isset($_GET['td_preview_template_id']) && is_user_logged_in() ) {
-        $td_preview_template_id = 'tdb_template_' . $_GET['td_preview_template_id'];
-        if ( td_global::is_tdb_template( $td_preview_template_id, true ) ) {
-            $template_id = $_GET['td_preview_template_id'];
         }
     }
 
@@ -1854,30 +1795,8 @@ function tdb_on_before_admin_bar_render() {
                 $td_post_theme_settings = td_util::get_post_meta_array( $tdbLoadDataFromId, 'td_post_theme_settings' );
                 if ( empty( $td_post_theme_settings[ 'td_post_template' ] ) ) {
 
-                    $td_primary_category = td_global::get_primary_category_id();
-
-                    $lang = '';
-                    if (class_exists('SitePress', false)) {
-                        global $sitepress;
-                        $sitepress_settings = $sitepress->get_settings();
-                        if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                            $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                            if (1 === $translation_mode) {
-                                $lang = $sitepress->get_current_language();
-                            }
-                        }
-                    }
-                    $default_option = 'td_default_site_post_template' . $lang;
-                    $post_category_option = 'tdb_post_category_template' . $lang;
-
-                    $default_template_id = td_util::get_option( $default_option );
-                    $post_category_template = td_util::get_category_option( $td_primary_category, $post_category_option );
-
-                    // we check specific category post template first
-                    if ( td_global::is_tdb_template( $post_category_template, true ) ) {
-                        $post_category_template_id = td_global::tdb_get_template_id( $post_category_template );
-                        $current_template    = '<span class="tdb-template-el-global-checked">Category Post Template</span> ' . get_the_title( $post_category_template_id );
-                    } elseif ( td_global::is_tdb_template( $default_template_id, true ) ) {
+                    $default_template_id = td_util::get_option( 'td_default_site_post_template' );
+                    if ( td_global::is_tdb_template( $default_template_id, true ) ) {
                         $default_template_id = td_global::tdb_get_template_id( $default_template_id );
                         $current_template    = '<span class="tdb-template-el-global-checked">Global</span> ' . get_the_title( $default_template_id );
                     } else {
@@ -1885,7 +1804,6 @@ function tdb_on_before_admin_bar_render() {
                         if ( empty( $default_template_id ) ) {
                             $default_template_id = 'DEFAULT';
                         }
-
                         $current_template = '<span class="tdb-template-el-global-checked">Global</span> ' . $default_template_id;
                     }
 
@@ -2110,24 +2028,8 @@ function tdb_on_before_admin_bar_render() {
                 } else {
                     $td_post_theme_settings = td_util::get_post_meta_array($post->ID, 'td_post_theme_settings');
                     if (empty($td_post_theme_settings) || empty($td_post_theme_settings['td_post_template'])) {
-
-                        $lang = '';
-                        if (class_exists('SitePress', false)) {
-                            global $sitepress;
-                            $sitepress_settings = $sitepress->get_settings();
-                            if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                                $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                                if (1 === $translation_mode) {
-                                    $lang = $sitepress->get_current_language();
-                                }
-                            }
-                        }
-
-                        $option_id = 'td_default_site_post_template' . $lang;
-
                         $current_template = '<span class="tdb-template-el-global-checked">Global</span> STANDARD - ';
-                        $default_template_id = td_util::get_option( $option_id );
-
+                        $default_template_id = td_util::get_option( 'td_default_site_post_template' );
                         if ( empty($default_template_id )) {
                             $current_template .= 'DEFAULT';
                         } else {
@@ -2454,19 +2356,8 @@ function td_show_woo_product_template_menu() {
 
 	$template_type = 'woo_product';
 
-    $lang = '';
-    if (class_exists('SitePress', false)) {
-        global $sitepress;
-        $sitepress_settings = $sitepress->get_settings();
-        if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-            $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-            if (1 === $translation_mode) {
-                $lang = $sitepress->get_current_language();
-            }
-        }
-    }
+    $tdb_option_key = 'tdb_' . $template_type . '_template';
 
-    $tdb_option_key = 'tdb_' . $template_type . '_template' . $lang;
     $post_id = '';
 
     $queried_object = get_queried_object();
@@ -2536,28 +2427,16 @@ function td_show_woo_archive_template_menu() {
     if ( $queried_object instanceof WP_Term ) {
         $term_id = $queried_object->term_id;
 
-        $lang = '';
-        if (class_exists('SitePress', false)) {
-            global $sitepress;
-            $sitepress_settings = $sitepress->get_settings();
-            if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-                $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-                if (1 === $translation_mode) {
-                    $lang = $sitepress->get_current_language();
-                }
-            }
-        }
-
 	    switch ( $queried_object->taxonomy ) {
 		    case 'product_tag':
-			    $tdb_option_key = 'tdb_woo_archive_tag_template' . $lang;
+			    $tdb_option_key = 'tdb_woo_archive_tag_template';
 			    break;
 		    case taxonomy_is_product_attribute( $queried_object->taxonomy ):
-			    $tdb_option_key = 'tdb_woo_archive_attribute_template' . $lang;
+			    $tdb_option_key = 'tdb_woo_archive_attribute_template';
 			    break;
 		    case 'product_cat':
 		    default:
-			    $tdb_option_key = 'tdb_woo_archive_template' . $lang;
+			    $tdb_option_key = 'tdb_woo_archive_template';
 			    break;
 	    }
 
@@ -2642,19 +2521,7 @@ function td_show_woo_shop_base_template_menu() {
 
     $template_type = 'woo_shop_base';
 
-    $lang = '';
-    if (class_exists('SitePress', false)) {
-        global $sitepress;
-        $sitepress_settings = $sitepress->get_settings();
-        if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-            $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-            if (1 === $translation_mode) {
-                $lang = $sitepress->get_current_language();
-            }
-        }
-    }
-
-    $tdb_option_key = 'tdb_' . $template_type . '_template' . $lang;
+    $tdb_option_key = 'tdb_' . $template_type . '_template';
 
     $tdb_template = td_util::get_option( $tdb_option_key );
 
@@ -2718,21 +2585,9 @@ function td_show_woo_search_archive_template_menu() {
     $global_title = '';
     $is_tdb_template = false;
 
-    $lang = '';
-    if (class_exists('SitePress', false)) {
-        global $sitepress;
-        $sitepress_settings = $sitepress->get_settings();
-        if ( isset($sitepress_settings['custom_posts_sync_option'][ 'tdb_templates']) ) {
-            $translation_mode = (int)$sitepress_settings['custom_posts_sync_option']['tdb_templates'];
-            if (1 === $translation_mode) {
-                $lang = $sitepress->get_current_language();
-            }
-        }
-    }
-
     $template_type = 'woo_search_archive';
 
-    $tdb_option_key = 'tdb_' . $template_type . '_template' . $lang;
+    $tdb_option_key = 'tdb_' . $template_type . '_template';
 
     $tdb_template = td_util::get_option( $tdb_option_key );
 
@@ -3069,13 +2924,6 @@ if (is_user_logged_in()) {
 	}
 }
 
-// class to hide cloud template from adminbar on template preview
-if (!empty($_GET['td_preview_template_id'])) {
-    add_filter('body_class', function( $classes ) {
-        $classes[] = ' td-hide-adminbar-settings';
-        return $classes;
-    } );
-}
 
 if (!empty($_GET['tdbTemplateType'])) {
     $tdbTemplateType = @$_GET['tdbTemplateType'];
@@ -3482,9 +3330,6 @@ class tdb_method {
 // Register Custom Post Type - Reviews
 function custom_post_type_reviews() {
 
-    // show/hide Reviews in WP menu
-    $tds_show_reviews_in_menu = td_util::get_option('tds_reviews') === 'hide' ? false : true;
-
     $labels = array(
         'name'                  => _x( 'Reviews', 'Post Type General Name', 'text_domain' ),
         'singular_name'         => _x( 'Reviews', 'Post Type Singular Name', 'text_domain' ),
@@ -3523,7 +3368,7 @@ function custom_post_type_reviews() {
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
-        'show_in_menu'          => $tds_show_reviews_in_menu,
+        'show_in_menu'          => true,
         'menu_position'         => 28,
         'menu_icon'             => 'dashicons-star-empty',
         'show_in_admin_bar'     => true,

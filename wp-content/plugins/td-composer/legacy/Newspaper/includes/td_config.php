@@ -166,14 +166,6 @@ class td_config {
             ),
 
 
-            array(
-                'text' => 'No Animation',
-                'val' => 'type3',
-                'specific_selectors' => '.entry-thumb, img[class*="wp-image-"], a.td-sml-link-to-image > img, .td-lazy-img',
-                'general_selectors' => '.td-animation-stack .entry-thumb, .post .entry-thumb, .post img[class*="wp-image-"], a.td-sml-link-to-image > img, .td-animation-stack .td-lazy-img',
-            ),
-
-
         );
 
 
@@ -213,7 +205,7 @@ class td_config {
                         "heading" => 'Title background color:',
                         "param_name" => "header_color",
                         "value" => '',
-                        "description" => 'Optional - Choose a custom background color for this header/loader gif',
+                        "description" => 'Optional - Choose a custom background color for this header',
                         'td_type' => 'block_template',
                         "info_img" => "https://cloud.tagdiv.com/help/title_background_color.png",
                     ),
@@ -290,7 +282,7 @@ class td_config {
 		                "heading" => 'Title background color:',
 		                "param_name" => "header_color",
 		                "value" => '',
-		                "description" => 'Optional - Choose a custom background color for this header/loader gif',
+		                "description" => 'Optional - Choose a custom background color for this header',
 		                'td_type' => 'block_template',
                         "info_img" => "https://cloud.tagdiv.com/help/title_background_color.png",
 		            ),
@@ -334,7 +326,7 @@ class td_config {
 		                "heading" => 'Title background color:',
 		                "param_name" => "header_color",
 		                "value" => '',
-		                "description" => 'Optional - Choose a custom background color for this header/loader gif',
+		                "description" => 'Optional - Choose a custom background color for this header',
 		                'td_type' => 'block_template',
                         "info_img" => "https://cloud.tagdiv.com/help/title_background_color.png",
 		            ),
@@ -378,7 +370,7 @@ class td_config {
 		                "heading" => 'Title background color:',
 		                "param_name" => "header_color",
 		                "value" => '',
-		                "description" => 'Optional - Choose a custom background color for this header/loader gif',
+		                "description" => 'Optional - Choose a custom background color for this header',
 		                'td_type' => 'block_template',
                         "info_img" => "https://cloud.tagdiv.com/help/title_background_color.png",
 		            ),
@@ -465,7 +457,7 @@ class td_config {
 		                "heading" => 'Title background color:',
 		                "param_name" => "header_color",
 		                "value" => '',
-		                "description" => 'Optional - Choose a custom background color for this header/loader gif',
+		                "description" => 'Optional - Choose a custom background color for this header',
 		                'td_type' => 'block_template',
                         "info_img" => "https://cloud.tagdiv.com/help/title_background_color.png",
 		            ),
@@ -828,7 +820,7 @@ class td_config {
 		                "heading" => 'Title background color:',
 		                "param_name" => "header_color",
 		                "value" => '',
-		                "description" => 'Optional - Choose a custom background color for this header/loader gif',
+		                "description" => 'Optional - Choose a custom background color for this header',
 		                'td_type' => 'block_template',
                         "info_img" => "https://cloud.tagdiv.com/help/title_background_color.png",
 		            ),
@@ -882,7 +874,7 @@ class td_config {
 		                "heading" => 'Title background color:',
 		                "param_name" => "header_color",
 		                "value" => '',
-		                "description" => 'Optional - Choose a custom background color for this header/loader gif',
+		                "description" => 'Optional - Choose a custom background color for this header',
 		                'td_type' => 'block_template',
                         "info_img" => "https://cloud.tagdiv.com/help/title_background_color.png",
 		            ),
@@ -989,7 +981,7 @@ class td_config {
 		                "heading" => 'Title background color:',
 		                "param_name" => "header_color",
 		                "value" => '',
-		                "description" => 'Optional - Choose a custom background color for this header/loader gif',
+		                "description" => 'Optional - Choose a custom background color for this header',
 		                'td_type' => 'block_template',
                         "info_img" => "https://cloud.tagdiv.com/help/title_background_color.png",
 		            ),
@@ -1514,7 +1506,7 @@ class td_config {
                             "heading" => 'Hide ads for subscribed users',
                             "description" => "Hide the Ad for users which are subscribed to one of the plan IDs you enter here.",
                             "holder" => "div",
-                            "class" => "tdc-textfield-big " . ( !defined( 'TD_SUBSCRIPTION' ) || !method_exists( 'tds_util', 'is_user_subscribed_to_plan' ) ? 'tdc-hidden' : '' ),
+                            "class" => "tdc-textfield-big " . ( !defined( 'TD_SUBSCRIPTION' ) ? 'tdc-hidden' : '' ),
                         ),
 
                         array(
@@ -33005,29 +32997,6 @@ class td_config {
                     self::get_map_block_general_array(),
                     array(
                         array(
-                            "param_name" => "title_tag",
-                            "type" => "dropdown",
-                            "value" => array(
-                                'Default - H4' => '',
-                                'H1' => 'h1',
-                                'H2' => 'h2',
-                                'H3' => 'h3',
-                                'Div' => 'div'
-                            ),
-                            "heading" => 'Title tag (SEO)',
-                            "description" => "",
-                            "holder" => "div",
-                            "class" => "tdc-dropdown-big",
-                            "info_img" => "https://cloud.tagdiv.com/help/module_title_seo.png",
-                        ),
-                        array(
-                            "param_name" => "separator",
-                            "type" => "horizontal_separator",
-                            "value" => "",
-                            "class" => "tdc-separator-small",
-                            "group" => '',
-                        ),
-                        array(
                             "param_name" => "content",
                             "type" => "textarea_html",
                             "holder" => "div",
@@ -38062,7 +38031,7 @@ class td_config {
                     'tagDiv Opt-In Builder',
                     'tagDiv Newsletter',
 	                'Advanced Custom Fields',
-                    'Real Estate PRO Plugin',
+                    'tagDiv Real Estate PRO Demo Plugin',
                 ),
                 'type' => array(
                     'pro',
@@ -38081,7 +38050,7 @@ class td_config {
                     'tagDiv Cloud Library',
                     'tagDiv Opt-In Builder',
 	                'Advanced Custom Fields',
-                    'Compass PRO Plugin',
+                    'tagDiv Compass PRO Demo Plugin',
                 ),
                 'type' => array(
                     'pro',
@@ -38100,7 +38069,7 @@ class td_config {
                     'tagDiv Cloud Library',
                     'tagDiv Opt-In Builder',
 	                'Advanced Custom Fields',
-                    'Eastcoast Check PRO Plugin',
+                    'tagDiv Eastcoast Check PRO Demo Plugin',
                 ),
                 'type' => array(
                     'pro',
@@ -38119,7 +38088,7 @@ class td_config {
                     'tagDiv Cloud Library',
                     'tagDiv Opt-In Builder',
 	                'Advanced Custom Fields',
-                    'Doctors PRO Plugin',
+                    'tagDiv Doctors PRO Demo Plugin',
                 ),
                 'type' => array(
                     'pro',
@@ -38168,8 +38137,7 @@ class td_config {
                 'td_css_generator_demo' => false,                // must have a td_css_generator_demo.php in demo's folder
                 'uses_custom_style_css' => false,                // load a custom demo_style.less - must also be added to td_less_style.css.php
                 'required_plugins' => array(                    // required plugins for the demo to work properly
-                    'tagDiv Cloud Library',
-	                'tagDiv Opt-In Builder'
+                    'tagDiv Cloud Library'
                 ),
                 'type' => array(
                     'pro',
@@ -40980,10 +40948,6 @@ class td_config {
 			    'By' => __('By', 'newspaper'),
 			    'Load more' => __('Load more', 'newspaper'),
 			    'Modified date:' => __('Modified date:', 'newspaper'),
-                'Modified date' => __('Modified date', 'newspaper'),
-                'Alphabetical A -> Z' => __('Alphabetical A -> Z', 'newspaper'),
-                'Oldest posts' => __('Oldest posts', 'newspaper'),
-
 
 			    //breadcrumbs
 			    'View all posts in' => __('View all posts in', 'newspaper'),
@@ -41091,7 +41055,7 @@ class td_config {
 			    'Sign in / Join'  => __('Sign in / Join', 'newspaper'),
 			    'Sign in' => __('Sign in', 'newspaper'),
 			    'Sign up' => __('Sign up', 'newspaper'),
-                'Log in With Facebook' => __('Log in With Facebook', 'newspaper'),
+//                'Log in With Facebook' => __('Log in With Facebook', 'newspaper'),
                 'Join' => __('Join', 'newspaper'),
 			    'Log In'  => __('Log In', 'newspaper'),
 			    'Login'  => __('Login', 'newspaper'),
@@ -41224,15 +41188,12 @@ class td_config {
                 // woocommerce
                 'My account' => __('My account', 'newspaper'),
                 'Orders' => __('Orders', 'newspaper'),
-                'Downloads' => __('Downloads', 'newspaper'),
                 'Addresses' => __('Addresses', 'newspaper'),
                 'Account settings' => __('Account settings', 'newspaper'),
                 'Hello' => __('Hello', 'newspaper'),
                 'No products in the cart.' => __('No products in the cart.', 'newspaper'),
                 'Product categories' => __('Product categories', 'newspaper'),
                 'Product tags' => __('Product tags', 'newspaper'),
-                'inc. TAX' => __('inc. TAX', 'newspaper'),
-                'ex. TAX' => __('ex. TAX', 'newspaper'),
 
 
                 //post submit form
@@ -41244,7 +41205,6 @@ class td_config {
                 'The email has been successfully sent.' => __('The email has been successfully sent.', 'newspaper'),
                 'The status for the selected post has been changed to "Published' => __('The status for the selected post has been changed to "Published', 'newspaper'),
                 'An unexpected error has occurred. Please try again.' => __('An unexpected error has occurred. Please try again.', 'newspaper'),
-                'Drag and drop or browse' => __('Drag and drop or browse', 'newspaper'),
 
                 // Reviews system
                 'Posted by' => __('Posted by', 'newspaper'),
@@ -41283,8 +41243,6 @@ class td_config {
                 'Rating' => __('Rating', 'newspaper'),
                 'Title' => __('Title', 'newspaper'),
                 'Post image' => __('Post image', 'newspaper'),
-                'Categories' => __('Categories', 'newspaper'),
-                'Tags' => __('Tags', 'newspaper'),
                 'Date' => __('Date', 'newspaper'),
                 'Author' => __('Author', 'newspaper'),
                 'Source title' => __('Source title', 'newspaper'),
@@ -41294,20 +41252,6 @@ class td_config {
                 'Delete' => __('Delete', 'newspaper'),
                 'Add new post' => __('Add new post', 'newspaper'),
                 'Edit post' => __('Edit post', 'newspaper'),
-                'Publish a post' => __('Publish a post', 'newspaper'),
-                'The status for %POST_TITLE% has been changed.' => __('The status for %POST_TITLE% has been changed.', 'newspaper'),
-                'Are you sure you want to publish %POST_TITLE%?' => __('Are you sure you want to publish %POST_TITLE%?', 'newspaper'),
-                'Delete a post' => __('Delete a post', 'newspaper'),
-                'Are you sure you want to delete %POST_TITLE%?' => __('Are you sure you want to delete %POST_TITLE%?', 'newspaper'),
-                '%POST_TITLE% has been moved to trash.' => __('%POST_TITLE% has been moved to trash.', 'newspaper'),
-                'You do not hold the required priveleges to execute this request.' => __('You do not hold the required privileges to execute this request.', 'newspaper'),
-                'No search results.' => __('No search results.', 'newspaper'),
-
-                // Modals
-                'Yes' => __('Yes', 'newspaper'),
-                'No' => __('No', 'newspaper'),
-                'Cancel' => __('Cancel', 'newspaper'),
-                'Save' => __('Save', 'newspaper'),
 
                 //Location form
                 'Search for a location' => __('Search for a location', 'newspaper'),
@@ -41318,11 +41262,6 @@ class td_config {
                 'Country' => __('Country', 'newspaper'),
                 'State' => __('State', 'newspaper'),
                 'State' => __('State', 'newspaper'),
-
-                // Form taxonomies
-                'Create new term' => __('Create new term', 'newspaper'),
-                'Parent' => __('Parent', 'newspaper'),
-                'Description' => __('Description', 'newspaper'),
             );
 		}, 11);
 
@@ -41620,19 +41559,21 @@ class td_config {
             );
         }
 
-        $filter_array = array_merge(
-            $filter_array,
-            array(
+        if( $block_class != 'td_flex_block_6' ) {
+            $filter_array = array_merge(
+                $filter_array,
                 array(
-                    'param_name' => 'el_class',
-                    'type' => 'textfield',
-                    'value' => '',
-                    'heading' => 'Extra class',
-                    'description' => 'Style particular content element differently - add a class name and refer to it in custom CSS',
-                    'class' => 'tdc-textfield-extrabig',
+                    array(
+						'param_name' => 'el_class',
+						'type' => 'textfield',
+						'value' => '',
+						'heading' => 'Extra class',
+						'description' => 'Style particular content element differently - add a class name and refer to it in custom CSS',
+						'class' => 'tdc-textfield-extrabig',
+					)
                 )
-            )
-        );
+            );
+        }
 
         return $filter_array;
     } // end get_map function

@@ -1,0 +1,151 @@
+// --------
+// -- NOTIFICATIONS
+// --------
+// General
+.tds-s-error {
+  display: none;
+}
+
+.tds-s-notif {
+  padding: 25px;
+  border-radius: 3px;
+
+  &,
+  *:not(.tds-s-btn) {
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
+  b {
+    font-weight: 600;
+  }
+
+  &.tds-s-notif-error {
+    &.tds-s-notif-error-display {
+      display: block;
+    }
+  }
+
+}
+
+
+// Notification description
+.tds-s-notif-descr {
+  &:not(:last-child) {
+    margin-bottom: 6px;
+  }
+}
+
+
+// Notification list
+.tds-s-notif-list {
+  list-style-type: none;
+  margin: 0;
+
+  &:not(:last-child) {
+    margin: 0 0 10px;
+  }
+
+  li {
+    margin-bottom: 6px;
+    margin-left: 0 !important;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+// Info notification
+.tds-s-notif-info {
+  background-color: rgba(89, 98, 107, .08);
+  color: #59626B;
+}
+
+
+// Success notification
+.tds-s-notif-success {
+  background-color: rgba(38, 98, 28, .1);
+  color: #26621c;
+}
+
+
+// Warning notification
+.tds-s-notif-warn {
+  background-color: rgba(215, 133, 0, 0.12);
+  color: #d78500;
+
+  .tds-s-notif-descr {
+    a {
+      color: inherit !important;
+
+      &:not(:hover) {
+        text-decoration: underline !important;
+      }
+    }
+  }
+}
+
+
+// Error notification
+.tds-s-notif-error {
+  background-color: rgba(255, 56, 56, .12);
+  color: #ff3838;
+}
+
+.tds-s-notif-error-toggle {
+  position: relative;
+  top: -1px;
+  font-size: .857em;
+  cursor: pointer;
+
+  &:before {
+    content: '[+]';
+  }
+}
+
+.tds-s-notif-error-info {
+  display: none;
+  background-color: rgba(255, 255, 255, .08);
+  margin-top: 3px;
+  padding: 3px 6px 4px;
+  font-size: .857em;
+  color: rgba(255, 255, 255, .9);
+}
+
+.tds-s-notif-error-active {
+  .tds-s-notif-error-toggle {
+    &:before {
+      content: '[-]';
+    }
+  }
+
+  .tds-s-notif-error-info {
+    display: block;
+  }
+}
+
+
+// Extra small size
+.tds-s-notif-xsm {
+  padding: 10px 15px;
+
+  &,
+  *:not(.tds-s-btn) {
+    font-size: .929em;
+    line-height: 1.4;
+  }
+}
+
+
+// Small size
+.tds-s-notif-sm {
+  padding: 18px;
+
+  &,
+  *:not(.tds-s-btn) {
+    font-size: .929em;
+    line-height: 1.4;
+  }
+}

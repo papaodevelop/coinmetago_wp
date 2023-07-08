@@ -51,12 +51,7 @@ class tdb_mobile_menu extends td_block {
                 #tdc-live-iframe .tdb_mobile_menu a {
                   pointer-events: none;
                 }
-                .td-menu-mob-open-menu {
-                  overflow: hidden;
-                }
-                .td-menu-mob-open-menu #td-outer-wrap {
-                  position: static;
-                }
+
                 
                 /* @inline */
                 .$unique_block_class {
@@ -208,7 +203,7 @@ class tdb_mobile_menu extends td_block {
 
             $buffy .= '<div class="tdb-block-inner td-fix-index">';
 
-                $buffy .= '<span class="tdb-mobile-menu-button">' . $icon_html . '</span>';
+                $buffy .= '<a class="tdb-mobile-menu-button" aria-label="menu-button" href="#">' . $icon_html . '</a>';
 
             $buffy .= '</div>';
 

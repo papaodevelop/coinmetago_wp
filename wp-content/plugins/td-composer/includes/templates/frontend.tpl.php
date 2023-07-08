@@ -349,7 +349,7 @@ $tdb_p_infinite_count = td_util::get_option('tdb_p_autoload_count');
             }
             ?>
 
-            <?php if (TD_THEME_NAME !== 'Newsmag' && defined( 'TD_CLOUD_LIBRARY' ) ) { ?>
+            <?php if (TD_THEME_NAME !== 'Newsmag') { ?>
             <a class="tdc-sidebar-w-button tdb-load-template tdc-header-link tdc-load-cloud" href="#" title="Add an element from the cloud library">
                 <span class="tdc-sidebar-icon tdc-icon-cloud"></span>
                 <span class="tdc-header-label tdc-text-cloud">Cloud</span>
@@ -364,19 +364,9 @@ $tdb_p_infinite_count = td_util::get_option('tdb_p_autoload_count');
                 <span class="tdc-header-label tdc-text-close">Close</span>
             </a>
 
-            <a class="tdc-header-link <?php echo ( 'Newspaper' === TD_THEME_NAME && defined( 'TD_CLOUD_LIBRARY' ) ) ? 'tdc-header-link-dropdown' : ''; ?> tdc-save-page" href="#" title="Save the page content CTRL + S">
+            <a class="tdc-header-link tdc-save-page" href="#" title="Save the page content CTRL + S">
                 <span class="tdc-sidebar-icon tdc-icon-save"></span>
                 <span class="tdc-header-label tdc-text-save">Save</span>
-
-                <?php if( 'Newspaper' === TD_THEME_NAME && defined( 'TD_CLOUD_LIBRARY' ) ) { ?>
-                    <span class="tdc-header-link-sub-menu" title="">
-                        <span class="tdc-header-link-sub-menu-item tdc-save-page">Save all</span>
-                        <span class="tdc-header-link-sub-menu-sep"></span>
-                        <span class="tdc-header-link-sub-menu-item tdc-save-header">Save header</span>
-                        <span class="tdc-header-link-sub-menu-item tdc-save-footer">Save footer</span>
-                        <span class="tdc-header-link-sub-menu-item tdc-save-content">Save content</span>
-                    </span>
-                <?php } ?>
             </a>
             <a class="tdc-header-link tdc-view-page" href="<?php echo $preview_url ?>" target="_blank" title="View the page. Save the content before it">
                 <span class="tdc-sidebar-icon tdc-icon-view"></span>

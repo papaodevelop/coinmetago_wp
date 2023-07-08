@@ -293,15 +293,4 @@ class tdb_util {
 		}
 	}
 
-
-	static function get_icon_att( $icon_class ) {
-        $svg_list = td_global::$svg_theme_font_list;
-
-        if( array_key_exists( $icon_class, $svg_list ) ) {
-            return $svg_list[$icon_class];
-        }
-
-        return $icon_class;
-    }
-
 }

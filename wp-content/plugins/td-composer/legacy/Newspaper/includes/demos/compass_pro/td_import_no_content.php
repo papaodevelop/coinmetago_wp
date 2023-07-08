@@ -1,34 +1,6 @@
 <?php
 
 /*  ----------------------------------------------------------------------------
-	PAGES
-*/
-$page_search_modal_compass_id = td_demo_content::add_page( array(
-    'title' => 'Search Modal Compass',
-    'file' => 'search_modal_compass.txt',
-    'demo_unique_id' => '98633e806dbc7fe',
-));
-
-$page_tds_switching_plans_wizard_id = td_demo_content::add_page( array(
-    'title' => 'Subscribe',
-    'file' => 'tds_switching_plans_wizard.txt',
-    'demo_unique_id' => '38633e806dbcd68',
-));
-
-$page_pricing_plans_modal_id = td_demo_content::add_page( array(
-    'title' => 'Pricing Plans Modal',
-    'file' => 'pricing_plans_modal.txt',
-    'demo_unique_id' => '65633e806dbd23d',
-));
-
-$page_homepage_id = td_demo_content::add_page( array(
-    'title' => 'Homepage',
-    'file' => 'homepage.txt',
-    'homepage' => true,
-    'demo_unique_id' => '16633e806dbdce8',
-));
-
-/*  ----------------------------------------------------------------------------
 	SUBSCRIPTION - start phase 1
 */
 update_option('users_can_register', true);
@@ -81,7 +53,7 @@ $plan_yearly_plan_id = td_demo_subscription::add_plan( array(
         'months_in_cycle' => '12',
         'trial_days' => '0',
         'is_free' => '0',
-        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"55633e806d8f3f8";}',
+        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"966332e61216c62";}',
     )
 );
 
@@ -91,7 +63,7 @@ $plan_monthly_plan_id = td_demo_subscription::add_plan( array(
         'months_in_cycle' => '1',
         'trial_days' => '0',
         'is_free' => '0',
-        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"94633e806d8f44a";}',
+        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"536332e61216ccd";}',
     )
 );
 
@@ -101,7 +73,7 @@ $plan_free_plan_id = td_demo_subscription::add_plan( array(
         'months_in_cycle' => '',
         'trial_days' => '0',
         'is_free' => '1',
-        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"97633e806d8f4f4";}',
+        'options' => 'a:2:{s:15:"td_demo_content";i:1;s:9:"unique_id";s:15:"306332e61216d10";}',
     )
 );
 
@@ -178,6 +150,36 @@ td_demo_subscription::add_option( array(
 /*  ----------------------------------------------------------------------------
 	SUBSCRIPTION - end phase 1
 */
+
+
+/*  ----------------------------------------------------------------------------
+	PAGES
+*/
+$page_search_modal_compass_id = td_demo_content::add_page( array(
+    'title' => 'Search Modal Compass',
+    'file' => 'search_modal_compass.txt',
+    'demo_unique_id' => '306332e61240118',
+));
+
+$page_tds_switching_plans_wizard_id = td_demo_content::add_page( array(
+    'title' => 'Subscribe',
+    'file' => 'tds_switching_plans_wizard.txt',
+    'demo_unique_id' => '416332e612405e0',
+));
+
+$page_pricing_plans_modal_id = td_demo_content::add_page( array(
+    'title' => 'Pricing Plans Modal',
+    'file' => 'pricing_plans_modal.txt',
+    'demo_unique_id' => '976332e612409d6',
+));
+
+$page_homepage_id = td_demo_content::add_page( array(
+    'title' => 'Homepage',
+    'file' => 'homepage.txt',
+    'homepage' => true,
+    'demo_unique_id' => '726332e612413e5',
+));
+
 
 /*  ----------------------------------------------------------------------------
 	SUBSCRIPTION - start phase 2
@@ -268,7 +270,7 @@ td_demo_content::add_locker_meta( array(
     )
 );
 
-td_util::update_option('tds_demo_options', 'a:1:{s:5:"plans";a:3:{i:0;a:2:{s:9:"unique_id";s:15:"55633e806d8f3f8";s:4:"name";s:11:"Yearly Plan";}i:1;a:2:{s:9:"unique_id";s:15:"94633e806d8f44a";s:4:"name";s:12:"Monthly Plan";}i:2;a:2:{s:9:"unique_id";s:15:"97633e806d8f4f4";s:4:"name";s:9:"Free Plan";}}}');
+td_util::update_option('tds_demo_options', 'a:1:{s:5:"plans";a:3:{i:0;a:2:{s:9:"unique_id";s:15:"966332e61216c62";s:4:"name";s:11:"Yearly Plan";}i:1;a:2:{s:9:"unique_id";s:15:"536332e61216ccd";s:4:"name";s:12:"Monthly Plan";}i:2;a:2:{s:9:"unique_id";s:15:"306332e61216d10";s:4:"name";s:9:"Free Plan";}}}');
 
 
 /*  ----------------------------------------------------------------------------
@@ -387,6 +389,8 @@ td_demo_misc::update_global_header_template( 'tdb_template_' . $template_header_
 
 
 update_post_meta( $template_header_template_id, 'header_mobile_menu_id', $menu_td_demo_header_menu_id);
+
+
 
 
 
