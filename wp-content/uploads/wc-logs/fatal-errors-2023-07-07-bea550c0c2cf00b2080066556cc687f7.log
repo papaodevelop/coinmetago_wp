@@ -1,0 +1,5 @@
+2023-07-07T04:57:57+00:00 CRITICAL Uncaught Error: Call to undefined function olam_replace_site_url() in /var/www/html/wp-content/themes/olam/css/color.css.php:28
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/wp-content/themes/olam/css/color.css.php on line 28
+
